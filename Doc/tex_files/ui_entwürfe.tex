@@ -1,0 +1,66 @@
+\section{User Interface Entwürfe}
+
+Die User Interfaces wurden so gestaltet, dass sie die zuvor genannten User Stories, Use Cases und Anforderungen bestmöglich erfüllen. 
+\paragraph{}Dabei werden die Mitarbeiter Use Cases in einer mobile first Anwendung verpackt, weil die Arbeitsplatzbuchungen schnell und leicht von der Hand gehen sollen.
+Ebenfalls ist mobile first praktisch für die Nachtrichten-Funktion, da die Erreichbarkeit und die Möglichkeit schnell zu antworten, auf mobilen Geräten besser ist als auf Desktop Systemen. 
+\paragraph{}Die Use Cases des Administrators und der Geschäftsführung werden wiederum auf Desktop-Systeme ausgelegt, da dort eine übersichtliche, effiziente und präzise Nutzung wichtiger ist, als die Flexibilität auf das System zuzugreifen zu können. 
+
+\subsection{Mitarbeiter User Interface}
+
+Nachfolgend werden die Funktionen und Seiten des mobile first User Interfaces visualisiert und erläutert. 
+
+\subsubsection{Buchen}
+
+\begin{wrapfigure}{r}{5.5cm}
+    \includegraphics[width=4.5cm]{sketchBooking.png}
+    \caption{User Interface: Buchen}
+  \end{wrapfigure}
+
+Sobald die Anwendung abgerufen wird, erhält man das Buchen-Fenster.
+\paragraph{}Ersichtlich ist das aktuell geöffnete Fenster durch die Funktionsleiste am unteren Ende der Anwendung. 
+Dort wird die ausgewählte Funktion, spricht das aktuelle Fenster, durch die dunkel schwarze Färbung und den Balken darunter hervorgehoben.
+\paragraph{}Im oberen Teil der Anwendung kann man über Dropdown-Menus sich das Gebäude, die Etage und den Raum raussuchen, in dem mach buchen möchte.
+Dabei wählt man von rechts startend aus, spricht zuerst das Gebäude, dann die Etage und zuletzt den Raum.
+
+Dies ist wichtig, weil je nach Gebäude andere Etagen bestehen, welche dann wieder nur bestimmte Räume enthalten.
+\paragraph{}Wenn im oberen Teil alle Angaben bis zum Raum hin gegeben wurden, sieht man in der Mitte der Anwendung den ausgewählten Raum.
+Dieser wird durch ein Rechteck mit dünnen  schwarzen Linien in der Anwendung begrenzt.
+In diesem Rahmen soll es möglich sein den Raum zu verschieben und zu vergrößern und zu verkleinern.
+Der Raum an sich besteht zum einen aus Wänden, dicke schwarze Striche, und Türen, grau gestrichelte Einsätze in den Wänden. Türen und Wände werden 
+lediglich zur Orientierung und besseren Vorstellung des Raumes genutzt. 
+\paragraph{}In dem Raum befinden sich schließlich farbige Rechtecke, welche Arbeitsplätze darstellen, mit denen man interagieren kann. Die farbliche Kennzeichnung beschreibt, wie der Platz an dem heutigen Tag genutzt wird.
+Blau zeigt an, dass der Platz frei verfügbar ist für heute, rot zeigt an, dass der Platz mindestens in einem Zeitfenster von heute eine Buchung eines anderen Arbeitskollegen vorliegen hat und grün zeigt an, dass man den Arbeitsplatz für heute selbst in mindestens einem Zeitfenster gebucht hat.
+\paragraph{}Um weitere und genauere Informationen über die Belegung eines Arbeitsplatzes zu erhalten, klickt man diesen an.
+
+\begin{wrapfigure}{r}{5.5cm}
+  \includegraphics[width=4.5cm]{sketchTime1.png}
+  \caption{User Interface: Buchen - Zeitauswahl}
+\end{wrapfigure}
+
+\paragraph{}Mit dem Anklicken erscheint ein Pop-Up Fenster, für die Zeiteingabe. 
+In der Mitte des Fensters befindet sich die Zeitanagebe, die man aktuell ausgewählt hat. 
+Durch unabhängiges hoch- und runterswipen des Datums, der Stunden und Minuten verändert man die Zeitangabe.
+Die Zeitangaben sind dabei in 15-Minutenschlitze unterteilt.
+
+\paragraph{} Zu Beginn startet man mit der "`Von"' Zeitangabe, welche den Start des Buchungszeitraumes festlegt. 
+Im oberen Teil des Pop-Ups wird durch blaue Farbe hervorgehoben, ob es sich um die Eingabe der Startzeit oder der Endzeit handelt.
+Mit einem Klick auf "`Von..."' oder "`Bis..."' lassen sich somit auch die zeiteingaben dafür wechseln. 
+
+\paragraph{}Im unteren Teil des Pop-Ups kann man sets die Eingaben verwerfen durch einen Klick auf "Abbrechen".
+Rechts daneben kann man die Eingaben bestätigen und abschicken durch einen Klick auf "`Buchen"'.
+Dabei ist der Buchen-Button bei nur einer "`Von"' Angabe noch ausgegraut und nicht anklickbar.
+Erst nach der Auswahl der Startzeit und der Endzeit kann der Buchen-Button geklickt werden.
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=1\textwidth]{sketchTime23.png}
+  \caption{User Interface: Buchen - Informationen aus der Zeitauswahl}
+  \label{fig:sketch_time_23}
+\end{figure}
+
+\paragraph{}Aus der Zeitauswahl folgen noch weitere Informationen dazu ob ein Arbeitsplatz zu einem Zeitpunkt von jemand Anderen gebucht, frei oder selbst gebucht ist. \\
+Schwarze Zeitangaben sind frei verfügbar und können ohne Weiteres gebucht werden. \\
+Grüne Zeitangaben symbolisieren eigene Buchungen im System. \\
+Diese dienen lediglich zur eigenen Information und besitzen keine weiteren Interaktionsmöglichkeiten.\\
+Rote Zeitangaben sind von einem Kollegen gebucht, dieser Kolege wird auch in dem Pop-Up Fenster angezeigt.
+Anstatt dem Buchen-Button kann man den Kollegen nun per Nachricht anschreiben, falls man den Arbeitsplatz benötigt. 

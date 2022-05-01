@@ -4,7 +4,7 @@
 
 % Additional packages
 \usepackage[utf8]{inputenc}
-
+\usepackage{wrapfig}
 % Clickable Links in TOC
 \usepackage[hidelinks]{hyperref}
 
@@ -17,7 +17,22 @@
 
 % Information
 \title{Projekt DeskPlanner}
-\author{Pinar Gökcek, Kyle Mezger, Jay Imort, Rico Hofmann, Darios Pachtsinis}
+\author{
+Gökcek, Pinar\\
+\texttt{pigoit00@hs-esslingen.de}
+\and
+Mezger, Kyle\\
+\texttt{kymeit00@hs-esslingen.de}
+\and
+Imort, Jay\\
+\texttt{jaimit00@hs-esslingen.de}
+\and
+Hofmann, Rico\\
+\texttt{rihoit00@hs-esslingen.de}
+\and
+Pachtsinis, Darios\\
+\texttt{dapait03@hs-esslingen.de}
+}
 \date{04. April 2022}
 
 % Content
@@ -30,6 +45,9 @@
     % Output title
     \maketitle
 
+    % Hide page number
+    \thispagestyle{empty}
+
     % Fill rest of page
     \vfill
 
@@ -40,14 +58,16 @@
 
 \pagebreak
 
-\section{Zielgruppe, Problem, Eigenschaften, Alleinstellungsmerkmal}
+% \include{./tex_files/}
+\include{./tex_files/zeitplan}
 
-\subsection{Zielgruppe}
+\include{./tex_files/chapter_1}
 
+<<<<<<< HEAD
 \subsection{Problem}
 Während der Pandemiezeit wird verstärkt von Zuhause aus gearbeitet, dadurch schwankt die Anzahl der Arbeiter im Büro
 stark und die interdisziplinären Kollegen habe keinen Überblick mehr darüber, wer im Büro ist und wer nicht.
- Auch die Geschäftsleitung hat keine direkte Möglichkeit, ohne die entsprechenden Teamleiter zu kontaktieren, sich über 
+Auch die Geschäftsleitung hat keine direkte Möglichkeit, ohne die entsprechenden Teamleiter zu kontaktieren, sich über 
 die Momentane Anwesenheit zu informieren.
 Zumal grundsätzlich nicht jeder in das Home-Office kann bzw. will, dies kann diverse Gründe, wie z. B. fehlende
 Räumlichkeiten oder die geschwächte Konzentrationsfähigkeit in den eigenen vier Wänden sein. Agile Arbeitsplätze
@@ -59,7 +79,7 @@ dem Prinzip “first come first serve“ besetzt werden.\\\\
 Wenn man am Morgen an einem Arbeitsplatz sitzt, dann aber im Laufe des Tages für einen längeren Zeitraum diesen verlassen muss,
 wird diese Ressource unnötig blockiert. Raumbelüftungssysteme, Heizungen und Klimaanlagen für Räume bzw. Gebäude werden nicht
 nach der Personenauslastung betrieben, in Hinblick auf die steigenden Energiekosten, ist dies weder ökonomisch noch nachhaltig.
- Theortisch ist es auch möglich durch die hierdurch gewonnene Statistik, die Raum- bzw. Gebäudeausnutzungen zu optimieren
+Theortisch ist es auch möglich durch die hierdurch gewonnene Statistik, die Raum- bzw. Gebäudeausnutzungen zu optimieren
 und dadurch Mietkosten einzusparen.
 Immungeschwächte Personen die ihre Tätigkeit nur vor Ort im Büro erledigen können, haben pandemiebedingt nicht die Möglichkeit
 Arbeitsplätze zu Buchen, die weiter weg von den restlichen Arbeitsplätzen bzw. Kollegen sind. Der Arbeitgeber, der nur eine bestimmte
@@ -72,43 +92,13 @@ Nicht nur Arbeitsplätze in einem Raum, sondern bestimmte Räume in bestimmten G
 Auch ist eine Chatfunktion zwischen Teamleitern und Mitarbeitern bzw. zwischen Mitarbeitern möglich. 
 Dies hat den Vorteil das Buchungen bei Sonderfällen unter Mitarbeitern einfach getauscht werden können. 
 Eine Synchronisation mit dem Outlookkalender wäre auch denkbar.
+=======
+\include{./tex_files/user_stories}
 
-\subsection{Eigenschaften}
-Die Web-Applikation DeskPlanner wird mindestens folgende Eigenschaften nachweisen können:
+\include{./tex_files/ui_entwürfe}
+>>>>>>> e2fd2fd2e6af937f85cef4ac210cc9da5b931ec0
 
-% missing table, which concluded in errors
-
-Des Weiteren sind kleine Eigenschaften wie Einhaltung der 7 Usability Prinzipien
-vorgesehen, um so die Bedienung des Kunden so einfach wie möglich zu halten. 
-Beispiele hierfür sind Hilfstexte, welche die verschiedenen Buttons erklären sollen
-oder selbsterklärende Icons der jeweiligen Buttons. Außerdem soll der Nutzer nicht
-mit Information beschüttet werden, sondern eine auf seinen Nutzungskontext
-angepasste Benutzeroberfläche sorgen für Aufgabenangemessenheit. Durch die 
-individuelle Raumgestaltung erhält der Nutzer ein steuerbares Softwaresystem,
-welches genau das machen wird, was der Nutzer auch erwartet.
-
-\subsection{Alleinstellungsmerkmal}
-Als herausragendes Leistungsmerkmal des DeskPlanners bezeichnet man die 
-effiziente Arbeitsplatznutzung. In der heutigen Branche, vor allem durch Corona 
-bestätigt, gilt es, die Kosten immer weiter zu reduzieren. Durch die 
-Raumbuchungsmöglichkeiten, kann ein Unternehmen die Arbeitsplätze minimieren, Home Office
-Mitarbeiter perfekt einplanen und dadurch Kosten der Technik und Größe des Raumes
-einsparen für andere Investitionen. Als Open Source Web-Applikation kann man
-als Unternehmen sogar lizenzfrei den Arbeitsplatz kosteneffizienter nutzen.
-Genau hier soll der DeskPlanner vor allem kleineren Unternehmen unterstützen, um 
-auch in Zeiten der Pandemie nicht insolvent zu gehen.
-
-\section{User Stories}
-
-\section{User Interface Entwürfe}
-
-\section{Technisches Konzept}
-
-\subsection{Verwendete Frameworks}
-
-\subsection{Softwarearchitektur}
-
-\subsection{Datenbanken}
+\include{./tex_files/technisches_konzept}
 
 % Bibliography
 % \bibliography{file.bibtex}
