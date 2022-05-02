@@ -4,13 +4,35 @@
 
 % Additional packages
 \usepackage[utf8]{inputenc}
+\usepackage{wrapfig}
+% Clickable Links in TOC
+\usepackage[hidelinks]{hyperref}
+
+% Images/ figures package
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
 
 % Language
 \usepackage[ngerman]{babel}
 
 % Information
 \title{Projekt DeskPlanner}
-\author{Pinar Gökcek, Kyle Mezger, Jay Imort, Rico Hofmann, Darios Pachtsinis}
+\author{
+Gökcek, Pinar\\
+\texttt{pigoit00@hs-esslingen.de}
+\and
+Mezger, Kyle\\
+\texttt{kymeit00@hs-esslingen.de}
+\and
+Imort, Jay\\
+\texttt{jaimit00@hs-esslingen.de}
+\and
+Hofmann, Rico\\
+\texttt{rihoit00@hs-esslingen.de}
+\and
+Pachtsinis, Darios\\
+\texttt{dapait03@hs-esslingen.de}
+}
 \date{04. April 2022}
 
 % Content
@@ -23,6 +45,9 @@
     % Output title
     \maketitle
 
+    % Hide page number
+    \thispagestyle{empty}
+
     % Fill rest of page
     \vfill
 
@@ -31,19 +56,18 @@
 % Table of contents
 \tableofcontents
 
-\section{Zielgruppe}
+\pagebreak
 
-\section{Problem}
+% \include{./tex_files/}
+\include{./tex_files/zeitplan}
 
-\section{Eigenschaften}
+\include{./tex_files/chapter_1}
 
-\section{Alleinstellungsmerkmal}
+\include{./tex_files/user_stories}
 
-\section{User Stories}
+\include{./tex_files/ui_entwürfe}
 
-\section{User Interface Entwürfe}
-
-\section{Technisches Konzept}
+\include{./tex_files/technisches_konzept}
 
 % Bibliography
 % \bibliography{file.bibtex}
