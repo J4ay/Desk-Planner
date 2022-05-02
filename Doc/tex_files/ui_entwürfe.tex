@@ -21,8 +21,8 @@ Sobald die Anwendung abgerufen wird, erhält man das Buchen-Fenster.
 Dort wird die ausgewählte Funktion, spricht das aktuelle Fenster, durch die dunkel schwarze Färbung und den Balken darunter hervorgehoben.
 \paragraph{}Im oberen Teil der Anwendung kann man über Dropdown-Menus sich das Gebäude, die Etage und den Raum raussuchen, in dem mach buchen möchte.
 Dabei wählt man von rechts startend aus, spricht zuerst das Gebäude, dann die Etage und zuletzt den Raum.
-
 Dies ist wichtig, weil je nach Gebäude andere Etagen bestehen, welche dann wieder nur bestimmte Räume enthalten.
+
 \paragraph{}Wenn im oberen Teil alle Angaben bis zum Raum hin gegeben wurden, sieht man in der Mitte der Anwendung den ausgewählten Raum.
 Dieser wird durch ein Rechteck mit dünnen  schwarzen Linien in der Anwendung begrenzt.
 In diesem Rahmen soll es möglich sein den Raum zu verschieben und zu vergrößern und zu verkleinern.
@@ -133,7 +133,7 @@ Ebenfalls lassen sich dort Nutzergruppen verwalten, die bestimmen, welcher Mitar
 
 \newpage
 \subsubsection{Raum-Editor}
-Die genannten Einstellungen lassen sich auf dem Editor, in Abbildung 12, vornehmen.
+Die genannten Aufgaben des Administrator User Interfaces lassen sich in dem Editor, in Abbildung 12, vornehmen.
 
 \begin{figure}[!h]
   \centering
@@ -141,3 +141,38 @@ Die genannten Einstellungen lassen sich auf dem Editor, in Abbildung 12, vornehm
   \caption{User Interface: Raum-Editor}
   \label{fig:sketch_RaumEditor}
 \end{figure}
+
+Von oben nach unten durchgehend, werden nachfolgen die Funktionen des Editors erklärt.
+\\
+Oben links besitzt der Editor Auswahlmöglichkeiten für das Gebäude, die Etage und den Raum.
+Ausgewählt wird über Dropdown Menus, welche von links nach rechts ausgewählt werden müssen, wie in der normalen Raumwahl im Buchen Fenster.
+Mit einem Rechtsklick auf Einträge im Dropdown Menu lassen sich Räume löschen.
+Über das Plus-Symbol rechts neben dem Dropdown Menü kann ein neuer Eintrag jeweils zum System hinzugefügt werden.
+Dabei ist es so, dass immer ein Gebäude hinzugefügt werden kann, da dies nicht von vorherigen Auswahlen abhängt. 
+Um eine Etage hinzuzufügen, muss ein Gebäude ausgewählt sein, damit die Etage dem ausgewählten Gebäude zugeordnet werden kann.
+Zuletzt kann ein Raum hinzugefügt werden, indem ein Gebäude und eine Etage ausgewählt ist.
+\\
+Bei sämtlichem Hinzufügen erscheint eine Eingabeleiste für den Namen des Eintrags.
+Die Eingabe bestätigt man schließlich mit ok und man verwerft sie mit dem X-Symbol.
+
+\paragraph{} Hat man nun einen Raum ausgewählt oder ist soweit, dass man einen neuen erstellt hat, kann man oben rechts die Gruppe auswählen, ab welcher der Raum buchbar ist.
+Dies geschieht ebenfalls über ein Dropdown Menu und mit dem +-Symbol erstellt man eine neue Benutzergruppe, die hinzugefügt wird. 
+
+\paragraph{}Mit dem Auswählen oder Erstellen eines Raumes, wird dieser auch unterhalb der oberen Leiste angezeigt. 
+In dem Rechteck mit den dünnen schwarzen Linien, lässt sich der Raum interaktiv bearbeiten.
+\\
+Oben rechts in der Bearbeitungsfläche sind die drei Objekte, die man in den Raum beliebig oft ziehen kann.
+Nämlich Türen, Wände und Arbeitsplätze.
+Die Visualisierung von Türen, Wänden und Arbeitsplätzen ist in "`3.1.1 Buchen"' beschrieben
+\\
+Türen lassen sich auf bestehende Wände draufziehen, skalieren und verschieben.
+Wände lassen sich einfach in die Bearbeitungsfläche ziehen und wie Polygonlinienzüge anpassen.
+Arbeitsplätze werden in den Raum reingezogen und können dort auch noch verschoben und skaliert werden.
+Die Elemente in der Bearbeitungsfläche lassen sich generell anklicken und bearbeiten.
+Mit der Entf. Taste lässt sich das angeklickte Element auch löschen.
+
+\paragraph{} Untenrechts kann man letztlich die Änderungen an einem Raum komplett verwerfen durch "`Abbrechen"'
+oder eben speichern mit "`Speichern"'.
+Nach dem Speichern wird ein neuer Raum auch direkt ins System eingefügt.
+
+\subsubsection{Benutzerverwaltung}
