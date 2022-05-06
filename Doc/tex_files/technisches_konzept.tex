@@ -73,7 +73,7 @@ Daher fiel auch die Wahl auf React, trotz der sehr NestJS-ähnlichen Struktur di
 Auch MongoDB war eine Vorgabe des ProductOwners.
 Im Vergleich zu “klassischen” Datenbanken wie MySQL halten MongoDB Datenbanken ihre Daten nicht in Tabellen, sondern in JSON Files in einer Baumstruktur, d.h. MongoDB ist eine sog. NoSQL Datenbank. \\
 Daher ist MongoDB im vergleich zu bspw. MySQL Datenbanken schon von der Grundstruktur der Datenhaltung sehr nah an der tatsächlich in der Entwicklung genutzten Strukturen der Implementation und verlangt so weniger Abstraktion als eine SQL Datenbank.
-
+\pagebreak
 \section{Softwarearchitektur}
 
 \begin{figure}[!h]
@@ -99,5 +99,20 @@ Dieses beschreibt die verwendeten Komponenten bei eingegangener REST Anfrage.
 Die React App stellt eine REST Anfrage an die NEST API, diese fordert dann die verlangten Informationen über ein Interface von der Mongo Datenbank.
 Die MongoDB ist erreichbar über den Port 27013 durch den Datenbank-Administrator, dieser bearbeitet die Anfrage und sendet die gefordeten Daten über das Interface zurück an die Nest API.
 Zu guter Letzt kann die Nest API dann die bereitgestellten Informationen über ein geeignetes Interface an die React App schicken, welche dadurch weitere Anfragen, wie mithilfe des Komponentendiagramm des Clients beschrieben wurde, beantworten kann.
+
+
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{./UML_Diagrams/Verteilungsdiagramm.png}
+    \caption{Verteilungsdiagramm}
+    \label{fig:Verteilungsdiagramm}
+\end{figure}
+
+Das in Abbildung 4.3 gezeigte Verteilungsdiagramm veranschaulicht, wie die Applikation im Browser des Nutzers über das React-Framework an das NestJS backend verbunden ist.
+Der Nutzer sendet mithilfe der Benutzeroberflächen eine HTTP Anfrage an das React Front-End über das Internet, um zum Beispiel Informationen über Räume anzufordern.
+Das React Front-End sendet die Anfrage des Nutzers mittels REST Anfrage über HTTPS an das NestJS Backend, damit dies an die Datenbank zugreifen kann.
+Das NestJS Backend sendet die Anfrage an die Mongoose Datenbank und liefert die geforderten Informationen zurück.
+
 
 \section{Datenbanken}
