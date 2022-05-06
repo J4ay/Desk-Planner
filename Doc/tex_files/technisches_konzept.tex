@@ -76,4 +76,28 @@ Daher ist MongoDB im vergleich zu bspw. MySQL Datenbanken schon von der Grundstr
 
 \section{Softwarearchitektur}
 
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{./UML_Diagrams/ComponentDiagramClient.png}
+    \caption{Component Diagram: Client}
+    \label{fig:ComponentDiagramClient}
+\end{figure}
+In Abbildung 4.1 ist das Komponentendiagramm des Client zu sehen.
+Dieses beschreibt die verwendeten Komponenten bei eingegangenem User Input.
+Der Nutzer macht über den Web-Client eine Anfrage, wie beispielsweise der Aufruf der Web-Applikation oder die Anfrage auf einen bestimmten Raum.
+Dadurch fordert der Client ein Interface über die React App, welche dann eine REST Anfrage an die Nest API schickt.
+Im Normalfall sollte dann die REST Anfrage beantwortet werden und die React App kann mit den erhaltenen Informationen ein geeignetes User Interface zur Nutzung auf dem Client bereitstellen.
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{./UML_Diagrams/ComponentDiagramServer.png}
+    \caption{Component Diagram: Server}
+    \label{fig:ComponentDiagramServer}
+\end{figure}
+In Abbildung 4.2 ist das Komponentendiagramm des Servers zu sehen.
+Dieses beschreibt die verwendeten Komponenten bei eingegangener REST Anfrage.
+Die React App stellt eine REST Anfrage an die NEST API, diese fordert dann die verlangten Informationen über ein Interface von der Mongo Datenbank.
+Die MongoDB ist erreichbar über den Port 27013 durch den Datenbank-Administrator, dieser bearbeitet die Anfrage und sendet die gefordeten Daten über das Interface zurück an die Nest API.
+Zu guter Letzt kann die Nest API dann die bereitgestellten Informationen über ein geeignetes Interface an die React App schicken, welche dadurch weitere Anfragen, wie mithilfe des Komponentendiagramm des Clients beschrieben wurde, beantworten kann.
+
 \section{Datenbanken}
