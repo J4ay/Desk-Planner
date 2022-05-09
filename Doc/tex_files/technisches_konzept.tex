@@ -84,7 +84,7 @@ Daher fiel auch die Wahl auf React, trotz der sehr NestJS-ähnlichen Struktur di
     \end{table}
 
 Auch MongoDB war eine Vorgabe des ProductOwners.
-Im Vergleich zu “klassischen” Datenbanken wie MySQL halten MongoDB Datenbanken ihre Daten nicht in Tabellen, sondern in JSON Files in einer Baumstruktur, d.h. MongoDB ist eine sog. NoSQL Datenbank. \\
+Im Vergleich zu “klassischen” Datenbanken wie MySQL halten Mongo Datenbanken ihre Daten nicht in Tabellen, sondern in JSON Files in einer Baumstruktur, d.h. MongoDB ist eine sog. NoSQL Datenbank. \\
 Daher ist MongoDB im vergleich zu bspw. MySQL Datenbanken schon von der Grundstruktur der Datenhaltung sehr nah an der tatsächlich in der Entwicklung genutzten Strukturen der Implementation und verlangt so weniger Abstraktion als eine SQL Datenbank.
 \pagebreak
 \section{Softwarearchitektur}
@@ -135,9 +135,11 @@ Das NestJS Backend sendet die Anfrage an die Mongoose Datenbank und liefert die 
     \caption{Entity-Relationship-Modell}
     \label{fig:EntityRelationshipModel}
 \end{figure}
-Der Mitarbeiter hat eine Rolle. Unter Rollen versteht sich die Position im Betrieb, darunter zählt der Geschäftsleitung, der Administrator oder 
-der Mitarbeiter. Die Personalnummer, der AnzeigeName und der LoginName sind zusätzliche Attribute. Das Attribut aktiveChats 
-steht für die Mitarbeiterchats, aktivBuchungen symbolisiert die getätigten Buchungen. Die Buchungen haben als Attribut Datum, Startzeit 
-und EndZeit. Der Arbeitsplatz hat die Attribute Buchungsstatus, Koordinaten, die Räumlichkeiten abbilden, Buchungseinschränkung. 
+Der Mitarbeiter hat eine Rolle. 
+Unter Rollen versteht sich die Position im Betrieb, darunter zählt der Geschäftsleitung, der Administrator oder der Mitarbeiter.
+Die Personalnummer, der AnzeigeName und der LoginName sind zusätzliche Attribute.
+Das Attribut aktiveChats steht für die Mitarbeiterchats, aktivBuchungen symbolisiert die getätigten Buchungen.
+Die Buchungen haben als Attribut Datum, Startzeit und EndZeit.
+Der Arbeitsplatz hat die Attribute Buchungsstatus, Koordinaten, die Räumlichkeiten abbilden, Buchungseinschränkung. 
 Zudem gibt es Raum, Stockwerk und Gebäude, die den gebuchten Ort beschreiben. 
 Ein Mitarbeiter kann mehrere Arbeitsplätze zu verschiedenen Daten, an verschiedenen Örtlichkeiten gleichzeitig buchen. 
