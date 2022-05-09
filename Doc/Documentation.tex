@@ -1,6 +1,28 @@
 % Preamble
 % Document type
-\documentclass{article}
+\documentclass[
+    12pt,
+    headings=big,
+    version=first,
+    ngerman,
+    a4paper,
+    BCOR=5mm,
+    DIV=14,
+    1headlines,
+    pagesize,
+    oneside,
+    openright,
+    titlepage,
+    headsepline,
+    chapterprefix=false,
+    bibliography=totoc,
+    toc=graduated,
+    listof=graduated,
+    numbers=noenddot,
+    cleardoublepage=empty,
+    fleqn,
+    parskip=half,
+]{scrbook}
 
 % Additional packages
 \usepackage[utf8]{inputenc}
@@ -11,12 +33,22 @@
 % Images/ figures package
 \usepackage{graphicx}
 \graphicspath{ {./images/} }
+\usepackage{rotating}
 
 % Language
 \usepackage[ngerman]{babel}
 
+\usepackage[export]{adjustbox}
+
 % Information
+\titlehead{  
+    \makebox[0pt][l]{\smash{%
+    \parbox[t][\dimexpr\textheight-\ht\strutbox\relax][t]{\textwidth}{%
+    \includegraphics[width=4cm]{hslogo.png}\hfill\includegraphics[width=5cm]{desk_planner_logo.png}
+    \hfill\includegraphics[width=4cm]{it-designers_logo.jpeg}%
+}}}}
 \title{Projekt DeskPlanner}
+\subtitle{Studienprojekt Softwaretechnik und Medieninformatik}
 \author{
 Gökcek, Pinar\\
 \texttt{pigoit00@hs-esslingen.de}
@@ -64,6 +96,7 @@ Pachtsinis, Darios\\
 \include{./tex_files/chapter_1}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 \subsection{Problemstellung}
 Während der Pandemiezeit wird verstärkt von Zuhause aus gearbeitet, dadurch schwankt die Anzahl der Arbeiter im Büro
 stark und die interdisziplinären Kollegen habe keinen Überblick mehr darüber, wer im Büro ist und wer nicht.
@@ -93,10 +126,11 @@ Auch ist eine Chatfunktion zwischen Teamleitern und Mitarbeitern bzw. zwischen M
 Dies hat den Vorteil das Buchungen bei Sonderfällen unter Mitarbeitern einfach getauscht werden können. 
 Eine Synchronisation mit dem Outlookkalender wäre auch denkbar.
 =======
+=======
+>>>>>>> b20fe9db99f6c6735ed477bb873a023a6125c6de
 \include{./tex_files/user_stories}
 
 \include{./tex_files/ui_entwürfe}
->>>>>>> e2fd2fd2e6af937f85cef4ac210cc9da5b931ec0
 
 \include{./tex_files/technisches_konzept}
 
