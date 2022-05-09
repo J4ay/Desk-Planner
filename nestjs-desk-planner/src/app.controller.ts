@@ -1,4 +1,4 @@
-import { Controller, Get, Put } from '@nestjs/common';
+import { Body, Controller, Get, Post, Put } from '@nestjs/common';
 import { AppService, Movie } from './app.service';
 
 @Controller()
@@ -10,8 +10,14 @@ export class AppController {
     return this.appService.getDesks();
   }
 
-  @Put()
-  postDesk(newdesk) {
-    return this.appService.postDesk(newdesk);
+  @Post()
+  async addDesk(
+    @Body('id') id: number,
+    @Body('building') building: number,
+    @Body('floor') floor: number,
+    @Body('room') room: number,
+  ) {
+    const createdDesk = await this.appService.postDesk(id, building, floor, room);
+    return createdDesk;
   }
 }

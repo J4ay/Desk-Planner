@@ -32,9 +32,11 @@ export class AppService {
     return desk;
   }
 
-  public async postDesk(newdesk) {
-    const createdDesk = await new this.deskModel(newdesk);
-    return createdDesk.save();
+  public async postDesk(id: number, building: number, floor: number, room: number) {
+    //const createdDesk = await this.deskModel(newdesk);
+    const createdDesk = new this.deskModel({ id, building, floor, room });
+    const result = await createdDesk.save();
+    return result.id;
   }
 
   public async deleteDeskById(id: number): Promise<any> {
