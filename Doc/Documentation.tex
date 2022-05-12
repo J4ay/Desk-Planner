@@ -1,6 +1,28 @@
 % Preamble
 % Document type
-\documentclass{article}
+\documentclass[
+    12pt,
+    headings=big,
+    version=first,
+    ngerman,
+    a4paper,
+    BCOR=5mm,
+    DIV=14,
+    1headlines,
+    pagesize,
+    oneside,
+    openright,
+    titlepage,
+    headsepline,
+    chapterprefix=false,
+    bibliography=totoc,
+    toc=graduated,
+    listof=graduated,
+    numbers=noenddot,
+    cleardoublepage=empty,
+    fleqn,
+    parskip=half,
+]{scrbook}
 
 % Additional packages
 \usepackage[utf8]{inputenc}
@@ -11,12 +33,22 @@
 % Images/ figures package
 \usepackage{graphicx}
 \graphicspath{ {./images/} }
+\usepackage{rotating}
 
 % Language
 \usepackage[ngerman]{babel}
 
+\usepackage[export]{adjustbox}
+
 % Information
+\titlehead{  
+    \makebox[0pt][l]{\smash{%
+    \parbox[t][\dimexpr\textheight-\ht\strutbox\relax][t]{\textwidth}{%
+    \includegraphics[width=4cm]{hslogo.png}\hfill\includegraphics[width=5cm]{desk_planner_logo.png}
+    \hfill\includegraphics[width=4cm]{it-designers_logo.jpeg}%
+}}}}
 \title{Projekt DeskPlanner}
+\subtitle{Studienprojekt Softwaretechnik und Medieninformatik}
 \author{
 Gökcek, Pinar\\
 \texttt{pigoit00@hs-esslingen.de}
@@ -57,6 +89,8 @@ Pachtsinis, Darios\\
 \tableofcontents
 
 \pagebreak
+
+\setcounter{chapter}{-1}
 
 % \include{./tex_files/}
 \include{./tex_files/zeitplan}
