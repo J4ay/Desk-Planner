@@ -13,4 +13,6 @@ const App = () => (
       </div>
 );
 
+console.dir("App.jsx");
+
 export default App;

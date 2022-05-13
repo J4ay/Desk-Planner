@@ -16,6 +16,8 @@ const initKeycloak = (onAuthenticatedCallback) => {
 
 const doLogin = _kc.login;
 
+console.log("UserService.js");
+
 const doLogout = _kc.logout;
 
 const getToken = () => _kc.token;
