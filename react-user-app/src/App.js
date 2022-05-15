@@ -11,25 +11,34 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
+import LaptopChromebookIcon from '@mui/icons-material/LaptopChromebook';
+import Grid from '@mui/material/Grid';
 import {MakeStyles, ThemeProvider, createTheme } from '@mui/material/styles';
 
+import Dropdowns from './components/Dropdowns';
 import "@fontsource/roboto";
 
 //const useStyles = MakeStyles({
 //})
-//const theme = createTheme({
-//})
+const theme = createTheme({
+  typography: {
+    h5: {
+      fontWeight: 'Bold',
+      letterSpacing: '1.5px',
+    }
+  },
+})
 
 function App() {
   return (
-    //<ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme}>
     <div className="App">
       <Paper sx={{ position: 'fixed', top: 0, left: 0, right: 0 }} elevation={1}>
-        <AppBar position="static" sx = {{ fontSize: 72 }}>
+        <AppBar position="static" sx = {{ fontSize: 72, bgcolor: '#003366' }}>
           <Toolbar>
-              <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Buchen
-          </Typography>
+              <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
+              Buchen
+              </Typography>
           <IconButton
               size="large"
               edge="start"
@@ -37,15 +46,28 @@ function App() {
               aria-label="menu"
               sx={{ mr: 1 }}
             >
-            <Mail />
+            <LaptopChromebookIcon  sx={{ fontSize: 32 }} />
             </IconButton>
           </Toolbar>
         </AppBar>
       </Paper>
 
-      <Container maxWidth="sm">
-        <Box sx={{ bgcolor: '#cfe8fc', height: '2000px', border: '4px dashed black' }} />
+      <Grid container sx={{position: 'fixed', paddingTop: "64px", paddingLeft: "12px"}}>
+        <Grid item>
+        <Dropdowns title="Gebäude" />
+        </Grid>
+        <Grid item>
+        <Dropdowns title="Etage" />
+        </Grid>
+        <Grid item>
+        <Dropdowns title="Raum" />
+        </Grid>
+      </Grid>
+
+      <Container sx={{minHeight: "100%", height: "100%", position: 'fixed', marginTop: "100px"}}>
+        <Box sx={{height: "70%", border: '2px solid black' }} />
       </Container>
+
 
     <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={4}>
       <BottomNavigation
@@ -63,7 +85,7 @@ function App() {
       </BottomNavigation>
     </Paper>
     </div>
-    //</ThemeProvider>
+    </ThemeProvider>
   );
 }
 
