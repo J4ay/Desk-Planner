@@ -5,10 +5,12 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import {MakeStyles, ThemeProvider, createTheme } from '@mui/material/styles';
 
-import Dropdowns from './components/Dropdowns';
 import BottomNavBar from './components/BottomNavBar';
 import TopAppBar from './components/TopAppBar';
+import BookingPlacehold from './components/BookingPlacehold';
 import "@fontsource/roboto";
+import BookingCard from './components/BookingCard';
+import BookingsPlacehold from './components/BookingsPlacehold';
 
 //const useStyles = MakeStyles({
 //})
@@ -28,23 +30,9 @@ function App() {
 
       <TopAppBar />
 
-      <Container sx={{marginTop: "64px"}}>
-      <Grid container>
-        <Grid item>
-        <Dropdowns title="Gebäude" />
-        </Grid>
-        <Grid item>
-        <Dropdowns title="Etage" />
-        </Grid>
-        <Grid item>
-        <Dropdowns title="Raum" />
-        </Grid>
-      </Grid>
-        <Box sx={{position: 'fixed', minHeight: "70%", height: "50%",
-        minWidth: "90%", width: "90%", border: '2px solid black' }} />
-      </Container>
+      <BookingPlacehold />
 
-    <BottomNavBar />
+      <BottomNavBar />
 
     </div>
     </ThemeProvider>

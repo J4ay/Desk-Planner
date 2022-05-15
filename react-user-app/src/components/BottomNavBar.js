@@ -8,7 +8,7 @@ import Paper from '@mui/material/Paper';
 
 const BottomNavBar = () => {
   return (
-    <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={4}>
+    <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: "20" }} elevation={4}>
     <BottomNavigation
       showLabels
       sx = {{ 
