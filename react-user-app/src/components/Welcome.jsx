@@ -9,7 +9,4 @@ const Welcome = () => (
     </p>
   </div>
 )
-
-console.log("Welcome.jsx");
-
 export default Welcome

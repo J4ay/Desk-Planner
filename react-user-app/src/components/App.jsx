@@ -9,10 +9,9 @@ const App = () => (
           <Welcome/>
         </RenderOnAnonymous>
         <RenderOnAuthenticated>
+          <p>You are logged in!</p>
         </RenderOnAuthenticated>
       </div>
 );
-
-console.dir("App.jsx");
 
 export default App;
