@@ -1,8 +1,8 @@
 {
-    "realm": "DeskPlanner",
-    "auth-server-url": "http://localhost:8080/",
-    "ssl-required": "none",
-    "resource": "keycloak-reactjs-demo",
-    "public-client": true,
-    "confidential-port": 0
-  }
+  "realm": "DeskPlanner",
+  "auth-server-url": "http://localhost:8080/",
+  "ssl-required": "none",
+  "resource": "keycloak-reactjs-demo",
+  "public-client": true,
+  "confidential-port": 0
+}

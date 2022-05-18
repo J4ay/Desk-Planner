@@ -29,17 +29,16 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <div className="App">
-        <Anonymous>
-          <Login />
-        </Anonymous>
-
+        <TopAppBar />
         <Authenticated>
-          <TopAppBar />
-
           <BookingPlacehold />
 
           <BottomNavBar />
         </Authenticated>
+
+        <Anonymous>
+          <Login />
+        </Anonymous>
       </div>
     </ThemeProvider>
   );
