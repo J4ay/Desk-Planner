@@ -3,7 +3,7 @@ import { AppService, Movie } from './app.service';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(private readonly appService: AppService) { }
 
   @Get()
   getDesks() {
@@ -23,9 +23,16 @@ export class AppController {
   }
 
   @Delete()
-  async deleteAllDesks(
-    ) {
-    const desk = await this.appService.deleteAllDesks();
-    return desk;
+  async deleteAllDesks(@Body('id') id: number) {
+    {
+      if (id) {
+        const deletedDesk = await this.appService.deleteDeskById(id);
+        return deletedDesk;
+      }
+      else {
+        const desk = await this.appService.deleteAllDesks();
+        return desk;
+      }
+    }
   }
 }
