@@ -16,8 +16,9 @@ export class AppController {
     @Body('building') building: number,
     @Body('floor') floor: number,
     @Body('room') room: number,
+    @Body('occupied') occupied: boolean,
   ) {
-    const createdDesk = await this.appService.postDesk(id, building, floor, room);
+    const createdDesk = await this.appService.postDesk(id, building, floor, room, occupied);
     return createdDesk;
   }
 }

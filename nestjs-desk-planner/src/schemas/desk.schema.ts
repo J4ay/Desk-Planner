@@ -6,5 +6,6 @@ export const DeskSchema = new mongoose.Schema({
     building: Number,
     floor: Number,
     room: Number,
+    occupied: Boolean,
   });
   

@@ -5,4 +5,5 @@ export interface IDesk extends Document {
     building: number;
     floor: number;
     room: number;
+    occupied: boolean;
 }
