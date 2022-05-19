@@ -16,9 +16,9 @@ const Login = () => {
             icon={
               <LoginIcon
                 fontSize="large"
-                onClick={() => UserService.doLogin()}
               />
             }
+            onClick={() => UserService.doLogin()}
           />
         </p>
       </div>
