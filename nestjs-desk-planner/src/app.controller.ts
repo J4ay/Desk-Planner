@@ -10,6 +10,13 @@ export class AppController {
     return this.appService.getDesks();
   }
 
+  @Get("/occupied")
+  getOccupied(@Body("id") id:number) {
+   const occupied = this.appService.getOccupied(id);
+
+   return occupied;
+  }
+
   @Post()
   async addDesk(
     @Body('id') id: number,
