@@ -32,6 +32,16 @@ export class AppService {
     return desk;
   }
 
+  public async getOccupied(id: number): Promise<any> {
+    const desk = await this.deskModel.findOne({ id }).exec();
+    const occupied = desk.occupied;
+
+    if(!desk) {
+      throw new HttpException('No desk with id found', 404);
+    }
+    return occupied;
+  }
+
   public async postDesk(id: number, building: number, floor: number, room: number, occupied: boolean): Promise<any> {
     //const createdDesk = await this.deskModel(newdesk);
     const createdDesk = new this.deskModel({ id, building, floor, room, occupied });
