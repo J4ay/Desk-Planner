@@ -62,7 +62,6 @@ export class AppService {
     const desk = await this.deskModel.findOneAndUpdate({ id }, {
       [propertyName]: propertyValue,
     }).exec();
-
     if(!desk) {
       throw new HttpException('Not found', 404);
     }

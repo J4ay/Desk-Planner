@@ -23,6 +23,12 @@ export class AppController {
   }
 
   @Delete()
+  async deleteDeskById(
+    @Body('id') id: number,
+  ) {
+    const desk = await this.appService.deleteDeskById(id);
+    return desk;
+  }
   async deleteAllDesks(
     ) {
     const desk = await this.appService.deleteAllDesks();
