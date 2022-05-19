@@ -36,7 +36,7 @@ const BookingPlacehold = () => {
               width: "40px",
               border: "2px solid navy",
             }}
-            onClick={() => HttpService.callAPI()}/>
+            onClick={() => console.dir(HttpService.callAPI())}/>
           <Box className="table"
             sx={{
               marginTop: "15px",
