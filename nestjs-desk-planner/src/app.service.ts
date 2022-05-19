@@ -68,4 +68,13 @@ export class AppService {
     return desk;
   }
 
+  public async occupyDesk(id: number): Promise<any> {
+    const desk = await this.deskModel.findOneAndUpdate({ id }, {
+      occupied: true,
+    }).exec();
+    if(!desk) {
+      throw new HttpException('Not found', 404);
+    }
+    return desk;
+  }
 }
