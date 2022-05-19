@@ -29,6 +29,12 @@ export class AppController {
     return createdDesk;
   }
 
+  @Post('/occupy')
+  async occupyDesk(@Body('id') id: number) {
+    const updatedDesk = await this.appService.occupyDesk(id);
+    return updatedDesk;
+  }
+
   @Delete()
   async deleteAllDesks(@Body('id') id: number) {
     {
