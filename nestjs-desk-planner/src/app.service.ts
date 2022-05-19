@@ -34,7 +34,7 @@ export class AppService {
 
   public async postDesk(id: number, building: number, floor: number, room: number, occupied: boolean): Promise<any> {
     //const createdDesk = await this.deskModel(newdesk);
-    const createdDesk = new this.deskModel({ id, building, floor, room });
+    const createdDesk = new this.deskModel({ id, building, floor, room, occupied });
     const result = await createdDesk.save();
     return result.id;
   }
@@ -47,6 +47,16 @@ export class AppService {
     }
     return desk;
   }
+
+  public async deleteAllDesks(): Promise<any> {
+    const desks = await this.deskModel.deleteMany({}).exec();
+
+    if(desks.deletedCount === 0) {
+      throw new HttpException('Not found', 404);
+    }
+    return desks;
+  }
+
 
   public async updateDeskById(id: number, propertyName: string, propertyValue: string): Promise<any> {
     const desk = await this.deskModel.findOneAndUpdate({ id }, {

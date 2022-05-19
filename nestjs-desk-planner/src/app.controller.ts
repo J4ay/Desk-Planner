@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Post, Put } from '@nestjs/common';
 import { AppService, Movie } from './app.service';
 
 @Controller()
@@ -20,5 +20,12 @@ export class AppController {
   ) {
     const createdDesk = await this.appService.postDesk(id, building, floor, room, occupied);
     return createdDesk;
+  }
+
+  @Delete()
+  async deleteAllDesks(
+    ) {
+    const desk = await this.appService.deleteAllDesks();
+    return desk;
   }
 }
