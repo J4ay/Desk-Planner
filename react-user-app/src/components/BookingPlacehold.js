@@ -3,6 +3,7 @@ import Dropdowns from "./Dropdowns";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
+import HttpService from "../services/HttpService";
 
 const BookingPlacehold = () => {
   return (
@@ -18,7 +19,7 @@ const BookingPlacehold = () => {
           <Dropdowns title="Raum" />
         </Grid>
       </Grid>
-      <Box
+      <Container
         sx={{
           position: "fixed",
           minHeight: "70%",
@@ -26,8 +27,27 @@ const BookingPlacehold = () => {
           minWidth: "90%",
           width: "90%",
           border: "2px solid black",
-        }}
-      />
+        }}>
+          <Box className="table"
+            sx={{
+              marginTop: "15px",
+              position: "fixed",
+              height: "40px",
+              width: "40px",
+              border: "2px solid navy",
+            }}
+            onClick={() => HttpService.callAPI()}/>
+          <Box className="table"
+            sx={{
+              marginTop: "15px",
+              marginLeft: "60px",
+              position: "fixed",
+              height: "40px",
+              width: "40px",
+              border: "2px solid navy",
+            }}
+            onClick={() => HttpService.callAPI()}/>
+      </Container>
     </Container>
   );
 };

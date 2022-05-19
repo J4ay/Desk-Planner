@@ -29,4 +29,8 @@ const HttpService = {
   getAxiosClient,
 };
 
+function callAPI(){
+  fetch('http://localhost:3000/occupy', { method: 'POST', headers: { body: JSON.stringify({ id: 1}) } });
+};
+
 export default HttpService;
