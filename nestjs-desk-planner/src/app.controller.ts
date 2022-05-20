@@ -16,7 +16,8 @@ export class AppController {
     }
   }
 
-  @Get("/occupied")
+  // Post statt Get
+  @Post("/occupied")
   getOccupied(@Body("id") id:number) {
    const occupied = this.appService.getOccupied(id);
 

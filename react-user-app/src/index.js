@@ -7,7 +7,8 @@ import HttpService from "./services/HttpService";
 import UserService from "./services/UserService";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-function initUI() {
+// Async function, KA ob notwendig
+async function initUI() {
   root.render(
     <React.StrictMode>
       <App />
