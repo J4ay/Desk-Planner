@@ -33,7 +33,8 @@ function callAPI(id){
 function callAPI2(id){
   const response = axios.get('http://localhost:3001/occupied', { id: id });
 
-  return response.data.occupied;
+  //return response.data.occupied;
+  return "hello";
 };
 
 
