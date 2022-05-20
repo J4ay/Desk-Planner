@@ -78,9 +78,12 @@ export class AppService {
   }
 
   public async occupyDesk(id: number): Promise<any> {
-    const desk = await this.deskModel.findOneAndUpdate({ id }, {
-      occupied: true,
-    }).exec();
+    let desk = await this.deskModel.findOne({ id }).exec();
+    if(desk.occupied) {
+      desk = await this.deskModel.findOneAndUpdate({ id }, { occupied: false }).exec();
+    } else {
+      desk = await this.deskModel.findOneAndUpdate({ id }, {occupied: true,}).exec();
+    }
     if(!desk) {
       throw new HttpException('Not found', 404);
     }
