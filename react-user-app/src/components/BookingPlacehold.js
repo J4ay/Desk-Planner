@@ -4,6 +4,16 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import HttpService from "../services/HttpService";
+import { red } from "@mui/material/colors";
+
+
+function colorPicker(occupied) {
+  if(occupied){
+    return "red";
+  } else {
+    return "green";
+  }
+}
 
 // Async function um farbe zu ändern
 async function color() {
