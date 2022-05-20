@@ -27,7 +27,7 @@ const getAxiosClient = () => _axios;
 async function occupyTable(pId){
   const response = await axios.post('http://localhost:3001/occupy', { id: pId });
 
-  return true;
+  return response;
 };
 
 async function getTableOccupation(pId){
