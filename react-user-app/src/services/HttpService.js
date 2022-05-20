@@ -23,14 +23,26 @@ const configure = () => {
 
 const getAxiosClient = () => _axios;
 
+function callAPI(id){
+  /* const response = fetch('http://localhost:3001/occupy', { method: 'POST', headers: { body: JSON.stringify({ id: 1}) } })
+                          .then(data => data.json()); */
+
+  axios.post('http://localhost:3001/occupy', { id: id });
+};
+
+function callAPI2(id){
+  const response = axios.get('http://localhost:3001/occupied', { id: id });
+
+  return response.data.occupied;
+};
+
+
 const HttpService = {
   HttpMethods,
   configure,
   getAxiosClient,
-};
-
-function callAPI(){
-  return fetch('http://localhost:3000/occupy', { method: 'POST', headers: { body: JSON.stringify({ id: 1}) } });
+  callAPI,
+  callAPI2
 };
 
 export default HttpService;
