@@ -24,17 +24,25 @@ const configure = () => {
 const getAxiosClient = () => _axios;
 
 // Async sonst gehts net
-async function callAPI(pId){
-  const response = await axios.post('http://localhost:3001/occupied', { id: pId });
+async function occupyTable(pId){
+  const response = await axios.post('http://localhost:3001/occupy', { id: pId });
 
-  return response.data;
+  return true;
 };
+
+async function getTableOccupation(pId){
+  const response = await axios.post('http://localhost:3001/occupied', { id: pId });
+  console.log("Id: " + pId);
+  console.dir(response.data);
+  return response.data;
+}
 
 const HttpService = {
   HttpMethods,
   configure,
   getAxiosClient,
-  callAPI,
+  occupyTable,
+  getTableOccupation,
 };
 
 export default HttpService;
