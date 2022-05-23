@@ -20,7 +20,9 @@ import HttpService from "../services/HttpService";
 } */
 
 // Async function um farbe zu ändern
-async function color() {
+async function color(tid) {
+  // Hier war dein Fehler
+  await HttpService.occupyTable(tid);
   for (const i of document.getElementsByClassName("table")) {
     const res = await HttpService.getTableOccupation(i.id);
     if (res === true) {
@@ -55,7 +57,6 @@ const BookingPlacehold = () => {
           width: "90%",
           border: "2px solid black",
         }}
-        onClick={() => {color()}}
       >
         <Box
           className="table"
@@ -69,7 +70,7 @@ const BookingPlacehold = () => {
             width: "40px",
             border: "2px solid navy",
           }}
-          onClick={() => HttpService.occupyTable(1)}
+          onClick={() => color(1)}
         />
         <Box
           className="table"
@@ -83,7 +84,22 @@ const BookingPlacehold = () => {
             width: "40px",
             border: "2px solid navy",
           }}
-          onClick={() => HttpService.occupyTable(2)}
+          onClick={() => color(2)}
+
+        />
+        <Box
+          className="table"
+          id="3"
+          sx={{
+            //bgcolor: colorPicker(HttpService.getTableOccupation(2)),
+            marginTop: "15px",
+            marginLeft: "120px",
+            position: "fixed",
+            height: "40px",
+            width: "40px",
+            border: "2px solid navy",
+          }}
+          onClick={() => color(3)}
 
         />
       </Container>
