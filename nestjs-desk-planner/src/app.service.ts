@@ -34,12 +34,11 @@ export class AppService {
 
   public async getOccupied(id: number): Promise<any> {
     const desk = await this.deskModel.findOne({ id }).exec();
-    const occupied = desk.occupied;
 
     if(!desk) {
       throw new HttpException('No desk with id found', 404);
     }
-    return occupied;
+    return desk.occupied;
   }
 
   public async postDesk(id: number, building: number, floor: number, room: number, occupied: boolean): Promise<any> {
@@ -79,9 +78,12 @@ export class AppService {
   }
 
   public async occupyDesk(id: number): Promise<any> {
-    const desk = await this.deskModel.findOneAndUpdate({ id }, {
-      occupied: true,
-    }).exec();
+    let desk = await this.deskModel.findOne({ id }).exec();
+    if(desk.occupied) {
+      desk = await this.deskModel.findOneAndUpdate({ id }, { occupied: false }).exec();
+    } else {
+      desk = await this.deskModel.findOneAndUpdate({ id }, {occupied: true,}).exec();
+    }
     if(!desk) {
       throw new HttpException('Not found', 404);
     }

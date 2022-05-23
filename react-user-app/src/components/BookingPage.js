@@ -4,27 +4,43 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import HttpService from "../services/HttpService";
+import { color } from "@mui/system";
 /* import { red } from "@mui/material/colors"; */
 
 
+class BookingPage extends React.Component {
 
-/* function colorPicker(occupied) {
+
+constructor(props) {
+  super(props);
+  this.state = {Number: 0};
+  this.makeTimer();
+  //this.color();
+}
+
+
+/* colorPicker(occupied) {
   console.dir(occupied);
   if(occupied){
-    console.log("red");
+    console.log("red picked");
     return "red";
   } else {
-    console.log("green");
+    console.log("green picked");
     return "green";
   }
 } */
 
+makeTimer() {
+  setInterval(() => {
+    console.log("------------------------------------------------ timer ------------------------------------------------");
+    color();
+  }, 5000)
+}
+
 // Async function um farbe zu ändern
-async function color(tid) {
-  // Hier war dein Fehler
-  await HttpService.occupyTable(tid);
+color() {
   for (const i of document.getElementsByClassName("table")) {
-    const res = await HttpService.getTableOccupation(i.id);
+    const res = HttpService.getTableOccupation(i.id);
     if (res === true) {
       i.style.backgroundColor = "red";
     } else {
@@ -33,8 +49,7 @@ async function color(tid) {
   }
 };
 
-const BookingPlacehold = () => {
-  color();
+render() {
   return (
     <Container sx={{ marginTop: "64px" }}>
       <Grid container>
@@ -57,26 +72,27 @@ const BookingPlacehold = () => {
           width: "90%",
           border: "2px solid black",
         }}
+        onClick={() => {}}
       >
         <Box
           className="table"
           // Boxen haben ids zum einfärben
           id="1"
           sx={{
-            //bgcolor: colorPicker(HttpService.getTableOccupation(1)),
+            //bgcolor: this.state.bgcolor1,
             marginTop: "15px",
             position: "fixed",
             height: "40px",
             width: "40px",
             border: "2px solid navy",
           }}
-          onClick={() => color(1)}
+          onClick={() => HttpService.occupyTable(1)}
         />
         <Box
           className="table"
           id="2"
           sx={{
-            //bgcolor: colorPicker(HttpService.getTableOccupation(2)),
+            //bgcolor: this.state.bgcolor2,
             marginTop: "15px",
             marginLeft: "60px",
             position: "fixed",
@@ -84,22 +100,7 @@ const BookingPlacehold = () => {
             width: "40px",
             border: "2px solid navy",
           }}
-          onClick={() => color(2)}
-
-        />
-        <Box
-          className="table"
-          id="3"
-          sx={{
-            //bgcolor: colorPicker(HttpService.getTableOccupation(2)),
-            marginTop: "15px",
-            marginLeft: "120px",
-            position: "fixed",
-            height: "40px",
-            width: "40px",
-            border: "2px solid navy",
-          }}
-          onClick={() => color(3)}
+          onClick={() => HttpService.occupyTable(2)}
 
         />
       </Container>
@@ -107,4 +108,6 @@ const BookingPlacehold = () => {
   );
 };
 
-export default BookingPlacehold;
+}
+
+export default BookingPage;

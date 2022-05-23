@@ -6,11 +6,18 @@ export class AppController {
   constructor(private readonly appService: AppService) { }
 
   @Get()
-  getDesks() {
-    return this.appService.getDesks();
+  getDesks(@Body('id') id: number) {
+    if (id) {
+      const request = this.appService.getDeskById(id);
+      return request;
+    }
+    else {
+      return this.appService.getDesks();
+    }
   }
 
-  @Get("/occupied")
+  // Post statt Get
+  @Post("/occupied")
   getOccupied(@Body("id") id:number) {
    const occupied = this.appService.getOccupied(id);
 
