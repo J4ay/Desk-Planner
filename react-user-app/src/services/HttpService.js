@@ -37,12 +37,18 @@ async function getTableOccupation(pId){
   return response.data;
 }
 
+async function getTables(){
+  const response = await axios.get('http://localhost:3001/');
+  return response.data;
+}
+
 const HttpService = {
   HttpMethods,
   configure,
   getAxiosClient,
   occupyTable,
   getTableOccupation,
+  getTables,
 };
 
 export default HttpService;
