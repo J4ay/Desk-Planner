@@ -4,8 +4,6 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import HttpService from "../services/HttpService";
-import { useState } from "react";
-import { useEffect } from "react";
 /* import { red } from "@mui/material/colors"; */
 
 /* function colorPicker(occupied) {
