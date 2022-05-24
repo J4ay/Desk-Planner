@@ -11,6 +11,8 @@ import { BuildingSchema } from './schemas/building.schema';
 import { FloorSchema } from './schemas/floor.schema';
 import { RoomSchema } from './schemas/room.schema';
 import { BookingSchema } from './schemas/booking.schema';
+import { DeskController } from './controller/desk.controller';
+import { DeskService } from './services/desk.service';
 
 
 @Module({
@@ -22,7 +24,7 @@ import { BookingSchema } from './schemas/booking.schema';
 									,{ name: 'Room', schema: RoomSchema}
 									,{ name: 'Booking', schema: BookingSchema}])
 	],
-	controllers: [AppController, BuildingController, FloorController],
-	providers: [AppService, BuildingService, FloorService],
+	controllers: [DeskController, BuildingController, FloorController],
+	providers: [DeskService, BuildingService, FloorService],
 })
 export class AppModule {}
