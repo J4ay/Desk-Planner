@@ -1,9 +1,10 @@
 import { Document } from 'mongoose';
 
-export interface IBooking extends Document {
-    bookingId: number;
-    bookedByUser: number;
-	bookingStart: Date;
-	bookingEnd: Date;
-	bookingIsActive: boolean;
+export interface IRoom extends Document {
+    roomId: number;
+    roomIsOnFloor: number;
+    roomIsInBuilding: number;
+    roomName: string;
+    roomDesks: number;
+    roomAllowedRoles: string;
 }

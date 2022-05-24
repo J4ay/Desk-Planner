@@ -6,7 +6,7 @@ export const RoomSchema = new mongoose.Schema({
     roomIsOnFloor: Number,
     roomIsInBuilding: Number,
     roomName: String,
-    roomTables: Number,
+    roomDesks: Number,
     roomAllowedRoles: String,
   });
   
