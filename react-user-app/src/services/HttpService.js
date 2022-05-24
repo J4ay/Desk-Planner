@@ -47,6 +47,11 @@ async function getBuildings(){
   return response.data;
 }
 
+async function getFloors(){
+  const response = await axios.get('http://localhost:3001/floor');
+  return response.data;
+}
+
 const HttpService = {
   HttpMethods,
   configure,
@@ -55,6 +60,7 @@ const HttpService = {
   getTableOccupation,
   getTables,
   getBuildings,
+  getFloors,
 };
 
 export default HttpService;

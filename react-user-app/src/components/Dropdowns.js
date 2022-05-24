@@ -6,7 +6,9 @@ import MenuItem from "@mui/material/MenuItem";
 import HttpService from "../services/HttpService";
 
 
-const options = [
+var options = [];
+
+var options_buildings = [
   /* "1",
   "2",
   "3A",
@@ -23,21 +25,49 @@ const options = [
   "13", */
 ];
 
+var options_floors = [];
 
-async function fillOptions() {
+var options_rooms = [];
+
+
+async function fillOptions(props) {
   console.log("fillOptions");
+  if(props.type === "building") {
+  console.log("fillOptions Building");
   const buildings = await HttpService.getBuildings();
+  options_buildings = [];
   buildings.map((building) => {
-    options.push(building.buildingName);
+    options_buildings.push(building.buildingName);
   });
+  options = options_buildings;
   console.dir(buildings);
+  } else if(props.type === "floor") {
+    console.log("fillOptions Floor");
+    const floors = await HttpService.getFloors(props.building);
+    options_floors = [];
+    floors.map((floor) => {
+      options_floors.push(floor.floorName);
+    });
+    options = options_floors;
+    console.dir(floors);
+  } /* else if(props.type === "room") {
+    console.log("fillOptions");
+    const rooms = await HttpService.getRooms(props.building, props.floor);
+    options_rooms = [];
+    rooms.map((room) => {
+      options_rooms.push(room.room);
+    });
+    options = options_rooms;
+    console.dir(rooms);
+  } */
 } 
-fillOptions();
+
 
 const ITEM_HEIGHT = 48;
 
 
 const Dropdowns = (props) => {
+  fillOptions(props);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -75,7 +105,7 @@ const Dropdowns = (props) => {
           },
         }}
       >
-        {options.map((option) => (
+        {options_buildings.map((option) => (
           <MenuItem
             key={option}
             selected={option === "Pyxis"}
