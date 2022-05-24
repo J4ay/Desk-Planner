@@ -2,6 +2,8 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { BuildingController } from './controller/building.controller';
+import { BuildingService } from './services/building.service';
 import { DeskSchema } from './schemas/desk.schema';
 import { BuildingSchema } from './schemas/building.schema';
 import { FloorSchema } from './schemas/floor.schema';
@@ -18,7 +20,7 @@ import { BookingSchema } from './schemas/booking.schema';
 									,{ name: 'Room', schema: RoomSchema}
 									,{ name: 'Booking', schema: BookingSchema}])
 	],
-	controllers: [AppController],
-	providers: [AppService],
+	controllers: [AppController, BuildingController],
+	providers: [AppService, BuildingService],
 })
 export class AppModule {}

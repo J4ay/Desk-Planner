@@ -3,9 +3,11 @@ import Button from "@mui/material/Button";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import HttpService from "../services/HttpService";
+
 
 const options = [
-  "1",
+  /* "1",
   "2",
   "3A",
   "3B",
@@ -18,10 +20,22 @@ const options = [
   "9",
   "10",
   "12",
-  "13",
+  "13", */
 ];
 
+function fillOptions() {
+  console.log("fillOptions");
+  const buildings = HttpService.getBuildings();
+  console.dir(buildings);
+  for(let element in buildings) {
+    options.push(element);
+    console.dir(element);
+  }
+} 
+fillOptions();
+
 const ITEM_HEIGHT = 48;
+
 
 const Dropdowns = (props) => {
   const [anchorEl, setAnchorEl] = React.useState(null);

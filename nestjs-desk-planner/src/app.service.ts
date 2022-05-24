@@ -3,12 +3,6 @@ import { Model } from 'mongoose';
 import { IDesk } from './interfaces/desk.interface';
 import { InjectModel } from '@nestjs/mongoose';
 
-export interface Movie {
-  id: number;
-  name: string;
-  year: number;
-}
-
 @Injectable()
 export class AppService {
 

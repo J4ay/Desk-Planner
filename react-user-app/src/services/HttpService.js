@@ -42,6 +42,11 @@ async function getTables(){
   return response.data;
 }
 
+async function getBuildings(){
+  const response = await axios.get('http://localhost:3001/building');
+  return response.data;
+}
+
 const HttpService = {
   HttpMethods,
   configure,
@@ -49,6 +54,7 @@ const HttpService = {
   occupyTable,
   getTableOccupation,
   getTables,
+  getBuildings,
 };
 
 export default HttpService;
