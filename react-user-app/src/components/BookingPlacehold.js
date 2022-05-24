@@ -6,17 +6,6 @@ import Grid from "@mui/material/Grid";
 import HttpService from "../services/HttpService";
 /* import { red } from "@mui/material/colors"; */
 
-/* function colorPicker(occupied) {
-  console.dir(occupied);
-  if(occupied){
-    console.log("red");
-    return "red";
-  } else {
-    console.log("green");
-    return "green";
-  }
-} */
-
 // Async function um farbe zu ändern
 function color(occupied) {
   // Hier war dein Fehler
@@ -84,48 +73,6 @@ render()
           }}
           />;
         })}
-        {/* <Box
-          className="table"
-          // Boxen haben ids zum einfärben
-          id="1"
-          sx={{
-            //bgcolor: color(1),
-            marginTop: "15px",
-            position: "fixed",
-            height: "40px",
-            width: "40px",
-            border: "2px solid navy",
-          }}
-          onClick={() => color(1)}
-        />
-        <Box
-          className="table"
-          id="2"
-          sx={{
-            //bgcolor: colorPicker(HttpService.getTableOccupation(2)),
-            marginTop: "15px",
-            marginLeft: "60px",
-            position: "fixed",
-            height: "40px",
-            width: "40px",
-            border: "2px solid navy",
-          }}
-          onClick={() => color(2)}
-        />
-        <Box
-          className="table"
-          id="3"
-          sx={{
-            //bgcolor: colorPicker(HttpService.getTableOccupation(2)),
-            marginTop: "15px",
-            marginLeft: "120px",
-            position: "fixed",
-            height: "40px",
-            width: "40px",
-            border: "2px solid navy",
-          }}
-          onClick={() => color(3)}
-        /> */}
       </Container>
     </Container>
   );
