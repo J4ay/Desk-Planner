@@ -23,14 +23,14 @@ const options = [
   "13", */
 ];
 
-function fillOptions() {
+
+async function fillOptions() {
   console.log("fillOptions");
-  const buildings = HttpService.getBuildings();
+  const buildings = await HttpService.getBuildings();
+  buildings.map((building) => {
+    options.push(building.buildingName);
+  });
   console.dir(buildings);
-  for(let element in buildings) {
-    options.push(element);
-    console.dir(element);
-  }
 } 
 fillOptions();
 
