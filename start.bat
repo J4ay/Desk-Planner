@@ -15,5 +15,5 @@ start powershell "docker start $(docker ps -a -q)"
 start cmd /k "cd .\nestjs-desk-planner\ && npm run start:dev"
 
 cd .\react-user-app\
-:: npm install
+call npm install
 npm start
