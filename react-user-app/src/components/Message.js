@@ -13,6 +13,7 @@ import Typography from "@mui/material/Typography";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import DangerousIcon from '@mui/icons-material/Dangerous';
+import Paper from "@mui/material/Paper";
 
 const Message = ({description, done}) => {
   return (
@@ -21,33 +22,30 @@ const Message = ({description, done}) => {
       <CardContent>
         <Typography variant="h5" component="div"  sx={{ marginTop: "10px" }}>
           Pinar Gökcek
-          <BottomNavigationAction
-          sx={{ marginRight: "0" }}
-          label="Löschen"
-          icon={<DangerousIcon fontSize="large" />}
-        />
         </Typography>
         <Typography variant="body1" sx={{ marginTop: "10px" }}>
           zu Raum 1.EG.111
-          <br />
-          {"Hallo Pinar, brauchst du heute...."}
-        </Typography>
-      </CardContent>
-      
-      <CardActions>
-      <BottomNavigationAction
-      sx={{ marginLeft: "auto", topRight: "0", marginRight: "0", zIndex: "1" }}
-          label="Löschen"
-          icon={<DangerousIcon fontSize="large" />}
-        />
+          <CardActions>
         <Button
           size="small"
-          sx={{ marginLeft: "auto", marginRight: "0", zIndex: "1" }}
+          sx={{left: 650, marginRight: "0", zIndex: "1" }}
         >
           Löschen
         </Button>
       </CardActions>
- 
+          <br />
+          {"Hallo Pinar, brauchst du heute...."}
+        </Typography>
+      </CardContent>
+      <Paper
+    >
+          <BottomNavigationAction
+         // label="Löschen"
+          sx={{ position: "fixed", top: 100, left: 700, right: 23, zIndex: "20" }}
+          icon={<DangerousIcon fontSize="large" />}
+          label="Löschen"
+        />
+        </Paper>
     </Card>
     
     /*
