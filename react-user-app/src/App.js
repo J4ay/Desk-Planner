@@ -5,8 +5,7 @@ import * as React from "react";
 // import Grid from '@mui/material/Grid'; MakeStyles,
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
-import BottomNavBar from "./components/BottomNavBar";
-import TopAppBar from "./components/TopAppBar";
+//import BottomNavBar from "./components/BottomNavBar";
 import BookingPlacehold from "./components/BookingPlacehold";
 import "@fontsource/roboto";
 // import BookingCard from './components/BookingCard';
@@ -14,6 +13,7 @@ import "@fontsource/roboto";
 import Anonymous from "./components/Anonymous";
 import Authenticated from "./components/Authenticated";
 import Login from "./components/Login";
+
 //const useStyles = MakeStyles({
 //})
 const theme = createTheme({
@@ -29,11 +29,10 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <div className="App">
-        <TopAppBar />
         <Authenticated>
           <BookingPlacehold />
+         
 
-          <BottomNavBar />
         </Authenticated>
 
         <Anonymous>

@@ -4,7 +4,11 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import HttpService from "../services/HttpService";
+import BottomNavBar from "./BottomNavBar";
+import TopAppBar from "./TopAppBar";
 /* import { red } from "@mui/material/colors"; */
+
+
 
 /* function colorPicker(occupied) {
   console.dir(occupied);
@@ -45,6 +49,7 @@ render()
 {
   return (
     <Container sx={{ marginTop: "64px" }}>
+      <TopAppBar />
       <Grid container>
         <Grid item>
           <Dropdowns title="Gebäude" type="building" />
@@ -127,7 +132,10 @@ render()
           onClick={() => color(3)}
         /> */}
       </Container>
+        <BottomNavBar/>
     </Container>
+    
+
   );
 };
 };

@@ -32,8 +32,8 @@ async function occupyTable(pId){
 
 async function getTableOccupation(pId){
   const response = await axios.post('http://localhost:3001/occupied', { id: pId });
-  console.log("Id: " + pId);
-  console.dir(response.data);
+  // console.log("Id: " + pId);
+  // console.dir(response.data);
   return response.data;
 }
 
