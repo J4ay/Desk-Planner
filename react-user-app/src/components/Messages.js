@@ -43,7 +43,12 @@ const Messages = () => {
       sx={{ marginTop: "64px", marginRight: "12px", bgcolor: "#f4f4f4" }}
     >
         <Grid item sx={{ marginTop: "10px" }}>
-        <Message />
+        <Message
+          room="Raum 1 EG"
+          worker="Christoph Maier"
+          description="Hallo, brauchst du den Raum..."
+        >
+        </Message>
         </Grid>
     </Container>
 

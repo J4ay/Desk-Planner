@@ -15,16 +15,16 @@ import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import DangerousIcon from '@mui/icons-material/Dangerous';
 import Paper from "@mui/material/Paper";
 
-const Message = ({description, done}) => {
+const Message = ({worker, room, description}) => {
   return (
 <Card sx={{ minWidth: 300, bgcolor: "#ffffff" }}>
 
       <CardContent>
         <Typography variant="h5" component="div"  sx={{ marginTop: "10px" }}>
-          Pinar Gökcek
+          von {worker}
         </Typography>
         <Typography variant="body1" sx={{ marginTop: "10px" }}>
-          zu Raum 1.EG.111
+          zu {room}
           <CardActions>
         <Button
           size="small"
@@ -34,7 +34,7 @@ const Message = ({description, done}) => {
         </Button>
       </CardActions>
           <br />
-          {"Hallo Pinar, brauchst du heute...."}
+          {description}
         </Typography>
       </CardContent>
       <Paper
