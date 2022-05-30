@@ -26,6 +26,18 @@ export class FloorService {
         return floor;
     }
 
+    public async getFloorsByBuilding(buildingId: number) {
+        console.log("AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
+        console.log("buildingId: " + buildingId);
+        const floors = await this.floorModel.find({ floorIsInBuilding: buildingId }).exec();
+
+        if(!floors || !floors[0]) {
+            throw new HttpException('No floors found', 404);
+        }
+
+        return floors;
+    }
+
     public async postFloor(floorId: number, floorIsInBuilding: number, floorName: string, floorRooms: number): Promise<any> {
         const createdFloor = new this.floorModel({ floorId, floorIsInBuilding, floorName, floorRooms });
         const result = await createdFloor.save();

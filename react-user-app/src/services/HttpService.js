@@ -52,6 +52,12 @@ async function getFloors(){
   return response.data;
 }
 
+async function getFloorsByBuilding(buildingId){
+  const response = await axios.post('http://localhost:3001/floor/getFloorsByBuilding', { floorIsInBuilding: buildingId });
+  console.dir(response.data);
+  return response.data;
+}
+
 const HttpService = {
   HttpMethods,
   configure,
@@ -61,6 +67,7 @@ const HttpService = {
   getTables,
   getBuildings,
   getFloors,
+  getFloorsByBuilding,
 };
 
 export default HttpService;

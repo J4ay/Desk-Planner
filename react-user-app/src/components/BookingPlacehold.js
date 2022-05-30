@@ -1,9 +1,11 @@
 import React from "react";
 import Dropdowns from "./Dropdowns";
+import Dropdown_Floors from "./Dropdown_Floor";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import HttpService from "../services/HttpService";
+import TimePopUp from "./TimePopUp";
 /* import { red } from "@mui/material/colors"; */
 
 /* function colorPicker(occupied) {
@@ -50,7 +52,7 @@ render()
           <Dropdowns title="Gebäude" type="building" />
         </Grid>
         <Grid item>
-          <Dropdowns title="Etage" type="floor" />
+          <Dropdown_Floors title="Etage" type="floor" buildingId="1"/>
         </Grid>
         <Grid item>
           <Dropdowns title="Raum" />

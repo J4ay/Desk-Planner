@@ -6,27 +6,29 @@ import MenuItem from "@mui/material/MenuItem";
 import HttpService from "../services/HttpService";
 
 
-var options_buildings = [];
+var options_floors = [];
 
-
+//fills options_floors with the floors of the selected building
 async function fillOptions(props) {
   //console.log("fillOptions");
-  if(props.type === "building") {
-	//console.log("fillOptions Building");
-	const buildings = await HttpService.getBuildings();
-	options_buildings = [];
-	buildings.map((building) => {
-		options_buildings.push(building.buildingName);
-	});
-	//console.dir(buildings);
-  } 
+  if(props.type === "floor") {
+    //console.log("fillOptions Floor");
+    const floors = await HttpService.getFloorsByBuilding(props.buildingId);
+    console.dir(floors);
+    options_floors = [];
+    floors.map((floor) => {
+      options_floors.push(floor.floorName);
+    });
+    //console.dir(floors);
+  }
 } 
+
 
 
 const ITEM_HEIGHT = 48;
 
 
-const Dropdowns = (props) => {
+const Dropdown_Floors = (props) => {
   fillOptions(props);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -35,6 +37,7 @@ const Dropdowns = (props) => {
   };
   const handleClose = () => {
     setAnchorEl(null);
+    fillOptions({"buildingId": 2});
   };
 
   return (
@@ -65,11 +68,12 @@ const Dropdowns = (props) => {
           },
         }}
       >
-        {options_buildings.map((option) => (
+        {options_floors.map((option) => (
           <MenuItem
             key={option}
             selected={option === "Pyxis"}
             onClick={handleClose}
+            //onSelected={}
           >
             {option}
           </MenuItem>
@@ -79,4 +83,4 @@ const Dropdowns = (props) => {
   );
 };
 
-export default Dropdowns;
+export default Dropdown_Floors;
