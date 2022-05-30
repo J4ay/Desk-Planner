@@ -16,6 +16,8 @@ export class FloorController {
     }
   }
 
+
+
   @Post()
   async addFloor(
     @Body('floorId') floorId: number,
@@ -25,6 +27,12 @@ export class FloorController {
   ) {
     const createdFloor = await this.floorService.postFloor(floorId, floorIsInBuilding, floorName, floorRooms);
     return createdFloor;
+  }
+
+  @Post('/getFloorsByBuilding')
+  getFloorsByBuilding(@Body('floorIsInBuilding') floorIsInBuilding: number) {
+    console.log("getFloorsByBuilding Route");
+    return this.floorService.getFloorsByBuilding(floorIsInBuilding);
   }
 
   @Delete()
