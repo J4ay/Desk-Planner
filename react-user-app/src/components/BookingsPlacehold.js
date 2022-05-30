@@ -6,7 +6,7 @@ import Grid from "@mui/material/Grid";
 const BookingsPlacehold = () => {
   return (
     <Container
-      sx={{ marginTop: "64px", marginRight: "12px", bgcolor: "#f4f4f4" }}
+      sx={{ marginTop: "64px", marginRight: "12px", marginBottom: "80px", bgcolor: "#f4f4f4" }}
     >
       <Grid
         container
