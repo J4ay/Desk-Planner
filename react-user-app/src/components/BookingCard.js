@@ -15,17 +15,18 @@ import Typography from "@mui/material/Typography";
 //   </Box>
 // );
 
-const BookingCard = () => {
+const BookingCard = (props) => {
+  const {room, date, duration} = props;
   return (
     <Card sx={{ minWidth: 300, bgcolor: "#ffffff" }}>
       <CardContent>
         <Typography variant="h5" component="div">
-          Raum 1.EG.121
+          {room}
         </Typography>
         <Typography variant="body1" sx={{ marginTop: "10px" }}>
-          Mittwoch 30.03.2022
+          {date}
           <br />
-          {"von 7:30 bis 11:00 Uhr"}
+          {duration}
         </Typography>
       </CardContent>
       <CardActions>
