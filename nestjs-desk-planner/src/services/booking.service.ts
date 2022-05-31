@@ -27,6 +27,15 @@ export class BookingService {
         return booking;
     }
 
+    public async getBookingByTableId(bookingTableId: number): Promise<any> {
+        const booking = await this.bookingModel.find({ bookingTableId }).exec();
+
+        if(!booking || !booking[0]) {
+            throw new HttpException('No booking found on table', 404);
+        }
+        return booking;
+    }
+
     public async getBookingByUser(bookedByUser: number): Promise<any> {
         const booking = await this.bookingModel.find({ bookedByUser }).exec();
 
@@ -36,8 +45,8 @@ export class BookingService {
         return booking;
     }
 
-    public async postBooking( bookingId: number, bookedByUser: number, bookingStart: Date, bookingEnd: Date, bookingIsActive: boolean ): Promise<any> {
-        const createdBooking = new this.bookingModel({ bookingId, bookedByUser, bookingStart, bookingEnd, bookingIsActive });
+    public async postBooking( bookingId: number, bookedByUser: number, bookingTableId: number, bookingStart: Date, bookingEnd: Date, bookingIsActive: boolean ): Promise<any> {
+        const createdBooking = new this.bookingModel({ bookingId, bookedByUser, bookingTableId, bookingStart, bookingEnd, bookingIsActive });
         const result = await createdBooking.save();
         return result.bookingId;
     }
@@ -60,8 +69,8 @@ export class BookingService {
         return bookings;
     }
 
-    public async updateBooking(bookingId: number, bookedByUser: number, bookingStart: Date, bookingEnd: Date, bookingIsActive: boolean): Promise<any> {
-        const booking = await this.bookingModel.updateOne({ bookingId }, { bookedByUser, bookingStart, bookingEnd, bookingIsActive }).exec();
+    public async updateBooking(bookingId: number, bookedByUser: number, bookingTableId: number, bookingStart: Date, bookingEnd: Date, bookingIsActive: boolean): Promise<any> {
+        const booking = await this.bookingModel.updateOne({ bookingId }, { bookedByUser, bookingStart, bookingTableId, bookingEnd, bookingIsActive }).exec();
 
         if(booking.modifiedCount === 0) {
             throw new HttpException('Not found', 404);
