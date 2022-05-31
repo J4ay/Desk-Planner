@@ -63,6 +63,11 @@ async function getFloorsByBuilding(buildingId){
   return response.data;
 }
 
+async function getMessages(){
+  const response = await axios.get('http://localhost:3001/message');
+  return response.data;
+}
+
 const HttpService = {
   HttpMethods,
   configure,
@@ -73,7 +78,8 @@ const HttpService = {
   getBuildings,
   getFloors,
   getFloorsByBuilding,
-  getBookings
+  getBookings,
+  getMessages,
 };
 
 export default HttpService;
