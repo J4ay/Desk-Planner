@@ -7,39 +7,24 @@ import HttpService from "../services/HttpService";
 import BookingCard from "./BookingCard";
 import Message from "./Message";
 
-/* import { red } from "@mui/material/colors"; */
+ /*import { red } from "@mui/material/colors"; */
 
 
-
-// Async function um farbe zu ändern
-//function color(occupied) {
-  // Hier war dein Fehler
-  //await HttpService.occupyTable(tid);
-  //for (const i of document.getElementsByClassName("table")) {
-  /*  if (occupied === true) {
-      return  "red";
+  class Messages extends React.Component{
+    constructor(props) {
+      super(props);
+      this.state = {Messages: []};
     }
-    return "green";
-    
-  //}
-}*/
-/*
-class Messages extends React.Component{
-  constructor(props) {
-    super(props);
-    this.state = {tables: []};
-  }*/
-/*
-  componentDidMount() {
-    HttpService.getTables().then(res => {
-      this.setState({ tables: res });
-    });
-  }*/
+    componentDidMount() {
+      HttpService.getMessages().then(res => {
+        this.setState({ Messages: res });
+      });
+    }
 
-
-const Messages = () => {
+  render() 
+{
   return (
-<Container
+    <Container
       sx={{ marginTop: "64px", marginRight: "12px", bgcolor: "#f4f4f4" }}
     >
         <Grid item sx={{ marginTop: "10px" }}>
@@ -50,12 +35,37 @@ const Messages = () => {
         >
         </Message>
         </Grid>
+        <Container
+        sx={{
+          position: "fixed",
+          minHeight: "70%",
+          height: "50%",
+          minWidth: "90%",
+          width: "90%",
+        }}
+      >
+        {this.state.Messages.map((Messages) => {
+          return <Box id={Messages.id} key={Messages.id} className="messages"           
+          sx={{
+            //bgcolor: color(Messages.occupied),
+            marginTop: "15px",
+            position: "relative",
+            height: "40px",
+            width: "40px",
+            border: "2px solid navy",
+          }}
+          onClick={() => {
+            HttpService.occupyTable(Messages.id).then(res => {
+              Messages.occupied = !Messages.occupied;
+              this.forceUpdate();
+            });
+          }}
+          />;
+        })}
+
+      </Container>
     </Container>
-
-
-
-
-  );
+  );}
 };
 
 export default Messages;
