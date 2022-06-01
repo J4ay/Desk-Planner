@@ -30,4 +30,22 @@ export class RoomController {
         return createdRoom;
     }
 
+    @Post('/getRoomsByFloorId')
+    getFloorsByBuilding(@Body('roomIsOnFloor') roomIsOnFloor: number) {
+    console.log("getFloorsByBuilding Route");
+    return this.roomService.getRoomByFloor(roomIsOnFloor);
+  }
+
+    @Delete()
+    async deleteAllDesks(@Body('id') id: number) {
+      if (id) {
+        const deletedDesk = await this.roomService.deleteRoomById(id);
+        return deletedDesk;
+      }
+      else {
+        const desk = await this.roomService.deleteAllRooms();
+        return desk;
+      }
+    }
+
 }

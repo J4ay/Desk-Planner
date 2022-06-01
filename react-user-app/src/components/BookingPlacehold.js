@@ -48,15 +48,7 @@ render()
   return (
     <Container sx={{ marginTop: "64px" }}>
       <Grid container>
-        <Grid item>
-          <Dropdowns title="Gebäude" type="building" />
-        </Grid>
-        <Grid item>
-          <Dropdown_Floors title="Etage" type="floor" buildingId="1"/>
-        </Grid>
-        <Grid item>
-          <Dropdowns title="Raum" />
-        </Grid>
+        <Dropdowns/>
       </Grid>
       <Container
         sx={{

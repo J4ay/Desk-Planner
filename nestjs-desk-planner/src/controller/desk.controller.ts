@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, Post, Put } from "@nestjs/common";
 import { DeskService } from "src/services/desk.service";
 
-@Controller()
+@Controller('/desk')
 export class DeskController{
 
     constructor(private readonly deskService: DeskService) {}
