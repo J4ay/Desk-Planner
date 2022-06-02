@@ -68,6 +68,13 @@ async function getBookings(){
   return response.data;
 }
 
+async function deleteBookings(){
+  if(bookings.bookingId){
+    const response = await axios.delete('http://localhost:3001/booking');
+    return response.data;
+  }
+}
+
 async function getMessages(){
   const response = await axios.get('http://localhost:3001/message');
   return response.data;
@@ -85,7 +92,8 @@ const HttpService = {
   getFloorsByBuilding,
   getBookings,
   getMessages,
-  getRoomsByFloorId
+  getRoomsByFloorId,
+  deleteBookings
 };
 
 export default HttpService;
