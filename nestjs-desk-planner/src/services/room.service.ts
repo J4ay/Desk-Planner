@@ -28,10 +28,10 @@ export class RoomService {
     }
 
     public async getRoomByFloor(roomIsOnFloor: number): Promise<any> {
-        const room = await this.roomModel.find({ roomIsOnFloor }).exec();
+        const room = await this.roomModel.find({ roomIsOnFloor: roomIsOnFloor }).exec();
 
         if(!room || !room[0]) {
-            throw new HttpException('No room with id found', 404);
+            throw new HttpException('No room found on floor', 404);
         }
         return room;
     }
