@@ -27,8 +27,6 @@ export class FloorService {
     }
 
     public async getFloorsByBuilding(buildingId: number) {
-        console.log("AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
-        console.log("buildingId: " + buildingId);
         const floors = await this.floorModel.find({ floorIsInBuilding: buildingId }).exec();
 
         if(!floors || !floors[0]) {
