@@ -8,7 +8,17 @@ import BookingCard from "./BookingCard";
 import Message from "./Message";
 
  /*import { red } from "@mui/material/colors"; */
-
+ /*function color(occupied) {
+  // Hier war dein Fehler
+  //await HttpService.occupyTable(tid);
+  //for (const i of document.getElementsByClassName("table")) {
+    if (occupied === true) {
+      return  "red";
+    }
+    return "green";
+    
+  //}
+}*/
 
   class Messages extends React.Component{
     constructor(props) {
@@ -47,19 +57,19 @@ import Message from "./Message";
         {this.state.Messages.map((Messages) => {
           return <Box id={Messages.id} key={Messages.id} className="messages"           
           sx={{
-            //bgcolor: color(Messages.occupied),
+           // bgcolor: color(Messages.occupied),
             marginTop: "15px",
             position: "relative",
             height: "40px",
             width: "40px",
             border: "2px solid navy",
           }}
-          onClick={() => {
+       /*   onClick={() => {
             HttpService.occupyTable(Messages.id).then(res => {
               Messages.occupied = !Messages.occupied;
               this.forceUpdate();
             });
-          }}
+          }}*/
           />;
         })}
 
