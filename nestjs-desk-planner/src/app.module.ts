@@ -17,7 +17,9 @@ import { RoomController } from './controller/room.controller';
 import { RoomService } from './services/room.service';
 import { BookingController } from './controller/booking.controller';
 import { BookingService } from './services/booking.service';
-
+import { MessageSchema } from './schemas/message.schema';
+import { MessageController } from './controller/message.controller';
+import { MessageService } from './services/message.service';
 
 @Module({
 	imports: [
@@ -26,9 +28,11 @@ import { BookingService } from './services/booking.service';
 									,{ name: 'Building', schema: BuildingSchema }
 									,{ name: 'Floor', schema: FloorSchema }
 									,{ name: 'Room', schema: RoomSchema}
-									,{ name: 'Booking', schema: BookingSchema}])
+									,{ name: 'Booking', schema: BookingSchema}
+									,{ name: 'Message', schema: MessageSchema}
+									])
 	],
-	controllers: [DeskController, BuildingController, FloorController,RoomController, BookingController],
-	providers: [DeskService, BuildingService, FloorService, RoomService, BookingService],
+	controllers: [DeskController, BuildingController, FloorController,RoomController, BookingController, MessageController],
+	providers: [DeskService, BuildingService, FloorService, RoomService, BookingService, MessageService],
 })
 export class AppModule {}

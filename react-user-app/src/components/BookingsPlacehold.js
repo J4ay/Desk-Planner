@@ -2,6 +2,9 @@ import React from "react";
 import BookingCard from "./BookingCard";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
+import HttpService from "../services/HttpService";
+import TopAppBar from "./TopAppBar";
+import BottomNavBar from "./BottomNavBar";
 
 class BookingsPlacehold extends React.Component{
   constructor(props) {
@@ -19,6 +22,7 @@ class BookingsPlacehold extends React.Component{
       <Container
         sx={{ marginTop: "64px", marginRight: "12px", marginBottom: "64px", bgcolor: "#f4f4f4" }}
       >
+        <TopAppBar />
         <Grid container
           rowSpacing={4}
           sx={{ marginLeft: "12px", bgcolor: "#f4f4f4" }}
@@ -36,6 +40,7 @@ class BookingsPlacehold extends React.Component{
           />;
         })}
         </Grid>
+        <BottomNavBar />
       </Container>
     );
   };

@@ -6,6 +6,8 @@ import Grid from "@mui/material/Grid";
 import HttpService from "../services/HttpService";
 import BookingCard from "./BookingCard";
 import Message from "./Message";
+import TopAppBarMessages from "./TopAppBarMessages";
+import BottomNavBar from "./BottomNavBar";
 
  /*import { red } from "@mui/material/colors"; */
  /*function color(occupied) {
@@ -37,6 +39,7 @@ import Message from "./Message";
     <Container
       sx={{ marginTop: "64px", marginRight: "12px", bgcolor: "#f4f4f4" }}
     >
+      <TopAppBarMessages />
         <Grid item sx={{ marginTop: "10px" }}>
         <Message
           room="Raum 1 EG"
@@ -74,6 +77,7 @@ import Message from "./Message";
         })}
 
       </Container>
+      <BottomNavBar />
     </Container>
   );}
 };
