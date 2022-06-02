@@ -55,24 +55,14 @@ import Message from "./Message";
         }}
       >
         {this.state.Messages.map((Messages) => {
-          return <Box id={Messages.id} key={Messages.id} className="messages"           
-          sx={{
-           // bgcolor: color(Messages.occupied),
-            marginTop: "15px",
-            position: "relative",
-            height: "40px",
-            width: "40px",
-            border: "2px solid navy",
-          }}
-       /*   onClick={() => {
-            HttpService.occupyTable(Messages.id).then(res => {
-              Messages.occupied = !Messages.occupied;
+         // return <Box id={Messages.id} key={Messages.id} className="messages"           
+          return <Message key={Messages.id} Message={Messages}
+          onClick={() => {
+            HttpService.deleteMessage(Messages.id).then(res => {
               this.forceUpdate();
             });
-          }}*/
-          />;
-        })}
-
+          }}
+        />;})}
       </Container>
     </Container>
   );}
