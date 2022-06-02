@@ -28,7 +28,7 @@ class BookingsPlacehold extends React.Component{
           sx={{ marginLeft: "12px", bgcolor: "#f4f4f4" }}
         >
           {this.state.bookings.map((bookings) => {
-            // benötigte Parameter: Raum, Datum, Intervall
+            // benötigte Parameter: Raum, Datum, IntervallStart und IntervallEnde
             temp = bookings.bookingEnd;
             return <BookingCard room={bookings.bookingId} date={bookings.bookingEnd} durationStart={bookings.bookingStart} durationEnd={bookings.bookingEnd}
             onClick={() => {
