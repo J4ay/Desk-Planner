@@ -17,25 +17,26 @@ async function fillBuildings(props) {
 	buildings.map((building) => {
 	options_buildings.push({buildingName: building.buildingName, buildingId: building.buildingId});
 	});
-	//console.dir(buildings);
 } 
 
 async function fillFloors(props) {
-  const floors = await HttpService.getFloorsByBuilding(props.buildingId);
-  options_floors = [];
-	floors.map((floor) => {
-	options_floors.push({floorName: floor.floorName, floorId: floor.floorId});
-	});
-	//console.dir(buildings);
+  if(props.buildingId != null) {
+    const floors = await HttpService.getFloorsByBuilding(props.buildingId);
+    options_floors = [];
+    floors.map((floor) => {
+    options_floors.push({floorName: floor.floorName, floorId: floor.floorId});
+    });
+  }
 } 
 
 async function fillRooms(props) {
-  console.log("Floor ID: " + props.floorId);
-  const rooms = await HttpService.getRoomsByFloorId(props.floorId);
-  options_rooms = [];
-	rooms.map((room) => {
-	options_rooms.push({roomName: room.roomName, roomId: room.roomId});
-	});
+  if(props.floorId != null) {
+    const rooms = await HttpService.getRoomsByFloorId(props.floorId);
+    options_rooms = [];
+    rooms.map((room) => {
+    options_rooms.push({roomName: room.roomName, roomId: room.roomId});
+    });
+  }
 } 
 
 
@@ -75,7 +76,6 @@ const Dropdowns = (props) => {
     options_floors = [];    //reset the floor options
     options_rooms = [];     //reset the room options
     fillFloors({"buildingId": event.currentTarget.value});
-    console.log(selected_building);
     setAnchorEl(null);
   };
   const handleCloseFloor = (event) => {
