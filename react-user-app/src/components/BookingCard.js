@@ -16,7 +16,7 @@ import Typography from "@mui/material/Typography";
 // );
 
 const BookingCard = (props) => {
-  const {room, date, duration} = props;
+  const {room, date, durationStart, durationEnd} = props;
   return (
     <Card sx={{ minWidth: 300, bgcolor: "#ffffff" }}>
       <CardContent>
@@ -26,7 +26,7 @@ const BookingCard = (props) => {
         <Typography variant="body1" sx={{ marginTop: "10px" }}>
           {date}
           <br />
-          {duration}
+          {durationStart} - {durationEnd}
         </Typography>
       </CardContent>
       <CardActions>
