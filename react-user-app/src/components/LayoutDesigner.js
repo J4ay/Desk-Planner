@@ -8,10 +8,10 @@ import HttpService from "../services/HttpService";
 
 class LayoutDesigner extends React.Component{
 
-
     render(){
         return(
-            <Container sx={{ marginTop: "64px"}}>
+            <Container sx={{ marginTop: "64px", marginBottom: "64px"}}>
+                    {/* Hier sind die Buttons zum Einfügen von Elementen*/}
                     <Box tableIcon
                         sx={{ display: "flex", border: "2px solid black" }}
                     >
@@ -34,8 +34,9 @@ class LayoutDesigner extends React.Component{
                         </Button>
                     </Box>
                 <Container>
-                    
+                    {/* Hier ist der eigentliche Designer*/}
                 </Container>
+                    {/* Hier ist der Button zum Speichern*/}
                 <Button
                     size="small"
                     sx={{ marginLeft: "auto", marginRight: "0", zIndex: "1" }}
