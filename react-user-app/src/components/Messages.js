@@ -9,18 +9,6 @@ import Message from "./Message";
 import TopAppBarMessages from "./TopAppBarMessages";
 import BottomNavBar from "./BottomNavBar";
 
- /*import { red } from "@mui/material/colors"; */
- /*function color(occupied) {
-  // Hier war dein Fehler
-  //await HttpService.occupyTable(tid);
-  //for (const i of document.getElementsByClassName("table")) {
-    if (occupied === true) {
-      return  "red";
-    }
-    return "green";
-    
-  //}
-}*/
 
   class Messages extends React.Component{
     constructor(props) {
@@ -47,26 +35,11 @@ import BottomNavBar from "./BottomNavBar";
           description="Hallo, brauchst du den Raum..."
         >
         </Message>
-        </Grid>
-        <Container
-        sx={{
-          position: "fixed",
-          minHeight: "70%",
-          height: "50%",
-          minWidth: "90%",
-          width: "90%",
-        }}
-      >
-        {this.state.Messages.map((Messages) => {
-         // return <Box id={Messages.id} key={Messages.id} className="messages"           
-          return <Message key={Messages.id} Message={Messages}
-          onClick={() => {
-            HttpService.deleteMessage(Messages.id).then(res => {
-              this.forceUpdate();
-            });
-          }}
-        />;})}
-      </Container>
+        {this.state.Messages.map((Message) =>{
+          return <Message room={Message.room} worker={Message.worker} description={Message.description}
+          ></Message>
+        })}
+        </Grid> 
       <BottomNavBar />
     </Container>
   );}
