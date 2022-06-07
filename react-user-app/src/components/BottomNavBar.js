@@ -7,6 +7,11 @@ import ViewList from "@mui/icons-material/ViewList";
 import Paper from "@mui/material/Paper";
 import { Link } from "react-router-dom";
 
+function hilightActive(path) {
+  return window.location.pathname === path ? "active" : "";
+}
+
+
 const BottomNavBar = () => {
   return (
     <Paper
