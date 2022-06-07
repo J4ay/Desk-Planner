@@ -1,5 +1,11 @@
-import { Body, Controller, Delete, Get, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Post, Put, UseGuards } from '@nestjs/common';
 import { BuildingService } from '../services/building.service';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { Roles, Unprotected } from 'nest-keycloak-connect';
+import { KeycloakConnectModule,
+  ResourceGuard,
+  RoleGuard,
+  AuthGuard,} from 'nest-keycloak-connect';
 
 @Controller('/building')
 export class BuildingController {
