@@ -17,7 +17,7 @@ import BottomNavBar from "./BottomNavBar";
     }
     componentDidMount() {
       HttpService.getMessages().then(res => {
-        this.setState({ Messages: res });
+        this.setState({ messages: res });
       });
     }
 

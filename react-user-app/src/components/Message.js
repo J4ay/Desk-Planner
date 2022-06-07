@@ -42,7 +42,7 @@ const Message = ({worker, room, description}) => {
           <BottomNavigationAction
          // label="Löschen"
           sx={{ position: "fixed", top: 100, left: 700, right: 23, zIndex: "20" }}
-          icon={<DangerousIcon fontSize="large" />}
+         // icon={<DangerousIcon fontSize="large" />}
           label="Löschen"
         />
         </Paper>
