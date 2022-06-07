@@ -4,7 +4,6 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import HttpService from "../services/HttpService";
 import TopAppBar from "./TopAppBar";
-import BottomNavBar from "./BottomNavBar";
 
 class BookingsPlacehold extends React.Component{
   constructor(props) {
@@ -41,7 +40,6 @@ class BookingsPlacehold extends React.Component{
           />;
         })}
         </Grid>
-        <BottomNavBar />
       </Container>
     );
   };
