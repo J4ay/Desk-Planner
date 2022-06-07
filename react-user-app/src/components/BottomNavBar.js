@@ -7,8 +7,21 @@ import ViewList from "@mui/icons-material/ViewList";
 import Paper from "@mui/material/Paper";
 import { Link } from "react-router-dom";
 
+function currentPage() {
+  const path = window.location.pathname;
+  if (path === "/") {
+    return 1;
+  } else if (path === "/bookings") {
+    return 2;
+  } else if (path === "/messages") {
+    return 0;
+  }
+  return 0;
+}
+
 const BottomNavBar = () => {
-  const [value, setValue] = React.useState(1);
+  const [value, setValue] = React.useState(currentPage());
+  
   return (
     <Paper
       sx={{ position: "fixed", bottom: 0, left: 0, right: 0, zIndex: "20" }}
