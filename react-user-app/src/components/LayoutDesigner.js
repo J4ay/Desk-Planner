@@ -4,7 +4,7 @@ import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import HttpService from "../services/HttpService";
-
+import BottomNavBar from "./BottomNavBar";
 
 class LayoutDesigner extends React.Component{
 
@@ -13,28 +13,34 @@ class LayoutDesigner extends React.Component{
             <Container sx={{ marginTop: "64px", marginBottom: "64px"}}>
                     {/* Hier sind die Buttons zum Einfügen von Elementen*/}
                     <Box tableIcon
-                        sx={{ display: "flex", border: "2px solid black" }}
+                        sx={{ float: "right", display: "flex", alignItems: "left", border: "2px solid black" }}
                     >
                         <Button>
                             Tisch
                         </Button>
                     </Box>
                     <Box wallIcon
-                        sx={{ display: "flex", border: "2px solid black" }}
+                        sx={{ float: "right", display: "flex", border: "2px solid black" }}
                     >
                         <Button>
                             Wand
                         </Button>
                     </Box>
                     <Box doorIcon
-                        sx={{ display: "flex", border: "2px solid black" }}
+                        sx={{ float: "right", display: "flex", border: "2px solid black" }}
                     >
                         <Button>
                             Tür
                         </Button>
                     </Box>
                 <Container>
+                    <Grid container
+                        sx={{ border: "2px solid black", marginLeft: "12px", bgcolor: "#f4f4f4" }}
+                    >
+
                     {/* Hier ist der eigentliche Designer*/}
+                    Test Container
+                    </Grid>
                 </Container>
                     {/* Hier ist der Button zum Speichern*/}
                 <Button
@@ -43,6 +49,7 @@ class LayoutDesigner extends React.Component{
                 >
                     Speichern
                 </Button>
+                <BottomNavBar />
             </Container>
         );
     };
