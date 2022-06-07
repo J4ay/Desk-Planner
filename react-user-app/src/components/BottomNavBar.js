@@ -8,7 +8,7 @@ import Paper from "@mui/material/Paper";
 import { Link } from "react-router-dom";
 
 const BottomNavBar = () => {
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState(1);
   return (
     <Paper
       sx={{ position: "fixed", bottom: 0, left: 0, right: 0, zIndex: "20" }}
