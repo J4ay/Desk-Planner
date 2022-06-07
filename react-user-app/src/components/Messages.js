@@ -13,7 +13,7 @@ import BottomNavBar from "./BottomNavBar";
   class Messages extends React.Component{
     constructor(props) {
       super(props);
-      this.state = {Messages: []};
+      this.state = {messages: []};
     }
     componentDidMount() {
       HttpService.getMessages().then(res => {
@@ -35,8 +35,8 @@ import BottomNavBar from "./BottomNavBar";
           description="Hallo, brauchst du den Raum..."
         >
         </Message>
-        {this.state.Messages.map((Message) =>{
-          return <Message room={Message.room} worker={Message.worker} description={Message.description}
+        {this.state.messages.map((message) =>{
+          return <Message room={message.room} worker={message.worker} description={message.description}
           ></Message>
         })}
         </Grid> 
