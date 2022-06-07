@@ -30,11 +30,9 @@ function App() {
     <ThemeProvider theme={theme}>
       <div className="App">
         <TopAppBar />
-        <Authenticated>
           <BookingPlacehold />
 
           <BottomNavBar />
-        </Authenticated>
 
         <Anonymous>
           <Login />

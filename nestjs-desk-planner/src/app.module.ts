@@ -39,14 +39,14 @@ import { APP_GUARD } from '@nestjs/core';
 									]),
 		KeycloakConnectModule.register({
 			realm: "DeskPlanner",
-			authServerUrl: 'http://localhost:8080/',
+			authServerUrl: 'http://localhost:8080/auth',
 			clientId: "keycloak-reactjs-demo",
-			secret: "Key-1337",
+			secret: "l3YUttewWbNpx8aFuRNJg1fZ8Ta077kS",
 		})
 	],
 	controllers: [DeskController, BuildingController, FloorController,RoomController, BookingController, MessageController],
 	providers: [DeskService, BuildingService, FloorService, RoomService, BookingService, MessageService,
-		{
+		  {
 			provide: APP_GUARD,
 			useClass: AuthGuard,
 		  },
