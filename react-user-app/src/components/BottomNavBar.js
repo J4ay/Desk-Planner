@@ -16,7 +16,7 @@ function currentPage() {
   } else if (path === "/messages") {
     return 0;
   }
-  return 0;
+  return 1;
 }
 
 const BottomNavBar = () => {
