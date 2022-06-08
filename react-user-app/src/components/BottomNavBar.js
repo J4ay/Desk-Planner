@@ -6,6 +6,7 @@ import AddCircle from "@mui/icons-material/AddCircle";
 import ViewList from "@mui/icons-material/ViewList";
 import Paper from "@mui/material/Paper";
 import { Link } from "react-router-dom";
+import UserService from "../services/UserService";
 
 function currentPage() {
   const path = window.location.pathname;
@@ -44,17 +45,23 @@ const BottomNavBar = () => {
           label="Nachrichten"
           icon={<Mail fontSize="large" />}
           component={Link} to="/messages"
+          onClick={() => {
+            console.log(UserService.getToken());}}
         />
         <BottomNavigationAction
           label="Buchen"
           sx={{ label: "20" }}
           icon={<AddCircle fontSize="large" />}
           component={Link} to="/"
+          onClick={() => {
+            console.log(UserService.getToken());}}
         />
         <BottomNavigationAction
           label="Buchungen"
           icon={<ViewList fontSize="large" />}
           component={Link} to="/bookings"
+          onClick={() => {
+            console.log(UserService.getToken());}}
         />
       </BottomNavigation>
     </Paper>
