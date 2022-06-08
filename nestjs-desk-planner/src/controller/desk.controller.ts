@@ -1,5 +1,7 @@
 import { Body, Controller, Delete, Get, Post, Put } from "@nestjs/common";
+import { resolveSoa } from "dns";
 import { DeskService } from "src/services/desk.service";
+import { AuthenticatedUser, Public, Roles, RoleMatchingMode, Unprotected } from 'nest-keycloak-connect';
 
 @Controller('/desk')
 export class DeskController{
@@ -7,6 +9,8 @@ export class DeskController{
     constructor(private readonly deskService: DeskService) {}
 
     @Get()
+    //@Roles({ roles: ['admin'], mode: RoleMatchingMode.ALL})
+    //@Unprotected()
   getDesks(@Body('id') id: number) {
     if (id) {
       const request = this.deskService.getDeskById(id);

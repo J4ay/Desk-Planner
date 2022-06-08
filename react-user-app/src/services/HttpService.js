@@ -1,6 +1,8 @@
 import axios from "axios";
 import UserService from "./UserService";
 
+let BASE_URL = "http://localhost:3001";
+
 const HttpMethods = {
   GET: "GET",
   POST: "POST",
@@ -38,7 +40,17 @@ async function getTableOccupation(pId){
 }
 
 async function getTables(){
+  /* let JWTToken = UserService.getToken();
+  axios
+    .get(BASE_URL + '/desk', { headers: {"Authorization" : `Bearer ${JWTToken}`} })
+    .then(res => {
+      console.dir(res.data);
+       return res.data;
+      })
+      .catch(error => console.log(error))  */
+
   const response = await axios.get('http://localhost:3001/desk');
+  console.dir(response.data);
   return response.data;
 }
 
