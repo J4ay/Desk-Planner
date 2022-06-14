@@ -12,10 +12,12 @@ const HttpMethods = {
 const _axios = axios.create();
 
 const configure = () => {
+  let JWTToken = UserService.getToken();
+  console.dir(JWTToken);
   _axios.interceptors.request.use((config) => {
     if (UserService.isLoggedIn()) {
       const cb = () => {
-        config.headers.Authorization = `Bearer ${UserService.getToken()}`;
+        config.headers.Authorization = `Bearer ${JWTToken}`;
         return Promise.resolve(config);
       };
       return UserService.updateToken(cb);
@@ -34,27 +36,37 @@ async function occupyTable(pId){
 
 async function getTableOccupation(pId){
   const response = await axios.post('http://localhost:3001/desk/occupied', { id: pId });
-  console.log("Id: " + pId);
-  console.dir(response.data);
   return response.data;
 }
 
-async function getTables(){
-  /* let JWTToken = UserService.getToken();
-  axios
-    .get(BASE_URL + '/desk', { headers: {"Authorization" : `Bearer ${JWTToken}`} })
-    .then(res => {
-      console.dir(res.data);
-       return res.data;
-      })
-      .catch(error => console.log(error))  */
+//has to be defined in the component itself
+/* async function getTables(){
+  let JWTToken = UserService.getToken();
+  const response = await axios
+    .get(BASE_URL + '/desk', { headers: {"Authorization" : `Bearer ${JWTToken}`} });
+
+  return response.data;
 
   const response = await axios.get('http://localhost:3001/desk');
   console.dir(response.data);
   return response.data;
-}
+} */
 
 async function getBuildings(){
+  /* let JWTToken = UserService.getToken();
+  console.log(JWTToken);
+  if(JWTToken){
+  axios
+    .get(BASE_URL + '/building', { headers: {"Authorization" : `Bearer ${JWTToken}`} })
+    .then(res => {
+      console.dir(res.data);
+       return res.data;
+      })
+      .catch(error => console.log(error)) 
+  } else {
+    return [];
+  } */
+
   const response = await axios.get('http://localhost:3001/building');
   return response.data;
 }
@@ -98,7 +110,7 @@ const HttpService = {
   getAxiosClient,
   occupyTable,
   getTableOccupation,
-  getTables,
+  //getTables,
   getBuildings,
   getFloors,
   getFloorsByBuilding,

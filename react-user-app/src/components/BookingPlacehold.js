@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import Dropdowns from "./Dropdowns";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
@@ -8,28 +9,15 @@ import TimePopUp from "./TimePopUp";
 import UserService from "../services/UserService";
 /* import { red } from "@mui/material/colors"; */
 
-/* function colorPicker(occupied) {
-  console.dir(occupied);
-  if(occupied){
-    console.log("red");
-    return "red";
-  } else {
-    console.log("green");
-    return "green";
-  }
-} */
+let BASE_URL = "http://localhost:3001";
+
 
 // Async function um farbe zu ändern
 function color(occupied) {
-  // Hier war dein Fehler
-  //await HttpService.occupyTable(tid);
-  //for (const i of document.getElementsByClassName("table")) {
     if (occupied === true) {
       return  "red";
     }
     return "green";
-    
-  //}
 }
 
 class BookingPlacehold extends React.Component{
@@ -37,14 +25,31 @@ class BookingPlacehold extends React.Component{
     super(props);
     this.state = {tables: []};
   }
-  componentDidMount() {
-    HttpService.getTables().then(res => {
-      this.setState({ tables: res });
-    });
+
+  componentDidMount = () => {
+    //console.dir(HttpService.getTables());
+    this.updateTables()
+    this.interval = setInterval(() => { this.updateTables() }, 5000);
+  }
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
+
+  updateTables = () => {
+    let JWTToken = UserService.getToken();
+    axios
+    .get(BASE_URL + '/desk', { headers: {"Authorization" : `Bearer ${JWTToken}`} })
+    .then(res => {
+      //console.dir(res.data);
+      this.setState({tables: res.data});
+      })
+      .catch(error => console.log(error)) ;
   }
 
 render() 
 {
+  //console.dir(this.state.tables);
+  if(this.state.tables) {
   return (
     <Container sx={{ marginTop: "64px" }}>
       <Grid container>
@@ -60,7 +65,8 @@ render()
           border: "2px solid black",
         }}
       >
-        {this.state.tables.map((table) => {
+        {
+        this.state.tables.map((table) => {
           return <Box id={table.id} key={table.id} className="table"           
           sx={{
             bgcolor: color(table.occupied),
@@ -78,53 +84,13 @@ render()
             });
           }}
           />;
-        })}
-        {/* <Box
-          className="table"
-          // Boxen haben ids zum einfärben
-          id="1"
-          sx={{
-            //bgcolor: color(1),
-            marginTop: "15px",
-            position: "fixed",
-            height: "40px",
-            width: "40px",
-            border: "2px solid navy",
-          }}
-          onClick={() => color(1)}
-        />
-        <Box
-          className="table"
-          id="2"
-          sx={{
-            //bgcolor: colorPicker(HttpService.getTableOccupation(2)),
-            marginTop: "15px",
-            marginLeft: "60px",
-            position: "fixed",
-            height: "40px",
-            width: "40px",
-            border: "2px solid navy",
-          }}
-          onClick={() => color(2)}
-        />
-        <Box
-          className="table"
-          id="3"
-          sx={{
-            //bgcolor: colorPicker(HttpService.getTableOccupation(2)),
-            marginTop: "15px",
-            marginLeft: "120px",
-            position: "fixed",
-            height: "40px",
-            width: "40px",
-            border: "2px solid navy",
-          }}
-          onClick={() => color(3)}
-        /> */}
+        })
+        }
+      
       </Container>
     </Container>
   );
-};
-};
+};}
+}
 
 export default BookingPlacehold;

@@ -28,6 +28,7 @@ import {
 	AuthGuard,
 } from 'nest-keycloak-connect';
 import { APP_GUARD } from '@nestjs/core';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
 	imports: [
@@ -39,16 +40,17 @@ import { APP_GUARD } from '@nestjs/core';
 									,{ name: 'Booking', schema: BookingSchema}
 									,{ name: 'Message', schema: MessageSchema}
 									]),
-		KeycloakConnectModule.register({
+		AuthModule,
+		/* KeycloakConnectModule.register({
 			authServerUrl: 'http://localhost:8080/',
 			realm: 'DeskPlanner',
 			clientId: 'keycloak-reactjs-demo',
-			secret: '0J8ogzZtrOrDplOSIJhWJTLjksDNaMMQ',
-		}),
+			secret: '7S5wVYjY33VdS7MT3k2aF5bDaRFPg0OW',
+		}), */
 	],
 	controllers: [DeskController, BuildingController, FloorController,RoomController, BookingController, MessageController],
 	providers: [DeskService, BuildingService, FloorService, RoomService, BookingService, MessageService,
-		  {
+		  /* {
 			provide: APP_GUARD,
 			useClass: AuthGuard,
 		  },
@@ -59,6 +61,6 @@ import { APP_GUARD } from '@nestjs/core';
 		  {
 			provide: APP_GUARD,
 			useClass: RoleGuard,
-		  },],
+		  }, */],
 })
 export class AppModule {}

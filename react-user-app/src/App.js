@@ -25,8 +25,6 @@ function App() {
     <ThemeProvider theme={theme}>
       <div className="App">
         <TopAppBar />
-
-        <Authenticated>
           <Routes>
             <Route path="/" element={<BookingPlacehold />} />
             <Route path="messages" element={<Messages />} />
@@ -34,8 +32,6 @@ function App() {
           </Routes>
 
           <BottomNavBar />
-        </Authenticated>
-
         <Anonymous>
           <Login />
         </Anonymous>

@@ -1,15 +1,17 @@
-import { Body, Controller, Delete, Get, Post, Put } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Post, Put, UseGuards } from "@nestjs/common";
 import { resolveSoa } from "dns";
 import { DeskService } from "src/services/desk.service";
 import { AuthenticatedUser, Public, Roles, RoleMatchingMode, Unprotected } from 'nest-keycloak-connect';
+import { AuthGuard } from "@nestjs/passport";
 
 @Controller('/desk')
 export class DeskController{
 
     constructor(private readonly deskService: DeskService) {}
 
+    @UseGuards(AuthGuard('jwt'))
     @Get()
-    //@Roles({ roles: ['admin'], mode: RoleMatchingMode.ALL})
+    //@Roles({ roles: ['app-admin'], mode: RoleMatchingMode.ALL})
     //@Unprotected()
   getDesks(@Body('id') id: number) {
     if (id) {
