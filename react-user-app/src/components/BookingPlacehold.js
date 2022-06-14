@@ -122,6 +122,7 @@ render()
           onClick={() => color(3)}
         /> */}
       </Container>
+      < TimePopUp />
     </Container>
   );
 };
