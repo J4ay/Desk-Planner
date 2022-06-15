@@ -9,6 +9,7 @@ import Authenticated from "./components/Authenticated";
 import Login from "./components/Login";
 import Messages from "./components/Messages";
 import Chat from "./components/Chat";
+import LayoutDesigner from "./components/LayoutDesigner";
 import BookingsPlacehold from "./components/BookingsPlacehold";
 import { Routes, Route } from "react-router-dom";
 
@@ -26,15 +27,20 @@ function App() {
     <ThemeProvider theme={theme}>
       <div className="App">
         <TopAppBar />
-
+        <Authenticated>
           <Routes>
             <Route path="/" element={<BookingPlacehold />} />
-            <Route path="messages" element={<Messages />} />
+            <Route path="/messages" element={<Messages />} />
             <Route path="/bookings" element={<BookingsPlacehold />} />
             <Route path="/chat" element={<Chat />} />
+            <Route path="/layout" element={<LayoutDesigner />} />
           </Routes>
-
           <BottomNavBar />
+        </Authenticated>
+        <Anonymous>
+          <Login />
+        </Anonymous>
+          
 
       </div>
     </ThemeProvider>
