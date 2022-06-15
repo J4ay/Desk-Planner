@@ -8,6 +8,7 @@ import Anonymous from "./components/Anonymous";
 import Authenticated from "./components/Authenticated";
 import Login from "./components/Login";
 import Messages from "./components/Messages";
+import Chat from "./components/Chat";
 import BookingsPlacehold from "./components/BookingsPlacehold";
 import { Routes, Route } from "react-router-dom";
 
@@ -26,19 +27,15 @@ function App() {
       <div className="App">
         <TopAppBar />
 
-        <Authenticated>
           <Routes>
             <Route path="/" element={<BookingPlacehold />} />
             <Route path="messages" element={<Messages />} />
             <Route path="/bookings" element={<BookingsPlacehold />} />
+            <Route path="/chat" element={<Chat />} />
           </Routes>
 
           <BottomNavBar />
-        </Authenticated>
 
-        <Anonymous>
-          <Login />
-        </Anonymous>
       </div>
     </ThemeProvider>
   );
