@@ -8,7 +8,7 @@ import Anonymous from "./components/Anonymous";
 import Authenticated from "./components/Authenticated";
 import Login from "./components/Login";
 import Messages from "./components/Messages";
-import Chat from "./components/Chat";
+import Chats from "./components/Chats";
 import LayoutDesigner from "./components/LayoutDesigner";
 import BookingsPlacehold from "./components/BookingsPlacehold";
 import { Routes, Route } from "react-router-dom";
@@ -32,7 +32,7 @@ function App() {
             <Route path="/" element={<BookingPlacehold />} />
             <Route path="/messages" element={<Messages />} />
             <Route path="/bookings" element={<BookingsPlacehold />} />
-            <Route path="/chat" element={<Chat />} />
+            <Route path="/chat" element={<Chats />} />
             <Route path="/layout" element={<LayoutDesigner />} />
           </Routes>
           <BottomNavBar />
@@ -40,8 +40,6 @@ function App() {
         <Anonymous>
           <Login />
         </Anonymous>
-          
-
       </div>
     </ThemeProvider>
   );

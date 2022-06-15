@@ -18,9 +18,10 @@ import { Link } from "react-router-dom";
 
 const Message = ({worker, room, description}) => {
   return (
-<Card sx={{ minWidth: 300, bgcolor: "#ffffff" }} component={Link} to="/chat">
+<Card sx={{ minWidth: 300, bgcolor: "#ffffff" }}>
 
-      <CardContent>
+      <CardContent
+       component={Link} to="/chat">
         <Typography variant="h5" component="div"  sx={{ marginTop: "10px" }}>
           von {worker}
         </Typography>
