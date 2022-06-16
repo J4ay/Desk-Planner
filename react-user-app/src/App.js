@@ -27,7 +27,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <div className="App">
         <TopAppBar />
-        <Authenticated>
+        {/* <Authenticated> */}
           <Routes>
             <Route path="/" element={<BookingPlacehold />} />
             <Route path="/messages" element={<Messages />} />
@@ -36,10 +36,10 @@ function App() {
             <Route path="/layout" element={<LayoutDesigner />} />
           </Routes>
           <BottomNavBar />
-        </Authenticated>
+        {/* </Authenticated>
         <Anonymous>
           <Login />
-        </Anonymous>
+        </Anonymous> */}
       </div>
     </ThemeProvider>
   );
