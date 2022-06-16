@@ -5,7 +5,6 @@ const Canvas = props => {
     const canvasRef = useRef(null);
 
     const draw = (ctx) => {
-
     }
 
     useEffect(() => {
