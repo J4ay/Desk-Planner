@@ -65,7 +65,9 @@ const BookingCard = (props) => {
           sx={{ marginLeft: "auto", marginRight: "0", zIndex: "1" }}
           onClick={() => {
             // TODO: delete booking via ConfirmBox
-            HttpService.deleteBooking(bId);
+            HttpService.deleteBooking(bId).then(res => {
+              window.location.reload(false);
+            });
           }}
         >
           Stornieren
