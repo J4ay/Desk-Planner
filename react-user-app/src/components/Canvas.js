@@ -5,11 +5,7 @@ const Canvas = props => {
     const canvasRef = useRef(null);
 
     const draw = (ctx) => {
-        //ctx.clearRect(0, 0, ctx.current.width, ctx.current.height);
-        ctx.fillStyle = "blue";
-        ctx.beginPath();
-        ctx.arc(75, 75, 50, 0, Math.PI * 2, true);
-        ctx.fill();
+
     }
 
     useEffect(() => {
