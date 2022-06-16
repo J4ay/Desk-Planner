@@ -8,6 +8,8 @@ import LaptopChromebookIcon from "@mui/icons-material/LaptopChromebook";
 import UserService from "../services/UserService";
 import LoginIcon from "@mui/icons-material/Login";
 import Authenticated from "./Authenticated";
+import { Link } from "react-router-dom";
+
 
 const TopAppBar = () => {
   return (
@@ -26,6 +28,7 @@ const TopAppBar = () => {
             color="inherit"
             aria-label="menu"
             sx={{ mr: 1 }}
+            component={Link} to="/layout"
           >
             <LaptopChromebookIcon sx={{ fontSize: 32 }} />
           </IconButton>
