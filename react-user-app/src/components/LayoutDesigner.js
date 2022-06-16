@@ -98,25 +98,29 @@ class LayoutDesigner extends React.Component {
                 Buchen
               </Typography>
               <Button
-                sx={{ border: "2px solid black", backgroundColor: "white" }}
+                variant="contained"
+                sx={{ border: "2px solid black"}}
               >
                 Tisch
               </Button>
 
               <Button
-                sx={{ border: "2px solid black", backgroundColor: "white" }}
+                variant="contained"
+                sx={{ border: "2px solid black"}}
               >
                 Wand
               </Button>
 
               <Button
-                sx={{ border: "2px solid black", backgroundColor: "white" }}
+                variant="contained"
+                sx={{ border: "2px solid black"}}
               >
                 Tür
               </Button>
 
               <Button
-                sx={{ border: "2px solid black", backgroundColor: "white" }}
+                variant="contained"
+                sx={{ border: "2px solid black"}}
               >
                 Speichern
               </Button>
