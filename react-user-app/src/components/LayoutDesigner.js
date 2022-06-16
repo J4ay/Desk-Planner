@@ -8,8 +8,9 @@ function addDesk(canvas, left, top) {
     var d = new fabric.Rect({
         left: left,
         top: top,
-        width: 50,
-        fill: "brown",
+        fill: 'brown',
+        width: 20,
+        height: 20
     });
 
     d.hasControls = d.hasBorders = false;
@@ -17,6 +18,10 @@ function addDesk(canvas, left, top) {
     canvas.add(d);
     canvas.renderAll();
     //canvas.render();
+}
+
+function saveCanvas(canvas) {
+    console.log(canvas.toJSON());
 }
 
 class LayoutDesigner extends React.Component {
@@ -115,8 +120,11 @@ class LayoutDesigner extends React.Component {
             p.line3 && p.line3.set({ x2: p.left, y2: p.top });
             p.line4 && p.line4.set({ x1: p.left, y1: p.top });
 
-            canvas.renderAll();
+            //canvas.renderAll();
         });
+
+
+
     }
     render() {
         return (
@@ -149,6 +157,9 @@ class LayoutDesigner extends React.Component {
                     <Button
                         variant="contained"
                         sx={{ border: "2px solid black", float: "right" }}
+                        onClick={() => {
+                            saveCanvas(this.__canvas);
+                        }}
                     >
                         Speichern
                     </Button>
