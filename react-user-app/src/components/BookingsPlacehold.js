@@ -28,15 +28,7 @@ class BookingsPlacehold extends React.Component{
         >
           {this.state.bookings.map((bookings) => {
             // benötigte Parameter: Raum, Datum, IntervallStart und IntervallEnde
-            let temp = bookings.bookingEnd;
-            return <BookingCard room={bookings.bookingId} date={bookings.bookingEnd} durationStart={bookings.bookingStart} durationEnd={bookings.bookingEnd}
-            onClick={() => {
-              // ConfirmBox hier drunter
-              HttpService.deleteBookingsById(bookings.id).then(res => {
-                this.forceUpdate();
-              });
-            }
-          }
+            return <BookingCard bId={bookings.bookingId} room={bookings.bookingRoomId} date={bookings.bookingStart} durationStart={bookings.bookingStart} durationEnd={bookings.bookingEnd}
           />;
         })}
         </Grid>
