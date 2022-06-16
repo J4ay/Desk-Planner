@@ -32,7 +32,7 @@ class BookingsPlacehold extends React.Component{
             return <BookingCard room={bookings.bookingId} date={bookings.bookingEnd} durationStart={bookings.bookingStart} durationEnd={bookings.bookingEnd}
             onClick={() => {
               // ConfirmBox hier drunter
-              HttpService.deleteBooking(bookings.id).then(res => {
+              HttpService.deleteBookingsById(bookings.id).then(res => {
                 this.forceUpdate();
               });
             }
