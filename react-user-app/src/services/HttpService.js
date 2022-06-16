@@ -73,9 +73,10 @@ async function getBookingsByUserId(uID){
   return response.data;
 }
 
-async function deleteBooking(bID){
-  if(bID){
-    const response = await axios.delete('http://localhost:3001/booking', { bookingId : bID });
+async function deleteBooking(bookingID){
+  console.log("Booking ID in HTTP Service: " + bookingID);
+  if(bookingID){
+    const response = await axios.post('http://localhost:3001/booking/delete', { bookingId : bookingID });
     return response.data;
   }
 }
