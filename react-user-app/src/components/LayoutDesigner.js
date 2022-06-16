@@ -1,19 +1,23 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
-import HttpService from "../services/HttpService";
 import BottomNavBar from "./BottomNavBar";
 import { fabric } from "fabric";
-import Paper from "@mui/material/Paper";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import IconButton from "@mui/material/IconButton";
-import AppBar from "@mui/material/AppBar";
-import LaptopChromebookIcon from "@mui/icons-material/LaptopChromebook";
-import UserService from "../services/UserService";
-import LoginIcon from "@mui/icons-material/Login";
+
+function addDesk(canvas, left, top) {
+    var d = new fabric.Rect({
+        left: left,
+        top: top,
+        width: 50,
+        fill: "brown",
+    });
+
+    d.hasControls = d.hasBorders = false;
+
+    canvas.add(d);
+    canvas.renderAll();
+    //canvas.render();
+}
 
 class LayoutDesigner extends React.Component {
     componentDidMount() {
@@ -22,7 +26,7 @@ class LayoutDesigner extends React.Component {
             height: window.innerHeight - 200,
             width: window.innerWidth,
             borders: "2px solid black",
-            backgroundColor: "lightgrey",
+            backgroundColor: "white",
         }));
         fabric.Object.prototype.originX = fabric.Object.prototype.originY =
             "center";
@@ -74,12 +78,43 @@ class LayoutDesigner extends React.Component {
             // makeCircle(line6.get('x2'), line6.get('y2'), line6)
         );
 
+        let grid = 50;
+
+        // Grid display part
+        for (var i = 0; i < 1200 / grid; i++) {
+            canvas.add(
+                new fabric.Line([i * grid, 0, i * grid, 1200], {
+                    stroke: "#ccc",
+                    selectable: false,
+                })
+            );
+            canvas.add(
+                new fabric.Line([0, i * grid, 1200, i * grid], {
+                    stroke: "#ccc",
+                    selectable: false,
+                })
+            );
+        }
+
         canvas.on("object:moving", function (e) {
             var p = e.target;
+
+            if (
+                Math.round((e.target.left / grid) * 4) % 4 == 0 &&
+                Math.round((e.target.top / grid) * 4) % 4 == 0
+            ) {
+                e.target
+                    .set({
+                        left: Math.round(e.target.left / grid) * grid,
+                        top: Math.round(e.target.top / grid) * grid,
+                    })
+                    .setCoords();
+            }
             p.line1 && p.line1.set({ x2: p.left, y2: p.top });
             p.line2 && p.line2.set({ x1: p.left, y1: p.top });
             p.line3 && p.line3.set({ x2: p.left, y2: p.top });
             p.line4 && p.line4.set({ x1: p.left, y1: p.top });
+
             canvas.renderAll();
         });
     }
@@ -92,6 +127,7 @@ class LayoutDesigner extends React.Component {
                     <Button
                         variant="contained"
                         sx={{ border: "2px solid black" }}
+                        onClick={() => { addDesk(this.__canvas, 300, 300); }}
                     >
                         Tisch
                     </Button>
@@ -110,15 +146,15 @@ class LayoutDesigner extends React.Component {
                         Tür
                     </Button>
 
-                <Button
-                    variant="contained"
-                    sx={{ border: "2px solid black", float: "right" }}
-                >
-                    Speichern
-                </Button>
+                    <Button
+                        variant="contained"
+                        sx={{ border: "2px solid black", float: "right" }}
+                    >
+                        Speichern
+                    </Button>
                 </div>
 
-                
+
 
                 {/* Hier sind die Buttons zum Einfügen von Elementen*/}
 
