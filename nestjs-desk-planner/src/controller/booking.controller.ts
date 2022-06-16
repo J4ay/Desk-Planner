@@ -30,6 +30,12 @@ export class BookingController {
         return createdBooking;
     }
 
+    @Post('/getBookingsByUser')
+    async getBookingsByUser(@Body('bookedByUser') bookedByUser: number) {
+        const bookings = await this.bookingService.getBookingByUser(bookedByUser);
+        return bookings;
+    }
+
     @Put()
     async updateBooking(
         @Body('bookingId') bookingId: number,

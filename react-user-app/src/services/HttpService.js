@@ -69,13 +69,15 @@ async function getBookings(){
 }
 
 async function getBookingsByUserId(uID){
-  const response = await axios.post('http://localhost:3001/booking/getBookingsByUserId', { bookingFromUserId: uID });
+  const response = await axios.post('http://localhost:3001/booking/getBookingsByUser', { bookingFromUserId: uID });
   return response.data;
 }
 
 async function deleteBookingsbyId(bID){
-  const response = await axios.delete('http://localhost:3001/booking/deleteBookingsById', { bookingId: bID });
-  return response.data;
+  if(bID){
+    const response = await axios.delete('http://localhost:3001/booking', { bookingId : bID });
+    return response.data;
+  }
 } // end of deleteBookingsbyId
 
 async function deleteBooking(bID){
