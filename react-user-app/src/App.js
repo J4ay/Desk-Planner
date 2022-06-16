@@ -1,21 +1,18 @@
 import * as React from "react";
-// import Box from '@mui/material/Box';
-// import Container from '@mui/material/Container';
-// import Paper from '@mui/material/Paper';
-// import Grid from '@mui/material/Grid'; MakeStyles,
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-
 import BottomNavBar from "./components/BottomNavBar";
 import TopAppBar from "./components/TopAppBar";
 import BookingPlacehold from "./components/BookingPlacehold";
 import "@fontsource/roboto";
-// import BookingCard from './components/BookingCard';
-// import BookingsPlacehold from './components/BookingsPlacehold';
 import Anonymous from "./components/Anonymous";
 import Authenticated from "./components/Authenticated";
 import Login from "./components/Login";
-//const useStyles = MakeStyles({
-//})
+import Messages from "./components/Messages";
+import Chats from "./components/Chats";
+import LayoutDesigner from "./components/LayoutDesigner";
+import BookingsPlacehold from "./components/BookingsPlacehold";
+import { Routes, Route } from "react-router-dom";
+
 const theme = createTheme({
   typography: {
     h5: {
@@ -31,11 +28,15 @@ function App() {
       <div className="App">
         <TopAppBar />
         <Authenticated>
-          <BookingPlacehold />
-
+          <Routes>
+            <Route path="/" element={<BookingPlacehold />} />
+            <Route path="/messages" element={<Messages />} />
+            <Route path="/bookings" element={<BookingsPlacehold />} />
+            <Route path="/chat" element={<Chats />} />
+            <Route path="/layout" element={<LayoutDesigner />} />
+          </Routes>
           <BottomNavBar />
         </Authenticated>
-
         <Anonymous>
           <Login />
         </Anonymous>

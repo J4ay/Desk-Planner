@@ -14,12 +14,14 @@ import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import DangerousIcon from '@mui/icons-material/Dangerous';
 import Paper from "@mui/material/Paper";
+import { Link } from "react-router-dom";
 
 const Message = ({worker, room, description}) => {
   return (
 <Card sx={{ minWidth: 300, bgcolor: "#ffffff" }}>
 
-      <CardContent>
+      <CardContent
+       component={Link} to="/chat">
         <Typography variant="h5" component="div"  sx={{ marginTop: "10px" }}>
           von {worker}
         </Typography>

@@ -7,7 +7,6 @@ import HttpService from "../services/HttpService";
 import BookingCard from "./BookingCard";
 import Message from "./Message";
 import TopAppBarMessages from "./TopAppBarMessages";
-import BottomNavBar from "./BottomNavBar";
 
 
   class Messages extends React.Component{
@@ -40,7 +39,6 @@ import BottomNavBar from "./BottomNavBar";
           ></Message>
         })}
         </Grid> 
-      <BottomNavBar />
     </Container>
   );}
 };

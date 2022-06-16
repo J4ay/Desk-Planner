@@ -5,6 +5,7 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import HttpService from "../services/HttpService";
 import TimePopUp from "./TimePopUp";
+import UserService from "../services/UserService";
 /* import { red } from "@mui/material/colors"; */
 
 /* function colorPicker(occupied) {
@@ -70,6 +71,7 @@ render()
             border: "2px solid navy",
           }}
           onClick={() => {
+            console.log(UserService.getToken());
             HttpService.occupyTable(table.id).then(res => {
               table.occupied = !table.occupied;
               this.forceUpdate();
@@ -120,6 +122,7 @@ render()
           onClick={() => color(3)}
         /> */}
       </Container>
+      < TimePopUp />
     </Container>
   );
 };
