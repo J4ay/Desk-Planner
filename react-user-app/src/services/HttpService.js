@@ -87,10 +87,17 @@ async function getMessages(){
 }
 
 
-async function getMessagesUserId(messageID){
-  const response = await axios.post('http://localhost:3001/booking/getMessagesByUser', { messagesFromUserId: messageID });
+async function postMessage(messageId, messageSender, messageReceiver, messageContent, messageDate, messageDesk, messageRoom){
+  const response = await axios.post('http://localhost:3001/message', { messageId: messageId, messageSender: messageSender, messageReceiver: messageReceiver, messageContent: messageContent, messageDate: messageDate, messageDesk: messageDesk, messageRoom: messageRoom});
   return response.data;
 }
+
+async function getMessagesBySenderAndReceiver(sender, receiver){
+  const response = await axios.post('http://localhost:3001/message/getMessagesBySenderAndReceiver', {messageSender: sender, messageReceiver: receiver });
+  return response.data;
+}
+
+
 
 async function deleteMessages(messageID){
   console.log("Message ID in HTTP Service: " + messageID);
@@ -121,8 +128,9 @@ const HttpService = {
   getRoomsByFloorId,
 
   getMessages,
-  getMessagesUserId,
+  postMessage,
   deleteMessages,
+  getMessagesBySenderAndReceiver,
 };
 
 export default HttpService;

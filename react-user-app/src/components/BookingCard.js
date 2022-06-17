@@ -1,20 +1,10 @@
 import * as React from "react";
-//import Box from '@mui/material/Box';
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import HttpService from "../services/HttpService";
-
-// const bull = (
-//   <Box
-//     component="span"
-//     sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.8)' }}
-//   >
-//     •
-//   </Box>
-// );
 
 function dayCreator(pdate) {
   const date = new Date(pdate);
@@ -48,7 +38,7 @@ function timeCreator(ptime) {
 const BookingCard = (props) => {
   const {bId, room, date, durationStart, durationEnd} = props;
   return (
-    <Card sx={{ minWidth: "100%", bgcolor: "#ebebeb", marginBottom: "12px" }}>
+    <Card sx={{ minWidth: "100%", bgcolor: "#ebebeb", border: "1px solid #e0e0e0", marginBottom: "12px" }}>
       <CardContent>
         <Typography variant="h5" component="div">
           Raum {room}
