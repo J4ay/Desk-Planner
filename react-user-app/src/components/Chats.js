@@ -30,7 +30,7 @@ import HttpService from "../services/HttpService";
       });
     }
 
-    _handeleMessageFieldChange = (event) => {
+    _handleMessageFieldChange = (event) => {
       this.setState({messageValue: event.target.value});
     }
 
@@ -57,8 +57,8 @@ import HttpService from "../services/HttpService";
    
     <Grid sx={{ marginTop: "50px"}}>
          
-        <TextField value={this.state.messageValue} onChange={this._handeleMessageFieldChange} id="outlined-basic" label="Your Message" variant="outlined" />
-      <IconButton size="large" onClick={console.log(this.state.messageValue)} >
+        <TextField value={this.state.messageValue} onChange={this._handleMessageFieldChange} id="outlined-basic" label="Your Message" variant="outlined" />
+      <IconButton size="large" onClick={() => HttpService.postMessage(1, "Jay", "Kyle", this.state.messageValue, new Date(), 1, 1)} >
          <ArrowForwardIosIcon sx={{ fontSize: 32 }} />
         </IconButton>
 
