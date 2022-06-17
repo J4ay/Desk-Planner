@@ -22,14 +22,15 @@ const DatePicker: React.FC<DatePickerProps> = ({
     fadeColor,
     format
 }) => {
-    const [days, setDays] = useState<number[]>([]);
+    const [days, setDays] = useState<String[]>([]);
     const [months, setMonths] = useState<number[]>([]);
     const [years, setYears] = useState<String[]>([]);
 
     useEffect(() => {
 
-        const _minutes = [...Array(4)].map((_, index) => index * 15);
-        const _hours = [...Array(24)].map((_, index) => index + 1);
+        const _minutes = [...Array(4)].map((_, index) => String(index * 15));
+        _minutes[0]="00";
+        const _hours = [...Array(24)].map((_, index) => index);
         const _years:Array<String> = []; 
 
         for (var i = 0; i < 100; i++) {         //Ändern von Abbruchbedingung i > x um zu bestimmen, bis wann man max. im vorraus buchen kann
@@ -54,40 +55,50 @@ const DatePicker: React.FC<DatePickerProps> = ({
     const pickerHeight: number = Math.round(height || Dimensions.get("window").height / 3.5);
     const pickerWidth: number | string = width || "100%";
 
-    const unexpectedDate: Date = new Date(years[0], 0, 1);
+    const unexpectedDate: Date = new Date();
+    unexpectedDate.setHours(0);
+    unexpectedDate.setMinutes(0);
+    unexpectedDate.setSeconds(0);
     const date = new Date(value || unexpectedDate);
 
-    const changeHandle = (type: string, digit: number): void => {
+    const changeHandle = (type: string, digit: string): void => {
         switch (type) {
             case "day":
-                date.setDate(digit);
+                date.setMinutes(Number(digit));
+                date.setSeconds(0);
+                console.log(digit);
                 break;
             case "month":
-                date.setMonth(digit - 1);
+                date.setHours(Number(digit));
+                console.log(digit);
                 break;
             case "year":
-                date.setFullYear(digit);
+                const myArray = digit.split(".");
+                date.setDate(Number(myArray[0]));
+                date.setMonth(Number(myArray[1])-1);
+                date.setFullYear(Number(myArray[2]));
                 break;
         }
 
         onChange(date);
+        console.log(date);
     }
 
     const getOrder = () => {
         return (format || "dd-mm-yyyy").split("-").map((type, index) => {
             switch (type) {
                 case "dd":
-                    return {name: "day", digits: days, value: date.getDate()};
+                    return {name: "day", digits: days, value: date.getMinutes()/15};
                 case "mm":
-                    return {name: "month", digits: months, value: date.getMonth() + 1};
+                    return {name: "month", digits: months, value: date.getHours()};
                 case "yyyy":
-                    return {name: "year", digits: years, value: date.getFullYear()};
+                    return {name: "year", digits: years, value: date.getDate()};
                 default:
                     console.warn(`Invalid date picker format prop: found "${type}" in ${format}. Please read documentation!`)
                     return {
                         name: ["day", "month", "year"][index],
                         digits: [days, months, years][index],
-                        value: [date.getDate(), date.getMonth() + 1, date.getFullYear()][index]
+                        value: [date.getMinutes()/15, date.getHours(), date.getDate()][index]
                     };
             }
         })
