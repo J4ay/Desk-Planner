@@ -19,12 +19,11 @@ class BookingsPlacehold extends React.Component{
   render() {
     return (
       <Container
-        sx={{ marginTop: "100px", marginBottom: "100px", bgcolor: "#f4f4f4" }}
+        sx={{ marginTop: "100px", marginBottom: "100px"}}
       >
         <TopAppBar />
         <Grid container
           rowSpacing={4}
-          sx={{bgcolor: "#f4f4f4" }}
         >
           {this.state.bookings.map((bookings) => {
             // benötigte Parameter: Raum, Datum, IntervallStart und IntervallEnde
