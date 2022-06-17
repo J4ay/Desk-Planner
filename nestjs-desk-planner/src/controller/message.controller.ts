@@ -30,6 +30,15 @@ export class MessageController {
         return createdMessage;
     }
 
+    @Post('getMessagesBySenderAndReceiver')
+    async getMessagesBySenderAndReceiver(
+        @Body('messageSender') messageSender: string,
+        @Body('messageReceiver') messageReceiver: string,
+    ) {
+        const messages = await this.messageService.getMessagesBySenderAndReceiver(messageSender, messageReceiver);
+        return messages;
+    }
+
     @Delete()
     async deleteAllMessages(@Body('messageId') messageId: number) {
         if (messageId) {

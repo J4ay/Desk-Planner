@@ -92,6 +92,11 @@ async function getMessagesUserId(messageID){
   return response.data;
 }
 
+async function getMessagesBySenderAndReceiver(receiver, sender){
+  const response = await axios.post('http://localhost:3001/booking/getMessagesBySenderAndReceiver', {messageSender: sender, messageReceiver: receiver });
+  return response.data;
+}
+
 async function deleteMessages(messageID){
   console.log("Message ID in HTTP Service: " + messageID);
   if(messageID){
@@ -123,6 +128,7 @@ const HttpService = {
   getMessages,
   getMessagesUserId,
   deleteMessages,
+  getMessagesBySenderAndReceiver,
 };
 
 export default HttpService;
