@@ -92,8 +92,8 @@ async function getMessagesUserId(messageID){
   return response.data;
 }
 
-async function getMessagesBySenderAndReceiver(receiver, sender){
-  const response = await axios.post('http://localhost:3001/booking/getMessagesBySenderAndReceiver', {messageSender: sender, messageReceiver: receiver });
+async function getMessagesBySenderAndReceiver(sender, receiver){
+  const response = await axios.post('http://localhost:3001/message/getMessagesBySenderAndReceiver', {messageSender: sender, messageReceiver: receiver });
   return response.data;
 }
 

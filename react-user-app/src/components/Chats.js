@@ -17,16 +17,23 @@ import { TextField } from "@mui/material";
 
 
 
+
   class Chats extends React.Component{
     constructor(props) {
       super(props);
-      this.state = {Chats: []};
+      this.state = {chats: [], chatsIncoming: []};
     }
-   /* componentDidMount() {
-      HttpService.getMessages().then(res => {
-        this.setState({ Messages: res });
+    componentDidMount() {
+      var sender = "Jay";
+      var receiver = "Kyle";
+
+      HttpService.getMessagesBySenderAndReceiver(sender, receiver).then(res => {
+        this.setState({ chats: res });
+      });  
+      HttpService.getMessagesBySenderAndReceiver(receiver, sender).then(res => {
+        this.setState({ chatsIncoming: res });
       });
-    }*/
+    }
 
   render() 
 {
@@ -37,19 +44,22 @@ import { TextField } from "@mui/material";
     >
           
 <Grid sx={{ marginTop: "100px"}}>
-<Box component="span" sx ={{p: 2, border: '1px dashed grey'}}>Hallo, brauchst du den Raum...</Box>
+  {this.state.chats.map((chat) =>{
+    return <Grid sx={{ marginTop: "50px"}}> 
+    <Box component="span" sx ={{p: 2, border: '1px dashed blue'}}>{chat.messageContent}</Box>
     </Grid>
+  })}
+   {this.state.chatsIncoming.map((chat) =>{
+   return <Grid sx={{ marginTop: "50px"}}> 
+   <Box component="span" sx ={{p: 2, border: '1px dashed grey'}}>{chat.messageContent}</Box>
+   </Grid>
+  })}
+    </Grid>
+   
     <Grid sx={{ marginTop: "50px"}}>
-<Box component="span" sx ={{p: 2, border: '1px dashed grey'}}>me: Nein, kannst du haben</Box>
-    </Grid>
-    <Grid sx={{ marginTop: "300px"}}>
-    <Typography variant="h5" component="div"  sx={{ marginTop: "10px" }}>
-
-        </Typography>
+         
         <TextField id="outlined-basic" label="Your Message" variant="outlined" />
-      <IconButton
-       size="large"
-        >
+      <IconButton size="large" >
          <ArrowForwardIosIcon sx={{ fontSize: 32 }} />
         </IconButton>
 
