@@ -22,12 +22,19 @@ export class BookingController {
         @Body('bookingId') bookingId: number,
         @Body('bookedByUser') bookedByUser: number,
         @Body('bookingTableId') bookingTableId: number,
+        @Body('bookingRoomId') bookingRoomId: number,
         @Body('bookingStart') bookingStart: Date,
         @Body('bookingEnd') bookingEnd: Date,
         @Body('bookingIsActive') bookingIsActive: boolean,
     ) {
-        const createdBooking = await this.bookingService.postBooking(bookingId, bookedByUser, bookingTableId, bookingStart, bookingEnd, bookingIsActive);
+        const createdBooking = await this.bookingService.postBooking(bookingId, bookedByUser, bookingTableId, bookingRoomId, bookingStart, bookingEnd, bookingIsActive);
         return createdBooking;
+    }
+
+    @Post('/getBookingsByUser')
+    async getBookingsByUser(@Body('bookedByUser') bookedByUser: number) {
+        const bookings = await this.bookingService.getBookingByUser(bookedByUser);
+        return bookings;
     }
 
     @Put()
@@ -35,15 +42,16 @@ export class BookingController {
         @Body('bookingId') bookingId: number,
         @Body('bookedByUser') bookedByUser: number,
         @Body('bookingTableId') bookingTableId: number,
+        @Body('bookingRoomId') bookingRoomId: number,
         @Body('bookingStart') bookingStart: Date,
         @Body('bookingEnd') bookingEnd: Date,
         @Body('bookingIsActive') bookingIsActive: boolean,
     ) {
-        const updatedBooking = await this.bookingService.updateBooking(bookingId, bookedByUser, bookingTableId, bookingStart, bookingEnd, bookingIsActive);
+        const updatedBooking = await this.bookingService.updateBooking(bookingId, bookedByUser, bookingTableId, bookingRoomId, bookingStart, bookingEnd, bookingIsActive);
         return updatedBooking;
     }
 
-    @Delete()
+    @Post("/delete")
     async deleteBooking(@Body('bookingId') bookingId: number) {
         if (bookingId) {
             const deletedBooking = await this.bookingService.deleteBookingById(bookingId);

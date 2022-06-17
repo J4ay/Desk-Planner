@@ -68,9 +68,15 @@ async function getBookings(){
   return response.data;
 }
 
-async function deleteBooking(bID){
-  if(bID){
-    const response = await axios.delete('http://localhost:3001/booking', { bookingId : bID });
+async function getBookingsByUserId(uID){
+  const response = await axios.post('http://localhost:3001/booking/getBookingsByUser', { bookingFromUserId: uID });
+  return response.data;
+}
+
+async function deleteBooking(bookingID){
+  console.log("Booking ID in HTTP Service: " + bookingID);
+  if(bookingID){
+    const response = await axios.post('http://localhost:3001/booking/delete', { bookingId : bookingID });
     return response.data;
   }
 }
@@ -105,6 +111,7 @@ const HttpService = {
   getFloors,
   getFloorsByBuilding,
   getBookings,
+  getBookingsByUserId,
   getMessages,
   getMessagesUserId,
   getMessagesUserId,

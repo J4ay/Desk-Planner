@@ -45,8 +45,8 @@ export class BookingService {
         return booking;
     }
 
-    public async postBooking( bookingId: number, bookedByUser: number, bookingTableId: number, bookingStart: Date, bookingEnd: Date, bookingIsActive: boolean ): Promise<any> {
-        const createdBooking = new this.bookingModel({ bookingId, bookedByUser, bookingTableId, bookingStart, bookingEnd, bookingIsActive });
+    public async postBooking( bookingId: number, bookedByUser: number, bookingTableId: number, bookingRoomId: number, bookingStart: Date, bookingEnd: Date, bookingIsActive: boolean ): Promise<any> {
+        const createdBooking = new this.bookingModel({ bookingId, bookedByUser, bookingTableId, bookingRoomId, bookingStart, bookingEnd, bookingIsActive });
         const result = await createdBooking.save();
         return result.bookingId;
     }
@@ -69,8 +69,8 @@ export class BookingService {
         return bookings;
     }
 
-    public async updateBooking(bookingId: number, bookedByUser: number, bookingTableId: number, bookingStart: Date, bookingEnd: Date, bookingIsActive: boolean): Promise<any> {
-        const booking = await this.bookingModel.updateOne({ bookingId }, { bookedByUser, bookingStart, bookingTableId, bookingEnd, bookingIsActive }).exec();
+    public async updateBooking(bookingId: number, bookedByUser: number, bookingTableId: number, bookingRoomId: number, bookingStart: Date, bookingEnd: Date, bookingIsActive: boolean): Promise<any> {
+        const booking = await this.bookingModel.updateOne({ bookingId }, { bookedByUser, bookingStart, bookingTableId, bookingRoomId, bookingEnd, bookingIsActive }).exec();
 
         if(booking.modifiedCount === 0) {
             throw new HttpException('Not found', 404);
