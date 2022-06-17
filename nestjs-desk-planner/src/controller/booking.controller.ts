@@ -51,7 +51,7 @@ export class BookingController {
         return updatedBooking;
     }
 
-    @Delete()
+    @Post("/delete")
     async deleteBooking(@Body('bookingId') bookingId: number) {
         if (bookingId) {
             const deletedBooking = await this.bookingService.deleteBookingById(bookingId);

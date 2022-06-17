@@ -37,7 +37,9 @@ const TimePopUp = () => {
         setDisable(true);
         setbtnText('Bis bestätigen');
       }
+      console.dir(date);
     }
+
   return (
     <div>
     <Button variant="outlined" onClick={handleClickOpen}>
@@ -63,9 +65,11 @@ const TimePopUp = () => {
                 onChange={(theDate) => setDate(theDate)}
                 markColor = ""
                 format="yyyy-mm-dd"
+                fontSize="14"
+                markWidth="90%"
             />
         </Grid>
-        <p> Hinweise zum Buchungszeitraum</p>
+        <p>Buchungsraum Hinweise</p>
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose}>Abbrechen</Button>
