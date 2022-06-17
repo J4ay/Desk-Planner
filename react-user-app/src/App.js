@@ -12,8 +12,6 @@ import Chats from "./components/Chats";
 import LayoutDesigner from "./components/LayoutDesigner";
 import BookingsPlacehold from "./components/BookingsPlacehold";
 import { Routes, Route } from "react-router-dom";
-import BookingPlacehold from "./components/BookingPlacehold";
-import TopAppBar from "./components/TopAppBar";
 
 const theme = createTheme({
   typography: {

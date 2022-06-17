@@ -104,18 +104,24 @@ const HttpService = {
   HttpMethods,
   configure,
   getAxiosClient,
+
   occupyTable,
   getTableOccupation,
   getTables,
+
   getBuildings,
+
   getFloors,
   getFloorsByBuilding,
+
   getBookings,
   getBookingsByUserId,
-  getMessages,
-  deleteMessages,
-  getRoomsByFloorId,
   deleteBooking,
+
+  getRoomsByFloorId,
+
+  getMessages,
+  getMessagesUserId,
   deleteMessages,
 };
 
