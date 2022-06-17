@@ -12,9 +12,13 @@ import Tab from '@mui/material/Tab';
 
 const TimePopUp = () => {
     const firstDate = new Date();
-    firstDate.setHours(0);
-    firstDate.setMinutes(0);
+    firstDate.setHours(8);
+    firstDate.setMinutes(30);
     firstDate.setSeconds(0);
+
+    const [startDate, setStartDate] = React.useState(new Date(firstDate));
+    const [endDate, setEndDate] = React.useState(new Date(firstDate));
+
     const [open, setOpen] = React.useState(false);
     const [date, setDate] = useState(firstDate);
     const [value, setValue] = React.useState('Von');
@@ -24,10 +28,18 @@ const TimePopUp = () => {
 
     const handleClickOpen = () => {
       setOpen(true);
+      setDate(firstDate);
     };
   
     const handleClose = () => {
       setOpen(false);
+    };
+
+    const saveDates = () => {
+      setEndDate(date);
+      handleClose(); 
+      console.dir(startDate);
+      console.dir(endDate);
     };
 
     const handleChange = (event, newValue) => {
@@ -38,13 +50,16 @@ const TimePopUp = () => {
         setDisable(false);
         setbtnText('Speichern');
         setSelectText('Ausgewähltes Buchnungsende');
+        setStartDate(date);
+        setDate(endDate);
+        console.log(startDate);
       } 
       else{
         setDisable(true);
         setbtnText('Bis bestätigen');
         setSelectText('Ausgewählter Buchnungsstart');
+        setDate(startDate);
       }
-      console.dir(date);
     }
 
   return (
@@ -67,7 +82,7 @@ const TimePopUp = () => {
             </Tabs>
             </Box>
         </Box>
-        <h4>{selectText}: { date.getDate() }.{ date.getMonth() }.{ date.getFullYear() } { date.getHours() }:{ date.getMinutes() } Uhr</h4>
+        <h4>{selectText}: { date.getDate() }.{ date.getMonth()+1 }.{ date.getFullYear() } { date.getHours() }:{ date.getMinutes() } Uhr</h4>
             <DatePicker
                 value={date}
                 onChange={(theDate) => setDate(theDate)}
@@ -81,7 +96,7 @@ const TimePopUp = () => {
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose}>Abbrechen</Button>
-        <Button disabled={disable} onClick={handleClose}>  {btnText}  </Button>
+        <Button disabled={disable} onClick={saveDates}>  {btnText}  </Button>
       </DialogActions>
     </Dialog>
   </div>
