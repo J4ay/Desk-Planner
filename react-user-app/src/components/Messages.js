@@ -28,8 +28,6 @@ import TopAppBarMessages from "./TopAppBarMessages";
     >
       <TopAppBarMessages />
         <Grid item sx={{ marginTop: "10px" }}>
-        <Message>
-        </Message>
         {this.state.messages.map((message) =>{
           return <Message room={message.messageRoom} worker={message.messageSender} description={message.messageContent}
           ></Message>
