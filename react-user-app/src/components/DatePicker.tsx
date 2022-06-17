@@ -24,15 +24,27 @@ const DatePicker: React.FC<DatePickerProps> = ({
 }) => {
     const [days, setDays] = useState<number[]>([]);
     const [months, setMonths] = useState<number[]>([]);
-    const [years, setYears] = useState<number[]>([]);
+    const [years, setYears] = useState<String[]>([]);
 
     useEffect(() => {
-        const end = endYear || (new Date().getFullYear()+20);
-        const start = new Date().getFullYear();
 
         const _minutes = [...Array(4)].map((_, index) => index * 15);
         const _hours = [...Array(24)].map((_, index) => index + 1);
-        const _years = [...Array(end - start + 1)].map((_, index) => start + index);
+        const _years:Array<String> = []; 
+
+        for (var i = 0; i < 100; i++) {         //Ändern von Abbruchbedingung i > x um zu bestimmen, bis wann man max. im vorraus buchen kann
+
+            var today = new Date()
+            var offsetDate = new Date(today)
+            offsetDate.setDate(offsetDate.getDate() + i)
+            var dd = String(offsetDate.getDate()).padStart(2, '0');
+            var mm = String(offsetDate.getMonth() + 1).padStart(2, '0'); 
+            var yyyy = offsetDate.getFullYear();
+    
+            var addDate = dd + '.' + mm + '.' + yyyy;
+       
+            _years.push(addDate);
+       }
 
         setDays(_minutes);
         setMonths(_hours);

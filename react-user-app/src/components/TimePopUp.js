@@ -63,6 +63,8 @@ const TimePopUp = () => {
                 onChange={(theDate) => setDate(theDate)}
                 markColor = ""
                 format="yyyy-mm-dd"
+                fontSize="14"
+                markWidth="90%"
             />
         </Grid>
         <p> Hinweise zum Buchungszeitraum</p>
