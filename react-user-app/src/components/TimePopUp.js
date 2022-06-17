@@ -11,11 +11,16 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 
 const TimePopUp = () => {
+    const firstDate = new Date();
+    firstDate.setHours(0);
+    firstDate.setMinutes(0);
+    firstDate.setSeconds(0);
     const [open, setOpen] = React.useState(false);
-    const [date, setDate] = useState();
+    const [date, setDate] = useState(firstDate);
     const [value, setValue] = React.useState('Von');
     const [disable, setDisable] = useState(true);
     const [btnText, setbtnText] = useState('Bis bestätigen');
+    const [selectText, setSelectText] = useState('Ausgewählter Buchnungsstart');
 
     const handleClickOpen = () => {
       setOpen(true);
@@ -32,10 +37,12 @@ const TimePopUp = () => {
       if (value === "Von") {
         setDisable(false);
         setbtnText('Speichern');
+        setSelectText('Ausgewähltes Buchnungsende');
       } 
       else{
         setDisable(true);
         setbtnText('Bis bestätigen');
+        setSelectText('Ausgewählter Buchnungsstart');
       }
       console.dir(date);
     }
@@ -60,6 +67,7 @@ const TimePopUp = () => {
             </Tabs>
             </Box>
         </Box>
+        <h4>{selectText}: { date.getDate() }.{ date.getMonth() }.{ date.getFullYear() } { date.getHours() }:{ date.getMinutes() } Uhr</h4>
             <DatePicker
                 value={date}
                 onChange={(theDate) => setDate(theDate)}
@@ -69,7 +77,7 @@ const TimePopUp = () => {
                 markWidth="90%"
             />
         </Grid>
-        <p>Buchungsraum Hinweise</p>
+        <h4>Hinweise</h4>
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose}>Abbrechen</Button>

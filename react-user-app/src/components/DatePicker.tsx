@@ -66,11 +66,9 @@ const DatePicker: React.FC<DatePickerProps> = ({
             case "day":
                 date.setMinutes(Number(digit));
                 date.setSeconds(0);
-                console.log(digit);
                 break;
             case "month":
                 date.setHours(Number(digit));
-                console.log(digit);
                 break;
             case "year":
                 const myArray = digit.split(".");
@@ -92,13 +90,13 @@ const DatePicker: React.FC<DatePickerProps> = ({
                 case "mm":
                     return {name: "month", digits: months, value: date.getHours()};
                 case "yyyy":
-                    return {name: "year", digits: years, value: date.getDate()};
+                    return {name: "year", digits: years, value: 3};
                 default:
                     console.warn(`Invalid date picker format prop: found "${type}" in ${format}. Please read documentation!`)
                     return {
                         name: ["day", "month", "year"][index],
                         digits: [days, months, years][index],
-                        value: [date.getMinutes()/15, date.getHours(), date.getDate()][index]
+                        value: [date.getMinutes()/15, date.getHours(), 3][index]
                     };
             }
         })
