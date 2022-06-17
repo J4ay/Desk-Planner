@@ -8,6 +8,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import { TextField } from "@mui/material";
+import HttpService from "../services/HttpService";
 
 
 
@@ -15,7 +16,7 @@ import { TextField } from "@mui/material";
   class Chats extends React.Component{
     constructor(props) {
       super(props);
-      this.state = {chats: [], chatsIncoming: []};
+      this.state = {chats: [], chatsIncoming: [], messageValue: []};
     }
     componentDidMount() {
       var sender = "Jay";
@@ -27,6 +28,10 @@ import { TextField } from "@mui/material";
       HttpService.getMessagesBySenderAndReceiver(receiver, sender).then(res => {
         this.setState({ chatsIncoming: res });
       });
+    }
+
+    _handeleMessageFieldChange = (event) => {
+      this.setState({messageValue: event.target.value});
     }
 
   render() 
@@ -52,8 +57,8 @@ import { TextField } from "@mui/material";
    
     <Grid sx={{ marginTop: "50px"}}>
          
-        <TextField id="outlined-basic" label="Your Message" variant="outlined" />
-      <IconButton size="large" >
+        <TextField value={this.state.messageValue} onChange={this._handeleMessageFieldChange} id="outlined-basic" label="Your Message" variant="outlined" />
+      <IconButton size="large" onClick={console.log(this.state.messageValue)} >
          <ArrowForwardIosIcon sx={{ fontSize: 32 }} />
         </IconButton>
 
