@@ -30,8 +30,8 @@ export class MessageController {
         return createdMessage;
     }
 
-    @Post('getMessagesByReceiverAndSender')
-    async getMessagesByReceiverAndSender(
+    @Post('getMessagesBySenderAndReceiver')
+    async getMessagesBySenderAndReceiver(
         @Body('messageSender') messageSender: string,
         @Body('messageReceiver') messageReceiver: string,
     ) {
