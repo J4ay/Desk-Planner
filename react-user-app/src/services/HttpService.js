@@ -86,6 +86,13 @@ async function getMessages(){
   return response.data;
 }
 
+async function deleteMessage(messageId){
+  if(messageId){
+    const response = await axios.post('http://localhost:3001/message/delete', { messageId : messageId });
+    return response.data;
+  }
+}
+
 const HttpService = {
   HttpMethods,
   configure,
@@ -99,6 +106,7 @@ const HttpService = {
   getBookings,
   getBookingsByUserId,
   getMessages,
+  deleteMessage,
   getRoomsByFloorId,
   deleteBooking
 };

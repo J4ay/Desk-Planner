@@ -15,30 +15,37 @@ import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import DangerousIcon from '@mui/icons-material/Dangerous';
 import Paper from "@mui/material/Paper";
 import { Link } from "react-router-dom";
+import HttpService from "../services/HttpService";
 
-const Message = ({worker, room, description}) => {
+const Message = (props) => {
+  const {messageId, room, sender, content} = props
   return (
-<Card sx={{ minWidth: 300, bgcolor: "#ffffff" }}>
+<Card sx={{ minWidth: "100%", bgcolor: "#ffffff", marginBottom: "12px" }}>
 
       <CardContent
        component={Link} to="/chat">
-        <Typography variant="h5" component="div"  sx={{ marginTop: "10px" }}>
-          von {worker}
+        <Typography variant="h5" component="div">
+          von {sender}
         </Typography>
         <Typography variant="body1" sx={{ marginTop: "10px" }}>
-          zu {room}
+          zu Raum {room}
+          <br />
+          {content}
+        </Typography>
+            </CardContent>
           <CardActions>
         <Button
           size="small"
-          sx={{left: 650, marginRight: "0", zIndex: "1" }}
+          sx={{marginLeft: "auto", marginRight: "0", zIndex: "1" }}
+          onClick={() => {
+            HttpService.deleteMessage(messageId).then(res => {
+              window.location.reload(false);
+            });
+          }}
         >
           Löschen
         </Button>
       </CardActions>
-          <br />
-          {description}
-        </Typography>
-      </CardContent>
       <Paper
     >
           <BottomNavigationAction
