@@ -3,16 +3,10 @@ import React from "react";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
-import HttpService from "../services/HttpService";
-import BookingCard from "./BookingCard";
-import Message from "./Message";
 //import TopAppBarMessages from "./TopAppBarMessages";
-import BottomNavBar from "./BottomNavBar";
-import Chat from "./Chat";
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import TopAppBarChat from "./TopAppBarChat";
 import { TextField } from "@mui/material";
 
 
