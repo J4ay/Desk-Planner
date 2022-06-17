@@ -80,6 +80,20 @@ async function getMessages(){
   return response.data;
 }
 
+
+async function getMessagesUserId(uID){
+  const response = await axios.post('http://localhost:3001/booking/getMessagesByUser', { messagesFromUserId: messageID });
+  return response.data;
+}
+
+async function deleteMessages(messageID){
+  console.log("Message ID in HTTP Service: " + massageID);
+  if(messageID){
+    const response = await axios.post('http://localhost:3001/message/delete', { messageId : massageID });
+    return response.data;
+  }
+}
+
 const HttpService = {
   HttpMethods,
   configure,
@@ -92,6 +106,8 @@ const HttpService = {
   getFloorsByBuilding,
   getBookings,
   getMessages,
+  getMessagesUserId,
+  getMessagesUserId,
   getRoomsByFloorId,
   deleteBooking
 };

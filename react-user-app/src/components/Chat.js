@@ -8,8 +8,9 @@ import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import DangerousIcon from '@mui/icons-material/Dangerous';
 import Paper from "@mui/material/Paper";
 import { Grid } from "@mui/material";
+import HttpService from "../services/HttpService";
 
-const Chat = ({worker, room, description}) => {
+const Chat = ({messagesFromUserId, worker, room, description}) => {
   return (
 <Grid>
         <Typography variant="h5" component="div"  sx={{ marginTop: "10px" }}>
@@ -19,7 +20,7 @@ const Chat = ({worker, room, description}) => {
           zu {room}
 
         </Typography>
-
+       
       <Paper
     >
 
