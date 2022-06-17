@@ -24,7 +24,7 @@ const BottomNavBar = () => {
   
   return (
     <Paper
-      sx={{ position: "fixed", bottom: 0, left: 0, right: 0, zIndex: "20" }}
+      sx={{position: "fixed", bottom: 0, left: 0, right: 0, zIndex: "20" }}
       elevation={4}
     >
       <BottomNavigation
