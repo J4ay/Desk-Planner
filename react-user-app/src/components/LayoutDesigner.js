@@ -226,8 +226,8 @@ class LayoutDesigner extends React.Component {
             //console.log("object:moving");
 
             if (
-                Math.round((e.target.left / grid) * 4) % 4 == 0 &&
-                Math.round((e.target.top / grid) * 4) % 4 == 0
+                Math.round((e.target.left / grid) * 4) % 4 === 0 &&
+                Math.round((e.target.top / grid) * 4) % 4 === 0
             ) {
                 e.target
                     .set({
@@ -255,7 +255,7 @@ class LayoutDesigner extends React.Component {
             if (!options.target)
                return;
 
-            if (options.button == 3 && options.target.type == 'rect') {
+            if (options.button === 3 && options.target.type === 'rect') {
                 canvas.remove(canvas.getActiveObject());
                 return;
             }
