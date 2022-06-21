@@ -37,6 +37,12 @@ export class BookingController {
         return bookings;
     }
 
+    @Post('/getBookingsByTable')
+    async getBookingsByTable(@Body('bookingTableId') bookingTableId: number) {
+        const bookings = await this.bookingService.getBookingByTable(bookingTableId);
+        return bookings;
+    }
+
     @Put()
     async updateBooking(
         @Body('bookingId') bookingId: number,

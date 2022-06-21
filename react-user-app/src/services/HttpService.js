@@ -74,12 +74,12 @@ async function getBookingsByUserId(uID){
 }
 // NEU ##################################################
 async function getBookingsByTableId(pId){
-  const response = await axios.post('http://localhost:3001/booking/getBookingsByTable', { id: pId });
+  const response = await axios.post('http://localhost:3001/booking/getBookingsByTable', { bookingId: pId });
   return response.data;
 }
 // NEU ##################################################
 async function postBooking(pId, uID, bookingID , bookingRoomId, bookingStart, bookingEnd){
-  const response = await axios.post('http://localhost:3001/booking', {bookingTableId: pId, bookedByUser : uID, bookingId: bookingID, bookingRoomId : bookingRoomId, bookingStart : bookingStart, bookingEnd: bookingEnd});
+  const response = await axios.post('http://localhost:3001/booking', { bookingId: bookingID, bookedByUser : uID, bookingTableId: pId,bookingRoomId : bookingRoomId, bookingStart : bookingStart, bookingEnd: bookingEnd});
   return response.data;
 }
 
@@ -133,6 +133,8 @@ const HttpService = {
   getBookings,
   getBookingsByUserId,
   deleteBooking,
+  getBookingsByTableId,
+  postBooking,
 
   getRoomsByFloorId,
 

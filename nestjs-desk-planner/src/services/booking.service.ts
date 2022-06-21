@@ -45,6 +45,15 @@ export class BookingService {
         return booking;
     }
 
+    public async getBookingByTable(bookingTableId: number): Promise<any> {
+        const booking = await this.bookingModel.find({ bookingTableId }).exec();
+
+        if(!booking || !booking[0]) {
+            throw new HttpException('No booking found on table', 404);
+        }
+        return booking;
+    }
+
     public async postBooking( bookingId: number, bookedByUser: number, bookingTableId: number, bookingRoomId: number, bookingStart: Date, bookingEnd: Date, bookingIsActive: boolean ): Promise<any> {
         const createdBooking = new this.bookingModel({ bookingId, bookedByUser, bookingTableId, bookingRoomId, bookingStart, bookingEnd, bookingIsActive });
         const result = await createdBooking.save();
