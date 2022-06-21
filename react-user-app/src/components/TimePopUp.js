@@ -10,7 +10,9 @@ import Box from '@mui/material/Box';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 
-const TimePopUp = () => {
+const TimePopUp = (props) => {
+
+    const { open, onClose } = props;
     const firstDate = new Date();
     firstDate.setHours(8);
     firstDate.setMinutes(30);
@@ -19,17 +21,11 @@ const TimePopUp = () => {
     const [startDate, setStartDate] = React.useState(new Date(firstDate));
     const [endDate, setEndDate] = React.useState(new Date(firstDate));
 
-    const [open, setOpen] = React.useState(false);
     const [date, setDate] = useState(firstDate);
     const [value, setValue] = React.useState('Von');
     const [disable, setDisable] = useState(true);
     const [btnText, setbtnText] = useState('Bis bestätigen');
     const [selectText, setSelectText] = useState('Ausgewählter Buchnungsstart');
-
-    const handleClickOpen = () => {
-      setOpen(true);
-      setDate(firstDate);
-    };
   
     const handleClose = () => {
       setOpen(false);
@@ -37,9 +33,9 @@ const TimePopUp = () => {
 
     const saveDates = () => {
       setEndDate(date);
-      handleClose(); 
+      onClose(); 
       console.dir(startDate);
-      console.dir(endDate);
+      console.dir(date);
     };
 
     const handleChange = (event, newValue) => {
@@ -64,10 +60,7 @@ const TimePopUp = () => {
 
   return (
     <div>
-    <Button variant="outlined" onClick={handleClickOpen}>
-      Open PopUp
-    </Button>
-        <Dialog open={open} onClose={handleClose}>
+        <Dialog open={open} onClose={onClose}>
             <DialogTitle>Arbeitsplatz 2</DialogTitle>
             <DialogContent>
         <Grid container>
@@ -95,7 +88,7 @@ const TimePopUp = () => {
         <h4>Hinweise</h4>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose}>Abbrechen</Button>
+        <Button onClick={onClose}>Abbrechen</Button>
         <Button disabled={disable} onClick={saveDates}>  {btnText}  </Button>
       </DialogActions>
     </Dialog>

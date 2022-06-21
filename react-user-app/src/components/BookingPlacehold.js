@@ -6,6 +6,7 @@ import Grid from "@mui/material/Grid";
 import HttpService from "../services/HttpService";
 import TimePopUp from "./TimePopUp";
 import UserService from "../services/UserService";
+
 /* import { red } from "@mui/material/colors"; */
 
 /* function colorPicker(occupied) {
@@ -35,13 +36,16 @@ function color(occupied) {
 class BookingPlacehold extends React.Component{
   constructor(props) {
     super(props);
-    this.state = {tables: []};
+    this.state = {tables: [], dialogIsOpen : false};
   }
   componentDidMount() {
     HttpService.getTables().then(res => {
       this.setState({ tables: res });
     });
   }
+  openDialog = () => { this.setState({dialogIsOpen : true}); }
+
+  closeDialog = () => {this.setState({dialogIsOpen : false}); }
 
 render() 
 {
@@ -71,6 +75,8 @@ render()
             border: "2px solid navy",
           }}
           onClick={() => {
+            this.openDialog();
+            console.log(this.state.dialogIsOpen);
             console.log(UserService.getToken());
             HttpService.occupyTable(table.id).then(res => {
               table.occupied = !table.occupied;
@@ -122,7 +128,7 @@ render()
           onClick={() => color(3)}
         /> */}
       </Container>
-      < TimePopUp />
+      < TimePopUp open={this.state.dialogIsOpen} onClose={this.closeDialog} />
     </Container>
   );
 };
