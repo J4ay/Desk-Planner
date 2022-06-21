@@ -12,7 +12,7 @@ import Tab from '@mui/material/Tab';
 
 const TimePopUp = (props) => {
 
-    const { open, onClose } = props;
+    const { open, onClose, id } = props;
     const firstDate = new Date();
     firstDate.setHours(8);
     firstDate.setMinutes(30);
@@ -27,13 +27,10 @@ const TimePopUp = (props) => {
     const [btnText, setbtnText] = useState('Bis bestätigen');
     const [selectText, setSelectText] = useState('Ausgewählter Buchnungsstart');
   
-    const handleClose = () => {
-      setOpen(false);
-    };
-
     const saveDates = () => {
       setEndDate(date);
       onClose(); 
+      console.log(id);
       console.dir(startDate);
       console.dir(date);
     };
@@ -41,6 +38,7 @@ const TimePopUp = (props) => {
     const handleChange = (event, newValue) => {
     setValue(newValue);
     } 
+
     const isDisabled = () => {
       if (value === "Von") {
         setDisable(false);

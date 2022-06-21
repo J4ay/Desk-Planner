@@ -36,14 +36,17 @@ function color(occupied) {
 class BookingPlacehold extends React.Component{
   constructor(props) {
     super(props);
-    this.state = {tables: [], dialogIsOpen : false};
+    this.state = {tables: [], dialogIsOpen : false, id : 0};
   }
   componentDidMount() {
     HttpService.getTables().then(res => {
       this.setState({ tables: res });
     });
   }
-  openDialog = () => { this.setState({dialogIsOpen : true}); }
+  openDialog = (id) => { 
+                            this.setState({dialogIsOpen : true});  
+                            this.setState({id : id}); 
+                          }
 
   closeDialog = () => {this.setState({dialogIsOpen : false}); }
 
@@ -75,7 +78,7 @@ render()
             border: "2px solid navy",
           }}
           onClick={() => {
-            this.openDialog();
+            this.openDialog(table.id);
             console.log(this.state.dialogIsOpen);
             console.log(UserService.getToken());
             HttpService.occupyTable(table.id).then(res => {
@@ -128,7 +131,7 @@ render()
           onClick={() => color(3)}
         /> */}
       </Container>
-      < TimePopUp open={this.state.dialogIsOpen} onClose={this.closeDialog} />
+      < TimePopUp open={this.state.dialogIsOpen} onClose={this.closeDialog} id={this.state.id} />
     </Container>
   );
 };
