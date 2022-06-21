@@ -72,6 +72,16 @@ async function getBookingsByUserId(uID){
   const response = await axios.post('http://localhost:3001/booking/getBookingsByUser', { bookingFromUserId: uID });
   return response.data;
 }
+// NEU ##################################################
+async function getBookingsByTableId(pId){
+  const response = await axios.post('http://localhost:3001/booking/getBookingsByUser', { id: pId });
+  return response.data;
+}
+// NEU ##################################################
+async function postBooking(pId, uID, bookingID , bookingContent){
+  const response = await axios.post('http://localhost:3001/message', {id: pId, bookingFromUserId : uID, bookingId: bookingID, bookingContent: bookingContent});
+  return response.data;
+}
 
 async function deleteBooking(bookingID){
   console.log("Booking ID in HTTP Service: " + bookingID);
@@ -87,15 +97,16 @@ async function getMessages(){
 }
 
 
-async function getMessagesUserId(messageID){
-  const response = await axios.post('http://localhost:3001/booking/getMessagesByUser', { messagesFromUserId: messageID });
+async function postMessage(messageId, messageSender, messageReceiver, messageContent, messageDate, messageDesk, messageRoom){
+  const response = await axios.post('http://localhost:3001/message', { messageId: messageId, messageSender: messageSender, messageReceiver: messageReceiver, messageContent: messageContent, messageDate: messageDate, messageDesk: messageDesk, messageRoom: messageRoom});
   return response.data;
 }
 
-async function getMessagesBySenderAndReceiver(receiver, sender){
-  const response = await axios.post('http://localhost:3001/booking/getMessagesBySenderAndReceiver', {messageSender: sender, messageReceiver: receiver });
+async function getMessagesBySenderAndReceiver(sender, receiver){
+  const response = await axios.post('http://localhost:3001/message/getMessagesBySenderAndReceiver', {messageSender: sender, messageReceiver: receiver });
   return response.data;
 }
+
 
 async function deleteMessages(messageID){
   console.log("Message ID in HTTP Service: " + messageID);
@@ -126,7 +137,7 @@ const HttpService = {
   getRoomsByFloorId,
 
   getMessages,
-  getMessagesUserId,
+  postMessage,
   deleteMessages,
   getMessagesBySenderAndReceiver,
 };

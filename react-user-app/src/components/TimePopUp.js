@@ -10,42 +10,55 @@ import Box from '@mui/material/Box';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 
-const TimePopUp = () => {
-    const [open, setOpen] = React.useState(false);
-    const [date, setDate] = useState();
+const TimePopUp = (props) => {
+
+    const { open, onClose, id } = props;
+    const firstDate = new Date();
+    firstDate.setHours(8);
+    firstDate.setMinutes(30);
+    firstDate.setSeconds(0);
+
+    const [startDate, setStartDate] = React.useState(new Date(firstDate));
+    const [endDate, setEndDate] = React.useState(new Date(firstDate));
+
+    const [date, setDate] = useState(firstDate);
     const [value, setValue] = React.useState('Von');
     const [disable, setDisable] = useState(true);
     const [btnText, setbtnText] = useState('Bis bestätigen');
-
-    const handleClickOpen = () => {
-      setOpen(true);
-    };
+    const [selectText, setSelectText] = useState('Ausgewählter Buchnungsstart');
   
-    const handleClose = () => {
-      setOpen(false);
+    const saveDates = () => {
+      setEndDate(date);
+      onClose(); 
+      console.log(id);
+      console.dir(startDate);
+      console.dir(date);
     };
 
     const handleChange = (event, newValue) => {
     setValue(newValue);
     } 
+
     const isDisabled = () => {
       if (value === "Von") {
         setDisable(false);
         setbtnText('Speichern');
+        setSelectText('Ausgewähltes Buchnungsende');
+        setStartDate(date);
+        setDate(endDate);
+        console.log(startDate);
       } 
       else{
         setDisable(true);
         setbtnText('Bis bestätigen');
+        setSelectText('Ausgewählter Buchnungsstart');
+        setDate(startDate);
       }
-      console.dir(date);
     }
 
   return (
     <div>
-    <Button variant="outlined" onClick={handleClickOpen}>
-      Open PopUp
-    </Button>
-        <Dialog open={open} onClose={handleClose}>
+        <Dialog open={open} onClose={onClose}>
             <DialogTitle>Arbeitsplatz 2</DialogTitle>
             <DialogContent>
         <Grid container>
@@ -60,6 +73,7 @@ const TimePopUp = () => {
             </Tabs>
             </Box>
         </Box>
+        <h4>{selectText}: { date.getDate() }.{ date.getMonth()+1 }.{ date.getFullYear() } { date.getHours() }:{ date.getMinutes() } Uhr</h4>
             <DatePicker
                 value={date}
                 onChange={(theDate) => setDate(theDate)}
@@ -69,11 +83,11 @@ const TimePopUp = () => {
                 markWidth="90%"
             />
         </Grid>
-        <p>Buchungsraum Hinweise</p>
+        <h4>Hinweise</h4>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose}>Abbrechen</Button>
-        <Button disabled={disable} onClick={handleClose}>  {btnText}  </Button>
+        <Button onClick={onClose}>Abbrechen</Button>
+        <Button disabled={disable} onClick={saveDates}>  {btnText}  </Button>
       </DialogActions>
     </Dialog>
   </div>
