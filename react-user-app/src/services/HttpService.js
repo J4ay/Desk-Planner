@@ -74,12 +74,12 @@ async function getBookingsByUserId(uID){
 }
 // NEU ##################################################
 async function getBookingsByTableId(pId){
-  const response = await axios.post('http://localhost:3001/booking/getBookingsByUser', { id: pId });
+  const response = await axios.post('http://localhost:3001/booking/getBookingsByTable', { id: pId });
   return response.data;
 }
 // NEU ##################################################
-async function postBooking(pId, uID, bookingID , bookingContent){
-  const response = await axios.post('http://localhost:3001/message', {id: pId, bookingFromUserId : uID, bookingId: bookingID, bookingContent: bookingContent});
+async function postBooking(pId, uID, bookingID , bookingRoomId, bookingStart, bookingEnd){
+  const response = await axios.post('http://localhost:3001/booking', {bookingTableId: pId, bookedByUser : uID, bookingId: bookingID, bookingRoomId : bookingRoomId, bookingStart : bookingStart, bookingEnd: bookingEnd});
   return response.data;
 }
 
