@@ -79,7 +79,6 @@ render()
           }}
           onClick={() => {
             this.openDialog(table.id);
-            console.log(this.state.dialogIsOpen);
             console.log(UserService.getToken());
             HttpService.occupyTable(table.id).then(res => {
               table.occupied = !table.occupied;

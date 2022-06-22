@@ -74,7 +74,7 @@ async function getBookingsByUserId(uID){
 }
 // NEU ##################################################
 async function getBookingsByTableId(pId){
-  const response = await axios.post('http://localhost:3001/booking/getBookingsByTable', { bookingId: pId });
+  const response = await axios.post('http://localhost:3001/booking/getBookingsByTable', { bookingTableId: pId });
   return response.data;
 }
 // NEU ##################################################
