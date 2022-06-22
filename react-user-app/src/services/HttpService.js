@@ -78,8 +78,8 @@ async function getBookingsByTableId(pId){
   return response.data;
 }
 // NEU ##################################################
-async function postBooking(pId, uID, bookingID , bookingRoomId, bookingStart, bookingEnd){
-  const response = await axios.post('http://localhost:3001/booking', { bookingId: bookingID, bookedByUser : uID, bookingTableId: pId,bookingRoomId : bookingRoomId, bookingStart : bookingStart, bookingEnd: bookingEnd});
+async function postBooking(pId, uID, bookingID , bookingRoomId, bookingStart, bookingEnd, bookingSub){
+  const response = await axios.post('http://localhost:3001/booking', { bookingId: bookingID, bookedByUser : uID, bookingTableId: pId,bookingRoomId : bookingRoomId, bookingStart : bookingStart, bookingEnd: bookingEnd, bookingIsActive : bookingSub});
   return response.data;
 }
 

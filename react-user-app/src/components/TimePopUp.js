@@ -1,5 +1,7 @@
 import {useState} from 'react';
 import * as React from "react";
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -11,6 +13,8 @@ import Box from '@mui/material/Box';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import HttpService from '../services/HttpService';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
 
 const TimePopUp = (props) => {
 
@@ -19,8 +23,6 @@ const TimePopUp = (props) => {
     firstDate.setHours(8);
     firstDate.setMinutes(30);
     firstDate.setSeconds(0);
-
-    //var bookingArr = [];
 
     const [startDate, setStartDate] = React.useState(new Date(firstDate));
     const [endDate, setEndDate] = React.useState(new Date(firstDate));
@@ -32,10 +34,22 @@ const TimePopUp = (props) => {
     const [btnText, setbtnText] = React.useState('Bis wählen');
     const [selectText, setSelectText] = React.useState('Ausgewählter Buchnungsstart');
     const[specialInformation, setSpecialInformation] = React.useState('');
+    const [radValue, setRadValue] = React.useState('einzel');
+    
+    const radHandleChange = (event) => {  //Wechsel der RadioButtons
+      setRadValue(event.target.value);
+    };
+
+    const handleChange = (event, newValue) => {   //Visueller Tab-Switch
+      setValue(newValue);
+      } 
   
     const closing = () =>{                //Aktionen bei jedlichem schließen des Popups
       setDisable(true);
       setValue('Von');
+      setbtnText("Buchen");
+      setSpecialInformation("");
+      setDate(firstDate);
       onClose();
     }
 
@@ -49,7 +63,7 @@ const TimePopUp = (props) => {
     }
 
     async function compareDates(){
-    const bookings = await HttpService.getBookingsByTableId(id);
+    const bookings = await HttpService.getBookingsByTableId(id); //Macht probleme, wenn keine Bookings vorhanden
 
       console.dir(bookings);
 
@@ -76,14 +90,16 @@ const TimePopUp = (props) => {
       } 
       */
       else{
-        HttpService.postBooking(id, 1, 22, 2, startDate, date);
-        closing();
+        if (radValue == "woche") {
+          HttpService.postBooking(id, 1, 22, 2, startDate, date, true);
+          setRadValue("einzel");
+          closing();          
+        }
+        else{HttpService.postBooking(id, 1, 22, 2, startDate, date, false);
+          closing();
+        }
       }
     }
-
-    const handleChange = (event, newValue) => {   //Visueller Tab-Switch
-    setValue(newValue);
-    } 
 
     const isDisabled = () => {    //Aktionen beim Tab Wechsel
       if (value === "Von") {
@@ -137,7 +153,16 @@ const TimePopUp = (props) => {
                 markWidth="90%"
             />
         </Grid>
-        <h4 sx={{ color : "#f54245" }}>{specialInformation}</h4>
+        <FormGroup>
+        <RadioGroup
+            value={radValue}
+            onChange={radHandleChange}
+        >
+          <FormControlLabel value="einzel" control={<Radio />} label="Einzelbuchung" labelPlacement="start" />
+          <FormControlLabel value="woche" control={<Radio />} label="Wöchentliche Buchung" labelPlacement="start" />
+          </RadioGroup>
+        </FormGroup>
+      <h4 style={{ color: 'red' }}>{specialInformation}</h4>
       </DialogContent>
       <DialogActions>
         <Button onClick={closing}>Abbrechen</Button>
