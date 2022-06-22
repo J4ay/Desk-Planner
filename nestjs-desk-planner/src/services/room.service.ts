@@ -36,8 +36,8 @@ export class RoomService {
         return room;
     }
 
-    public async postRoom( roomId: number, roomIsOnFloor: number, roomIsInBuilding: number, roomName: string, roomDesks: number, roomAllowedRoles: string ): Promise<any> {
-        const createdRoom = new this.roomModel({ roomId, roomIsOnFloor, roomIsInBuilding, roomName, roomDesks, roomAllowedRoles });
+    public async postRoom( roomId: number, roomIsOnFloor: number, roomIsInBuilding: number, roomName: string, roomDesks: number, roomAllowedRoles: string, roomWallHandles: object ): Promise<any> {
+        const createdRoom = new this.roomModel({ roomId, roomIsOnFloor, roomIsInBuilding, roomName, roomDesks, roomAllowedRoles, roomWallHandles });
         const result = await createdRoom.save();
         return result.roomId;
     }

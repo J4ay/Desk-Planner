@@ -25,8 +25,9 @@ export class RoomController {
         @Body('roomName') roomName: string,
         @Body('roomDesks') roomDesks: number,
         @Body('roomAllowedRoles') roomAllowedRoles: string,
+        @Body('roomWallHandles') roomWallHandles: object
     ) {
-        const createdRoom = await this.roomService.postRoom(roomId, roomIsOnFloor, roomIsInBuilding, roomName, roomDesks, roomAllowedRoles);
+        const createdRoom = await this.roomService.postRoom(roomId, roomIsOnFloor, roomIsInBuilding, roomName, roomDesks, roomAllowedRoles, roomWallHandles);
         return createdRoom;
     }
 

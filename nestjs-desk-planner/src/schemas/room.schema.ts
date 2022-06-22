@@ -8,5 +8,6 @@ export const RoomSchema = new mongoose.Schema({
     roomName: String,
     roomDesks: Number,
     roomAllowedRoles: String,
+    roomWallHandles: Object,
   });
   
