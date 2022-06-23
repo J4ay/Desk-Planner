@@ -16,6 +16,7 @@ var points_handler = {
 var table_handler = {
     x: [],
     y: [],
+    angle: [],
 }
 
 function addDesk(canvas, left, top) {
@@ -203,11 +204,12 @@ class LayoutDesigner extends React.Component {
             p.line3 && p.line3.set({ x2: p.left, y2: p.top });
             p.line4 && p.line4.set({ x1: p.left, y1: p.top });
 
+
             if(e.target.type === "wallPoint") {
                 fillPointHandles(e.target.id, p.left, p.top);
             } else if (e.target.type === "rect") {
                 fillTableHandle(e.target.id, p.left, p.top);
-                console.log("Table "+ e.target.id + " x: " + table_handler.x[e.target.id] + " y: " + table_handler.y[e.target.id]);
+                //console.log("Table "+ e.target.id + " x: " + table_handler.x[e.target.id] + " y: " + table_handler.y[e.target.id] + " angle: " + table_handler.angle[e.target.id]);
                 //console.log("Table "+ e.target.id + " x: " + e.target.left + " y: " + e.target.top);
             }
         });
@@ -241,11 +243,31 @@ class LayoutDesigner extends React.Component {
                 fill: 'rgba(107, 62, 19)',
                 snapAngle: 45,
                 id: tableId,
+                lockScalingX: true,
+                lockScalingY: true,
+                lockSkewingX: true,
+                lockSkewingY: true,
+            });
+            rect.setControlsVisibility({
+                mt: false,
+                mb: false,
+                mr: false,
+                ml: false,
+                bl: false,
+                br: false,
+                tl: false,
+                tr: false,
+                
             });
             canvas.add(rect);
             table_handler.x[tableId] = rect.get("left");
             table_handler.y[tableId] = rect.get("top");
+            table_handler.angle[tableId] = 0;
             tableId++;
+        });
+
+        canvas.on('object:rotating', function(options) {
+            table_handler.angle[options.target.id] = options.target.angle;
         });
 
 
