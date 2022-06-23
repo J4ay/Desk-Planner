@@ -8,4 +8,5 @@ export interface IRoom extends Document {
     roomDesks: number;
     roomAllowedRoles: string;
     roomWallHandles: object;
+    roomDeskHandles: object;
 }

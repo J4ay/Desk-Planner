@@ -58,8 +58,8 @@ async function getFloorsByBuilding(buildingId){
   return response.data;
 }
 
-async function postRoom(roomId, roomIsOnFloor, roomIsInBuilding, roomName, roomDesks, roomAllowedRoles, roomWallHandles){
-  const response = await axios.post('http://localhost:3001/room', { roomId, roomIsOnFloor, roomIsInBuilding, roomName, roomDesks, roomAllowedRoles, roomWallHandles });
+async function postRoom(roomId, roomIsOnFloor, roomIsInBuilding, roomName, roomDesks, roomAllowedRoles, roomWallHandles, roomDeskHandles){
+  const response = await axios.post('http://localhost:3001/room', { roomId, roomIsOnFloor, roomIsInBuilding, roomName, roomDesks, roomAllowedRoles, roomWallHandles, roomDeskHandles });
   return response.data;
 }
 
