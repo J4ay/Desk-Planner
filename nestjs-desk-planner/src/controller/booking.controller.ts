@@ -25,9 +25,9 @@ export class BookingController {
         @Body('bookingRoomId') bookingRoomId: number,
         @Body('bookingStart') bookingStart: Date,
         @Body('bookingEnd') bookingEnd: Date,
-        @Body('bookingIsActive') bookingIsActive: boolean,
+        @Body('bookingIsWeekly') bookingIsWeekly: boolean,
     ) {
-        const createdBooking = await this.bookingService.postBooking(bookingId, bookedByUser, bookingTableId, bookingRoomId, bookingStart, bookingEnd, bookingIsActive);
+        const createdBooking = await this.bookingService.postBooking(bookingId, bookedByUser, bookingTableId, bookingRoomId, bookingStart, bookingEnd, bookingIsWeekly);
         return createdBooking;
     }
 
@@ -51,9 +51,9 @@ export class BookingController {
         @Body('bookingRoomId') bookingRoomId: number,
         @Body('bookingStart') bookingStart: Date,
         @Body('bookingEnd') bookingEnd: Date,
-        @Body('bookingIsActive') bookingIsActive: boolean,
+        @Body('bookingIsWeekly') bookingIsWeekly: boolean,
     ) {
-        const updatedBooking = await this.bookingService.updateBooking(bookingId, bookedByUser, bookingTableId, bookingRoomId, bookingStart, bookingEnd, bookingIsActive);
+        const updatedBooking = await this.bookingService.updateBooking(bookingId, bookedByUser, bookingTableId, bookingRoomId, bookingStart, bookingEnd, bookingIsWeekly);
         return updatedBooking;
     }
 

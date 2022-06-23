@@ -8,6 +8,6 @@ export const BookingSchema = new mongoose.Schema({
     bookingRoomId: Number,
     bookingStart: Date,
     bookingEnd: Date,
-    bookingIsActive: Boolean,
+    bookingIsWeekly: Boolean,
   });
   

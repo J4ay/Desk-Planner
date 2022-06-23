@@ -7,5 +7,5 @@ export interface IBooking extends Document {
 	bookingRoomId: number;
 	bookingStart: Date;
 	bookingEnd: Date;
-	bookingIsActive: boolean;
+	bookingIsWeekly: boolean;
 }
