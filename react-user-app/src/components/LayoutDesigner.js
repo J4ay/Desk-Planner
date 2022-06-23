@@ -45,6 +45,7 @@ function saveCanvas(canvas) {
 class LayoutDesigner extends React.Component {
 
     componentDidMount() {
+        // Initialize the canvas
         var canvas = (this.__canvas = new fabric.Canvas("c", {
             selection: false,
             height: window.innerHeight,
@@ -88,32 +89,52 @@ class LayoutDesigner extends React.Component {
             });
         }
 
-        var start_x = 200;      //adjust where to start the basic wallshape on the x axis
-        var start_y = 150;      //adjust where to start the basic wallshape on the y axis
-        var point_gap = 150;    //adjust the distance between the points on the wallshape
-        var lines = [];         //array to store the lines
+        
 
-        //top horizontal line
-        for(var i = 0; i < 5; i++) {
-            lines [i] = makeLine([start_x + (i * point_gap), start_y, start_x + ((i + 1) * point_gap) , start_y]);
-        }
-        //right vertical line
-        for(var i = 5; i < 10; i++) {
-            lines[i] = makeLine([start_x + (5 * point_gap), start_y + ((i - 5) * point_gap), start_x + (5 * point_gap), start_y + ((i - 4) * point_gap)]);
-        }
-        //bottom horizontal line
-        for(var i = 10; i < 15; i++) {
-            lines[i] = makeLine([start_x + ((5 - (i - 10)) * point_gap), start_y + (5 * point_gap), start_x + ((5 - (i - 9)) * point_gap), start_y + (5 * point_gap)]);
-        }
-        //left vertical line
-        for(var i = 15; i < 20; i++) {
-            lines[i] = makeLine([start_x, start_y + ((5 - (i - 15)) * point_gap), start_x, start_y + ((5 - (i - 14)) * point_gap)]);
+        //############################# create the wall square #############################
+        {
+            var start_x = 200;      //adjust where to start the basic wallshape on the x axis
+            var start_y = 150;      //adjust where to start the basic wallshape on the y axis
+            var point_gap = 150;    //adjust the distance between the points on the wallshape
+            var lines = [];         //array to store the lines
+            for(var i = 0; i < 5; i++) {         //top horizontal line
+                lines [i] = makeLine([
+                                    start_x + (i * point_gap),
+                                    start_y,
+                                    start_x + ((i + 1) * point_gap),
+                                    start_y
+                                    ]);
+            }
+            for(var i = 5; i < 10; i++) {       //right vertical line
+                lines[i] = makeLine([
+                                    start_x + (5 * point_gap),
+                                    start_y + ((i - 5) * point_gap),
+                                    start_x + (5 * point_gap),
+                                    start_y + ((i - 4) * point_gap)
+                                    ]);
+            }
+            for(var i = 10; i < 15; i++) {      //bottom horizontal line
+                lines[i] = makeLine([
+                                    start_x + ((5 - (i - 10)) * point_gap),
+                                    start_y + (5 * point_gap),
+                                    start_x + ((5 - (i - 9)) * point_gap),
+                                    start_y + (5 * point_gap)
+                                    ]);
+            }
+            for(var i = 15; i < 20; i++) {      //left vertical line
+                lines[i] = makeLine([
+                                    start_x,
+                                    start_y + ((5 - (i - 15)) * point_gap),
+                                    start_x,
+                                    start_y + ((5 - (i - 14)) * point_gap)
+                                    ]);
+            }
+            for(var i = 0; i < lines.length; i++) {
+                canvas.add(lines[i]);
+            }
         }
 
-        for(var i = 0; i < lines.length; i++) {
-            canvas.add(lines[i]);
-        }
-
+        //############################# create the movable wall points #############################
         for(var i = 0; i < lines.length; i++) {
             if(i != 19) {
                 canvas.add(makeCircle(lines[i].get("x2"), lines[i].get("y2"), i + 1, lines[i], lines[i + 1]));
@@ -124,10 +145,8 @@ class LayoutDesigner extends React.Component {
             points_handler.y[i] = lines[i].get("y2");
         }
 
-
+        //############################# display the grid #############################
         let grid = 50;
-
-        // Grid display part
         for (var i = 0; i < 1200 / grid; i++) {
             canvas.add(
                 new fabric.Line([i * grid, 0, i * grid, 1200], {
@@ -143,6 +162,7 @@ class LayoutDesigner extends React.Component {
             );
         }
 
+        //############################# handle moved objects #############################
         canvas.on("object:moving", function (e) {
             var p = e.target;
 
@@ -173,7 +193,7 @@ class LayoutDesigner extends React.Component {
             }
         });
 
-
+        //############################# handle clicked objects #############################
         //TODO: Toggle on "Tisch" Button
         //TODO: implement handle for tables
         canvas.on('mouse:down', function(options) {
@@ -188,6 +208,7 @@ class LayoutDesigner extends React.Component {
 
         });
 
+        //############################# handle double clicked objects #############################
         canvas.on('mouse:dblclick', function(options) {
             if (options.target)
                return;
@@ -212,7 +233,7 @@ class LayoutDesigner extends React.Component {
                 sx={{ marginTop: "64px", marginBottom: "64px", padding: "12px" }}
             >
                 <Dropdowns/>
-                <div class="layoutButtonDiv">
+                    <div class="layoutButtonDiv">
                     <Button
                         variant="contained"
                         sx={{ border: "2px solid black" }}
@@ -245,14 +266,9 @@ class LayoutDesigner extends React.Component {
                         Speichern
                     </Button>
                 </div>
-
-
-
-                {/* Hier sind die Buttons zum Einfügen von Elementen*/}
-
+                
                 <canvas id="c" />
 
-                {/* Hier ist der Button zum Speichern*/}
                 <BottomNavBar />
             </Container>
         );
