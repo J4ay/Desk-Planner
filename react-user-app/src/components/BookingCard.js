@@ -38,7 +38,8 @@ function timeCreator(ptime) {
 const BookingCard = (props) => {
   const {bId, room, table, date, durationStart, durationEnd} = props;
   return (
-    <Card sx={{ minWidth: "100%", bgcolor: "#ebebeb", border: "1px solid #e0e0e0", marginBottom: "12px" }}>
+    <Card 
+    sx={{ minWidth: "100%", bgcolor: "#ebebeb", border: "1px solid #e0e0e0", marginBottom: "12px" }}>
       <CardContent>
         <Typography variant="h5" component="div">
           Raum {room} Arbeitsplatz {table}

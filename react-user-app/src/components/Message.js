@@ -6,19 +6,23 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import HttpService from "../services/HttpService";
 import { Link } from "react-router-dom";
+import Container from "@mui/material/Container";
 
 const Message = (props) => {
   const {messageId, room, sender, content} = props
   return (
 <Card 
-  component={Link} style={{textDecoration: 'none'}} to="/chat" 
-  sx={{ minWidth: "100%", bgcolor: "#ebebeb", border: "1px solid #e0e0e0", marginBottom: "12px" }}>
+  component={Link} style={{textDecoration: 'none', textColor: "black"}} to="/chat" 
+>
+  <Container
+    sx={{ minWidth: "100%", bgcolor: "#ebebeb", border: "1px solid #e0e0e0", marginBottom: "12px" }}
+  >
       <CardContent>
         <Typography variant="h5" component="div">
-          von {sender}
+          Von {sender}
         </Typography>
         <Typography variant="body1" sx={{ marginTop: "10px" }}>
-          zu Raum {room}
+          Bezüglich Raum {room}
           <br />
           <br />
           {content}
@@ -33,11 +37,12 @@ const Message = (props) => {
                 window.location.reload(false);
             });
           }}
-        >
+          >
           Löschen
         </Button>
       </CardActions>
-    </Card>
+      </Container>
+          </Card>
   );
 };
 
