@@ -1,11 +1,13 @@
 import { Body, Controller, Delete, Get, Post, Put } from '@nestjs/common';
 import { FloorService } from '../services/floor.service';
+import { Roles, RoleMatchingMode, Unprotected } from 'nest-keycloak-connect';
 
 @Controller('/floor')
 export class FloorController {
   constructor(private readonly floorService: FloorService) { }
 
   @Get()
+  @Unprotected()
   getFloors(@Body('floorId') floorId: number) {
     if (floorId) {
       const request = this.floorService.getFloorById(floorId);
@@ -19,6 +21,7 @@ export class FloorController {
 
 
   @Post()
+  @Unprotected()
   async addFloor(
     @Body('floorId') floorId: number,
     @Body('floorIsInBuilding') floorIsInBuilding: number,
@@ -30,12 +33,14 @@ export class FloorController {
   }
 
   @Post('/getFloorsByBuilding')
+  @Unprotected()
   getFloorsByBuilding(@Body('floorIsInBuilding') floorIsInBuilding: number) {
     console.log("getFloorsByBuilding Route");
     return this.floorService.getFloorsByBuilding(floorIsInBuilding);
   }
 
   @Delete()
+  @Unprotected()
   async deleteAllFloors(@Body('floorId') floorId: number) {
     {
       if (floorId) {

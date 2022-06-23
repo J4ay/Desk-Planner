@@ -1,11 +1,13 @@
 import { Body, Controller, Delete, Get, Post, Put } from '@nestjs/common';
 import { BuildingService } from '../services/building.service';
+import { Roles, RoleMatchingMode, Unprotected } from 'nest-keycloak-connect';
 
 @Controller('/building')
 export class BuildingController {
   constructor(private readonly buildingService: BuildingService) { }
 
   @Get()
+  @Unprotected()
   getBuildings(@Body('buildingId') buildingId: number) {
     if (buildingId) {
       const request = this.buildingService.getBuildingById(buildingId);
@@ -17,6 +19,7 @@ export class BuildingController {
   }
 
   @Post()
+  @Unprotected()
   async addBuilding(
     @Body('buildingId') buildingId: number,
     @Body('buildingName') buildingName: string,
@@ -28,6 +31,7 @@ export class BuildingController {
   }
 
   @Delete()
+  @Unprotected()
   async deleteAllBuildings(@Body('buildingId') buildingId: number) {
     {
       if (buildingId) {
