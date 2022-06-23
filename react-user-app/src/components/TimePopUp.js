@@ -63,8 +63,11 @@ const TimePopUp = (props) => {
     }
 
     async function compareDates(){
-    const bookings = await HttpService.getBookingsByTableId(id); //Macht probleme, wenn keine Bookings vorhanden
-
+    let bookings = [];
+    try{
+      bookings = await HttpService.getBookingsByTableId(id);
+    }
+    catch(err){ bookings = [];} 
       console.dir(bookings);
 
       var i = 0;
