@@ -30,6 +30,7 @@ class BookingPlacehold extends React.Component{
     //console.dir(HttpService.getTables());
     this.updateTables()
     this.interval = setInterval(() => { this.updateTables() }, 5000);
+    console.log(UserService.getToken());
   }
   componentWillUnmount() {
     clearInterval(this.interval);

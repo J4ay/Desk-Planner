@@ -1,11 +1,14 @@
 import { Body, Controller, Delete, Get, Post, Put } from '@nestjs/common';
 import { BuildingService } from '../services/building.service';
+import { AuthenticatedUser, Public, Roles, RoleMatchingMode, Unprotected } from 'nest-keycloak-connect';
 
 @Controller('/building')
 export class BuildingController {
   constructor(private readonly buildingService: BuildingService) { }
 
   @Get()
+  @Roles({ roles: ['admin'], mode: RoleMatchingMode.ALL})
+  //@Unprotected()
   getBuildings(@Body('buildingId') buildingId: number) {
     if (buildingId) {
       const request = this.buildingService.getBuildingById(buildingId);

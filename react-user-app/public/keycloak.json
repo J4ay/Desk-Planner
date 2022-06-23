@@ -2,11 +2,7 @@
   "realm": "DeskPlanner",
   "auth-server-url": "http://localhost:8080/",
   "ssl-required": "none",
-  "resource": "keycloak-reactjs-demo",
-  "verify-token-audience": true,
-  "credentials": {
-    "secret": "7S5wVYjY33VdS7MT3k2aF5bDaRFPg0OW"
-  },
-  "use-resource-role-mappings": true,
+  "resource": "react-user-app",
+  "public-client": true,
   "confidential-port": 0
 }

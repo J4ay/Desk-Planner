@@ -7,17 +7,19 @@ const _kc = new Keycloak("/keycloak.json");
  *
  * @param onAuthenticatedCallback
  */
-const initKeycloak = () => {
+const initKeycloak = (onAuthenticatedCallback) => {
   _kc
     .init({
+      onLoad: "check-sso",
+      silentCheckSsoRedirectUri:
+      window.location.origin + "/silent-check-sso.html",
       pkceMethod: "S256",
-      token: getToken(),
     })
     .then((authenticated) => {
       if (!authenticated) {
         console.log("user is not authenticated..!");
       }
-      //onAuthenticatedCallback();
+      onAuthenticatedCallback();
     })
     .catch(console.error);
 

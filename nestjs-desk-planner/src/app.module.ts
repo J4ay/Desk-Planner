@@ -41,16 +41,16 @@ import { AuthModule } from './auth/auth.module';
 									,{ name: 'Message', schema: MessageSchema}
 									]),
 		AuthModule,
-		/* KeycloakConnectModule.register({
+		KeycloakConnectModule.register({
 			authServerUrl: 'http://localhost:8080/',
 			realm: 'DeskPlanner',
 			clientId: 'keycloak-reactjs-demo',
-			secret: '7S5wVYjY33VdS7MT3k2aF5bDaRFPg0OW',
-		}), */
+			secret: 'vIVQig3raIUX6CTgGMdVdCNXF90G1mN0',
+		}),
 	],
 	controllers: [DeskController, BuildingController, FloorController,RoomController, BookingController, MessageController],
 	providers: [DeskService, BuildingService, FloorService, RoomService, BookingService, MessageService,
-		  /* {
+		  {
 			provide: APP_GUARD,
 			useClass: AuthGuard,
 		  },
@@ -61,6 +61,6 @@ import { AuthModule } from './auth/auth.module';
 		  {
 			provide: APP_GUARD,
 			useClass: RoleGuard,
-		  }, */],
+		  },],
 })
 export class AppModule {}

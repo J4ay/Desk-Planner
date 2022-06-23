@@ -9,9 +9,9 @@ export class DeskController{
 
     constructor(private readonly deskService: DeskService) {}
 
-    @UseGuards(AuthGuard('jwt'))
+    //@UseGuards(AuthGuard('jwt'))
     @Get()
-    //@Roles({ roles: ['app-admin'], mode: RoleMatchingMode.ALL})
+    @Roles({ roles: ['admin'], mode: RoleMatchingMode.ALL})
     //@Unprotected()
   getDesks(@Body('id') id: number) {
     if (id) {
