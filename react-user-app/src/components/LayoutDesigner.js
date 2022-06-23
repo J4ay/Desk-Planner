@@ -5,6 +5,7 @@ import BottomNavBar from "./BottomNavBar";
 import Dropdowns from "./Dropdowns";
 import { fabric } from "fabric";
 import HttpService from "../services/HttpService";
+import { TextField } from "@mui/material";
 
 
 var points_handler = {
@@ -38,11 +39,25 @@ function fillPointHandles(id, x, y) {
     points_handler.y[id - 1] = y;
 }
 
-function saveCanvas(canvas) {
-    console.log(canvas.toJSON());
+function fillTableHandle(id, x, y) {
+    table_handler.x[id] = x;
+    table_handler.y[id] = y;
 }
 
 class LayoutDesigner extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {buildingText: "", floorText: ""}
+    }
+
+    _handleBuildingFieldChange = (event) => {
+        this.setState({buildingText: event.target.value});
+      }
+
+    _handleFloorFieldChange = (event) => {
+        this.setState({floorText: event.target.value});
+    }
 
     componentDidMount() {
         // Initialize the canvas
@@ -152,12 +167,14 @@ class LayoutDesigner extends React.Component {
                 new fabric.Line([i * grid, 0, i * grid, 1200], {
                     stroke: "#ccc",
                     selectable: false,
+                    evented: false,
                 })
             );
             canvas.add(
                 new fabric.Line([0, i * grid, 1200, i * grid], {
                     stroke: "#ccc",
                     selectable: false,
+                    evented: false,
                 })
             );
         }
@@ -189,7 +206,9 @@ class LayoutDesigner extends React.Component {
             if(e.target.type === "wallPoint") {
                 fillPointHandles(e.target.id, p.left, p.top);
             } else if (e.target.type === "rect") {
-                //TODO: write fillRectHandles function
+                fillTableHandle(e.target.id, p.left, p.top);
+                console.log("Table "+ e.target.id + " x: " + table_handler.x[e.target.id] + " y: " + table_handler.y[e.target.id]);
+                //console.log("Table "+ e.target.id + " x: " + e.target.left + " y: " + e.target.top);
             }
         });
 
@@ -207,6 +226,7 @@ class LayoutDesigner extends React.Component {
             }
 
         });
+        var tableId = 0;
 
         //############################# handle double clicked objects #############################
         canvas.on('mouse:dblclick', function(options) {
@@ -220,13 +240,19 @@ class LayoutDesigner extends React.Component {
                 height: 60,
                 fill: 'rgba(107, 62, 19)',
                 snapAngle: 45,
+                id: tableId,
+                evented: false,
             });
             canvas.add(rect);
+            table_handler.x[tableId] = rect.get("left");
+            table_handler.y[tableId] = rect.get("top");
+            tableId++;
         });
 
 
 
     }
+    
     render() {
         return (
             <Container
@@ -256,11 +282,14 @@ class LayoutDesigner extends React.Component {
                         Tür
                     </Button>
 
+                    <TextField value={this.state.buildingText} onChange={this._handleBuildingFieldChange} id="outlined-basic" label="Building ID" variant="outlined"></TextField>
+                    <TextField value={this.state.floorText} onChange={this._handleFloorFieldChange} id="outlined-basic" label="Floor ID" variant="outlined"></TextField>
+
                     <Button
                         variant="contained"
                         sx={{ border: "2px solid black", float: "right" }}
                         onClick={() => {
-                            HttpService.postRoom(1, 1, 1, "Konferenz 1", 10, "", points_handler);
+                            HttpService.postRoom(1, this.state.floorText, this.state.buildingText, "Konferenz 1", 10, "", points_handler, table_handler);
                         }}
                     >
                         Speichern

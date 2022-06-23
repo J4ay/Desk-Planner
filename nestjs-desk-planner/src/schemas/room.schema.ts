@@ -9,5 +9,6 @@ export const RoomSchema = new mongoose.Schema({
     roomDesks: Number,
     roomAllowedRoles: String,
     roomWallHandles: Object,
+    roomDeskHandles: Object,
   });
   
