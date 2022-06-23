@@ -223,6 +223,10 @@ class LayoutDesigner extends React.Component {
                return;
 
             if (options.button === 3 && options.target.type === 'rect') {
+                var removeRect = canvas.getActiveObject();
+                table_handler.x.splice(removeRect.id, 1);
+                table_handler.y.splice(removeRect.id, 1);
+                table_handler.angle.splice(removeRect.id, 1);
                 canvas.remove(canvas.getActiveObject());
                 return;
             }
