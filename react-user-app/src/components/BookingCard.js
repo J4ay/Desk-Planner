@@ -25,9 +25,9 @@ function timeCreator(ptime) {
   const time = new Date(ptime);
   const hours = time.getHours();
   const minutes = time.getMinutes();
-  if ( minutes == 0 && hours < 10 )
+  if ( minutes === 0 && hours < 10 )
     return `0${hours}:00`;
-  if ( minutes == 0) 
+  if ( minutes === 0) 
     return `${hours}:00`;
   if ( hours < 10 )	
     return `0${hours}:${minutes}`;
