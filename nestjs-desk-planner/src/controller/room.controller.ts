@@ -36,6 +36,14 @@ export class RoomController {
     console.log("getFloorsByBuilding Route");
     return this.roomService.getRoomByFloor(roomIsOnFloor);
   }
+  @Post('/getRoom')
+  getRoom(
+    @Body('roomId') roomId: number,
+    @Body('roomIsOnFloor') roomIsOnFloor: number,
+    @Body('roomIsInBuilding') roomIsInBuilding: number) {
+  console.log("getFloorsByBuilding Route");
+  return this.roomService.getRoom(roomId, roomIsOnFloor, roomIsInBuilding);
+  }
 
     @Delete()
     async deleteAllDesks(@Body('id') id: number) {

@@ -18,6 +18,15 @@ export class RoomService {
         return rooms;
     }
 
+    public async getRoom(roomId, roomIsOnFloor, roomIsInBuilding){
+        const room = await this.roomModel.findOne({ roomId: roomId, roomIsOnFloor: roomIsOnFloor, roomIsInBuilding: roomIsInBuilding}).exec();
+
+        if(!room) {
+            throw new HttpException('No room with id found', 404);
+        }
+        return room;
+    }
+
     public async getRoomById(roomId: number): Promise<any> {
         const room = await this.roomModel.findOne({ roomId }).exec();
 
