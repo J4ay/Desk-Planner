@@ -87,12 +87,12 @@ async function getBookingsByUserId(uID){
   const response = await axios.post('http://localhost:3001/booking/getBookingsByUser', { bookingFromUserId: uID });
   return response.data;
 }
-// NEU ##################################################
+
 async function getBookingsByTableId(pId){
   const response = await axios.post('http://localhost:3001/booking/getBookingsByTable', { bookingTableId: pId });
   return response.data;
 }
-// NEU ##################################################
+
 async function postBooking(pId, uID, bookingID , bookingRoomId, bookingStart, bookingEnd, bookingSub){
   const response = await axios.post('http://localhost:3001/booking', { bookingId: bookingID, bookedByUser : uID, bookingTableId: pId,bookingRoomId : bookingRoomId, bookingStart : bookingStart, bookingEnd: bookingEnd, bookingIsWeekly : bookingSub});
   return response.data;
