@@ -241,7 +241,6 @@ class LayoutDesigner extends React.Component {
                 fill: 'rgba(107, 62, 19)',
                 snapAngle: 45,
                 id: tableId,
-                evented: false,
             });
             canvas.add(rect);
             table_handler.x[tableId] = rect.get("left");
