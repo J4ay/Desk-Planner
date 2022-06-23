@@ -10,8 +10,6 @@ import { fabric } from "fabric";
 
 async function getLayout(room, can) {
   let coords = room.roomWallHandles;
-  console.log(room.roomWallHandles);
-  console.log(coords.x);
 
   // Create lines from database
   let lines = [];
@@ -34,7 +32,7 @@ async function getLayout(room, can) {
   let circs = [];
   //create circles at the end of lines
   for (var i = 0; i < 21; i++) {
-    circs[i] = makeCircle(coords.x[i],coords.y[i]);
+    circs[i] = makeCircle(coords.x[i], coords.y[i]);
   }
 
   for (var i = 0; i < lines.length; i++) {
@@ -43,18 +41,47 @@ async function getLayout(room, can) {
   for (var i = 0; i < circs.length; i++) {
     can.add(circs[i]);
   }
+
+  let desks = room.roomDeskHandles;
+  let rects = [];
+
+  for (var i = 0; i < desks.x.length; i++) {
+    rects[i] = makeRect(
+      desks.x[i] * 0.5 - 50,
+      desks.y[i] * 0.5,
+      i,
+      desks.angle[i]
+    );
+  }
+
+  for (var i = 0; i < rects.length; i++) {
+    can.add(rects[i]);
+  }
 }
 
-function makeCircle(x,y) {
+function makeRect(x, y, id, angle) {
+  var rect = new fabric.Rect({
+    left: x,
+    top: y,
+    width: 100 * 0.5,
+    height: 60 * 0.5,
+    fill: "rgba(107, 62, 19)",
+    id: id,
+    angle: angle,
+  });
+  return rect;
+}
+
+function makeCircle(x, y) {
   var c = new fabric.Circle({
-      left: x * .5 -50,
-      top: y * .5,
-      strokeWidth: 5,
-      radius: 2,
-      fill: "darkgray",
-      stroke: "darkgray",
-      selectable: false,
-      evented: false
+    left: x * 0.5 - 50,
+    top: y * 0.5,
+    strokeWidth: 5,
+    radius: 2,
+    fill: "darkgray",
+    stroke: "darkgray",
+    selectable: false,
+    evented: false,
   });
 
   return c;
@@ -75,7 +102,16 @@ class BookingPlacehold extends React.Component {
     super(props);
     this.state = { room: [], dialogIsOpen: false, id: 0 };
   }
+
   componentDidMount() {
+    const openDialog = (id) => {
+      this.setState({ dialogIsOpen: true });
+      this.setState({ id: id });
+    };
+
+    const closeDialog = () => {
+      this.setState({ dialogIsOpen: false });
+    };
     HttpService.getRoom(1, 1, 1).then((res) => {
       this.setState({ room: res });
     });
@@ -112,24 +148,34 @@ class BookingPlacehold extends React.Component {
         })
       );
     }
-  }
-  openDialog = (id) => {
-    this.setState({ dialogIsOpen: true });
-    this.setState({ id: id });
-  };
 
-  closeDialog = () => {
-    this.setState({ dialogIsOpen: false });
-  };
+    canvas.on("mouse:down", function (event) {
+      let target = event.target;
+      if (target.type === "rect") {
+        console.log("AAA");
+        openDialog(target.id);
+        return;
+      }
+      // this.openDialog(table.id);
+      // console.log(UserService.getToken());
+      // HttpService.occupyTable(table.id).then(res => {
+      //   table.occupied = !table.occupied;
+      //   this.forceUpdate();
+      // });
+    });
+  }
 
   render() {
     return (
       <Container sx={{ marginTop: "64px" }}>
         <Grid container>
           <Dropdowns />
-          <button          onClick={() => {
-            getLayout(this.state.room, this.__canvas);
-          }}>
+          <button
+            onClick={() => {
+              getLayout(this.state.room, this.__canvas);
+              console.log(UserService.getUsername());
+            }}
+          >
             Room 1
           </button>
         </Grid>
