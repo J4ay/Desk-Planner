@@ -6,7 +6,7 @@ import HttpService from "../services/HttpService";
 import TimePopUp from "./TimePopUp";
 import { fabric } from "fabric";
 
-class BookingPlacehold extends React.Component {
+class Booking extends React.Component {
   constructor(props) {
     super(props);
     this.state = { room: [], dialogIsOpen: false, id: 0 };
@@ -193,4 +193,4 @@ class BookingPlacehold extends React.Component {
   }
 }
 
-export default BookingPlacehold;
+export default Booking;

@@ -2,7 +2,7 @@ import * as React from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import BottomNavBar from "./components/BottomNavBar";
 import TopAppBar from "./components/TopAppBar";
-import BookingPlacehold from "./components/BookingPlacehold";
+import Booking from "./components/Booking";
 import "@fontsource/roboto";
 import Anonymous from "./components/Anonymous";
 import Authenticated from "./components/Authenticated";
@@ -29,7 +29,7 @@ function App() {
         <TopAppBar />
         <Authenticated>
           <Routes>
-            <Route path="/" element={<BookingPlacehold />} />
+            <Route path="/" element={<Booking />} />
             <Route path="/messages" element={<Messages />} />
             <Route path="/bookings" element={<BookingsPlacehold />} />
             <Route path="/chat" element={<Chats />} />
