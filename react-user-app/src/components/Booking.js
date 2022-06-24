@@ -36,6 +36,31 @@ class Booking extends React.Component {
         x(e.target.id);
         return;
       }
+      var evt = e.e;
+      if (evt.altKey === true) {
+        this.isDragging = true;
+        this.selection = false;
+        this.lastPosX = evt.clientX;
+        this.lastPosY = evt.clientY;
+      }
+    });
+    canvas.on('mouse:move', function (opt) {
+      if (this.isDragging) {
+        var e = opt.e;
+        var vpt = this.viewportTransform;
+        vpt[4] += e.clientX - this.lastPosX;
+        vpt[5] += e.clientY - this.lastPosY;
+        this.requestRenderAll();
+        this.lastPosX = e.clientX;
+        this.lastPosY = e.clientY;
+      }
+    });
+    canvas.on('mouse:up', function (opt) {
+      // on mouse up we want to recalculate new interaction
+      // for all objects, so we call setViewportTransform
+      this.setViewportTransform(this.viewportTransform);
+      this.isDragging = false;
+      this.selection = true;
     });
   }
   openDialog = (id) => {
@@ -108,8 +133,8 @@ class Booking extends React.Component {
       height: 60 * 0.5,
       fill: "rgba(107, 62, 19)",
       angle: angle,
-      stroke : 'black',
-      strokeWidth : 1,
+      stroke: 'black',
+      strokeWidth: 1,
       originX: 'center',
       originY: 'center'
     });
@@ -120,8 +145,8 @@ class Booking extends React.Component {
       originY: 'center',
       fill: 'white',
     });
-    
-    var group = new fabric.Group([ rect, text ], {
+
+    var group = new fabric.Group([rect, text], {
       left: x,
       top: y,
       id: id,
@@ -129,7 +154,7 @@ class Booking extends React.Component {
       evented: true,
       hoverCursor: "pointer",
     });
-    
+
     return group;
   };
 
