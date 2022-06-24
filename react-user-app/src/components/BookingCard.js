@@ -36,7 +36,7 @@ function timeCreator(ptime) {
 }
 
 function weeklyFunction(boolean) {
-  if(boolean == true) {
+  if(boolean === true) {
     return `Ja`;
   } else {
     return `Nein`;
