@@ -132,7 +132,7 @@ const TimePopUp = (props) => {
   return (
     <div>
         <Dialog open={open} onClose={closing}>
-            <DialogTitle>Arbeitsplatz {id} Raum ..</DialogTitle>
+            <DialogTitle>Arbeitsplatz {id}</DialogTitle>
             <DialogContent>
         <Grid container>
         <Box sx={{ width: '100%' }}>

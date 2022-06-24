@@ -13,7 +13,7 @@ class BookingPlacehold extends React.Component {
   }
 
   componentDidMount() {
-    HttpService.getRoom(1, 4, 4).then((res) => {
+    HttpService.getRoom(1, 2, 2).then((res) => {
       this.setState({ room: res });
     });
 
@@ -34,7 +34,6 @@ class BookingPlacehold extends React.Component {
     canvas.on("mouse:down", function (e) {
       if (e.target) {
         x(e.target.id);
-        console.log(e.target.id);
         return;
       }
     });
@@ -105,18 +104,33 @@ class BookingPlacehold extends React.Component {
 
   makeRect = (x, y, id, angle) => {
     let rect = new fabric.Rect({
-      left: x,
-      top: y,
       width: 100 * 0.5,
       height: 60 * 0.5,
       fill: "rgba(107, 62, 19)",
-      id: id,
       angle: angle,
+      stroke : 'black',
+      strokeWidth : 1,
+      originX: 'center',
+      originY: 'center'
+    });
+
+    var text = new fabric.Text(id.toString(), {
+      fontSize: 25,
+      originX: 'center',
+      originY: 'center',
+      fill: 'white',
+    });
+    
+    var group = new fabric.Group([ rect, text ], {
+      left: x,
+      top: y,
+      id: id,
       selectable: false,
       evented: true,
       hoverCursor: "pointer",
     });
-    return rect;
+    
+    return group;
   };
 
   makeCircle = (x, y) => {
