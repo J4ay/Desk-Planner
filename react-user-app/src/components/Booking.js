@@ -30,37 +30,44 @@ class Booking extends React.Component {
     }));
     fabric.Object.prototype.originX = fabric.Object.prototype.originY =
       "center";
+    
     let x = this.openDialog;
+    let panning;
+    let prevX;
+    let prevY;
+
     canvas.on("mouse:down", function (e) {
       if (e.target) {
         x(e.target.id);
         return;
       }
-      var evt = e.e;
-      if (evt.altKey === true) {
-        this.isDragging = true;
-        this.selection = false;
-        this.lastPosX = evt.clientX;
-        this.lastPosY = evt.clientY;
+      panning = true;
+      if (e.e instanceof TouchEvent) {
+        const { clientX, clientY } = e.e.touches[0];
+        prevX = clientX;
+        prevY = clientY;
       }
     });
-    canvas.on('mouse:move', function (opt) {
-      if (this.isDragging) {
-        var e = opt.e;
-        var vpt = this.viewportTransform;
-        vpt[4] += e.clientX - this.lastPosX;
-        vpt[5] += e.clientY - this.lastPosY;
-        this.requestRenderAll();
-        this.lastPosX = e.clientX;
-        this.lastPosY = e.clientY;
+
+    canvas.on("mouse:move", (e) => {
+      if (panning) {
+        let delta;
+        if (e.e instanceof TouchEvent) {
+          // we're on mobile
+          const { clientX, clientY } = e.e.touches[0];
+          delta = new fabric.Point(clientX - prevX, clientY - prevY);
+          prevX = clientX;
+          prevY = clientY;
+        } else {
+          // we're on desktop
+          delta = new fabric.Point(e.e.movementX, e.e.movementY);
+        }
+        canvas.relativePan(delta);
       }
     });
-    canvas.on('mouse:up', function (opt) {
-      // on mouse up we want to recalculate new interaction
-      // for all objects, so we call setViewportTransform
-      this.setViewportTransform(this.viewportTransform);
-      this.isDragging = false;
-      this.selection = true;
+
+    canvas.on("mouse:up", () => {
+      panning = false;
     });
   }
   openDialog = (id) => {
@@ -133,17 +140,17 @@ class Booking extends React.Component {
       height: 60 * 0.5,
       fill: "rgba(107, 62, 19)",
       angle: angle,
-      stroke: 'black',
+      stroke: "black",
       strokeWidth: 1,
-      originX: 'center',
-      originY: 'center'
+      originX: "center",
+      originY: "center",
     });
 
     var text = new fabric.Text(id.toString(), {
       fontSize: 25,
-      originX: 'center',
-      originY: 'center',
-      fill: 'white',
+      originX: "center",
+      originY: "center",
+      fill: "white",
     });
 
     var group = new fabric.Group([rect, text], {
