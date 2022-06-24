@@ -1,5 +1,6 @@
 import { Body, Controller, Delete, Get, Post, Put } from '@nestjs/common';
 import { RoomService } from '../services/room.service';
+import { Roles, RoleMatchingMode, Unprotected } from 'nest-keycloak-connect';
 
 
 @Controller('/room')
@@ -7,6 +8,7 @@ export class RoomController {
     constructor(private readonly roomService: RoomService) { }
 
     @Get()
+    @Unprotected()
     getRooms(@Body('roomId') roomId: number) {
         if (roomId) {
             const request = this.roomService.getRoomById(roomId);
@@ -18,6 +20,7 @@ export class RoomController {
     }
 
     @Post()
+    @Unprotected()
     async addRoom(
         @Body('roomId') roomId: number,
         @Body('roomIsOnFloor') roomIsOnFloor: number,
@@ -33,11 +36,13 @@ export class RoomController {
     }
 
     @Post('/getRoomsByFloorId')
+    @Unprotected()
     getFloorsByBuilding(@Body('roomIsOnFloor') roomIsOnFloor: number) {
     console.log("getFloorsByBuilding Route");
     return this.roomService.getRoomByFloor(roomIsOnFloor);
   }
   @Post('/getRoom')
+  @Unprotected()
   getRoom(
     @Body('roomId') roomId: number,
     @Body('roomIsOnFloor') roomIsOnFloor: number,
@@ -47,6 +52,7 @@ export class RoomController {
   }
 
     @Delete()
+    @Unprotected()
     async deleteAllDesks(@Body('id') id: number) {
       if (id) {
         const deletedDesk = await this.roomService.deleteRoomById(id);

@@ -1,5 +1,6 @@
 import { Body, Controller, Delete, Get, Post, Put } from '@nestjs/common';
 import { BookingService } from '../services/booking.service';
+import { Roles, RoleMatchingMode, Unprotected } from 'nest-keycloak-connect';
 
 
 @Controller('/booking')
@@ -7,6 +8,7 @@ export class BookingController {
     constructor(private readonly bookingService: BookingService) { }
 
     @Get()
+    @Unprotected()
     getBookings(@Body('bookingId') bookingId: number) {
         if (bookingId) {
             const request = this.bookingService.getBookingById(bookingId);
@@ -18,6 +20,7 @@ export class BookingController {
     }
 
     @Post()
+    @Unprotected()
     async addBooking(
         @Body('bookingId') bookingId: number,
         @Body('bookedByUser') bookedByUser: number,
@@ -32,18 +35,21 @@ export class BookingController {
     }
 
     @Post('/getBookingsByUser')
+    @Unprotected()
     async getBookingsByUser(@Body('bookedByUser') bookedByUser: number) {
         const bookings = await this.bookingService.getBookingByUser(bookedByUser);
         return bookings;
     }
 
     @Post('/getBookingsByTable')
+    @Unprotected()
     async getBookingsByTable(@Body('bookingTableId') bookingTableId: number) {
         const bookings = await this.bookingService.getBookingByTable(bookingTableId);
         return bookings;
     }
 
     @Put()
+    @Unprotected()
     async updateBooking(
         @Body('bookingId') bookingId: number,
         @Body('bookedByUser') bookedByUser: number,
@@ -58,6 +64,7 @@ export class BookingController {
     }
 
     @Post("/delete")
+    @Unprotected()
     async deleteBooking(@Body('bookingId') bookingId: number) {
         if (bookingId) {
             const deletedBooking = await this.bookingService.deleteBookingById(bookingId);

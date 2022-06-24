@@ -1,5 +1,6 @@
 import { Body, Controller, Delete, Get, Post, Put } from "@nestjs/common";
 import { DeskService } from "src/services/desk.service";
+import { Roles, RoleMatchingMode, Unprotected } from 'nest-keycloak-connect';
 
 @Controller('/desk')
 export class DeskController{
@@ -7,6 +8,7 @@ export class DeskController{
     constructor(private readonly deskService: DeskService) {}
 
     @Get()
+    @Unprotected()
   getDesks(@Body('id') id: number) {
     if (id) {
       const request = this.deskService.getDeskById(id);
@@ -19,6 +21,7 @@ export class DeskController{
 
   // Post statt Get
   @Post("/occupied")
+  @Unprotected()
   getOccupied(@Body("id") id:number) {
    const occupied = this.deskService.getOccupied(id);
 
@@ -26,6 +29,7 @@ export class DeskController{
   }
 
   @Post()
+  @Unprotected()
   async addDesk(
     @Body('id') id: number,
     @Body('building') building: number,
@@ -38,12 +42,14 @@ export class DeskController{
   }
 
   @Post('/occupy')
+  @Unprotected()
   async occupyDesk(@Body('id') id: number) {
     const updatedDesk = await this.deskService.occupyDesk(id);
     return updatedDesk;
   }
 
   @Delete()
+  @Unprotected()
   async deleteAllDesks(@Body('id') id: number) {
     {
       if (id) {

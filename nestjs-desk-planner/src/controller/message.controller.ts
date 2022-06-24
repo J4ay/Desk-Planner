@@ -1,11 +1,13 @@
 import { Body, Controller, Delete, Get, Post, Put } from '@nestjs/common';
 import { MessageService } from 'src/services/message.service';
+import { Roles, RoleMatchingMode, Unprotected } from 'nest-keycloak-connect';
 
 @Controller('/message')
 export class MessageController {
     constructor(private readonly messageService: MessageService) {}
 
     @Get()
+    @Unprotected()
     getMessages(@Body('messageSender') messageSender: string, @Body('messageReceiver') messageReceiver: string) {
         if (messageSender && messageReceiver) {
             const request = this.messageService.getMessagesBySenderAndReceiver(messageSender, messageReceiver);
@@ -17,6 +19,7 @@ export class MessageController {
     }
 
     @Post()
+    @Unprotected()
     async addMessage(
         @Body('messageId') messageId: number,
         @Body('messageSender') messageSender: string,
@@ -31,6 +34,7 @@ export class MessageController {
     }
 
     @Post('getMessagesBySenderAndReceiver')
+    @Unprotected()
     async getMessagesBySenderAndReceiver(
         @Body('messageSender') messageSender: string,
         @Body('messageReceiver') messageReceiver: string,
@@ -40,6 +44,7 @@ export class MessageController {
     }
 
     @Delete()
+    @Unprotected()
     async deleteAllMessages(@Body('messageId') messageId: number) {
         if (messageId) {
             const message = await this.messageService.deleteMessageById(messageId);

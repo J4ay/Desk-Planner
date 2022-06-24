@@ -11,8 +11,8 @@ const initKeycloak = (onAuthenticatedCallback) => {
   _kc
     .init({
       onLoad: "check-sso",
-      silentCheckSsoRedirectUri:
-        window.location.origin + "/silent-check-sso.html",
+      //silentCheckSsoRedirectUri:
+      // window.location.origin + "/silent-check-sso.html",
       pkceMethod: "S256",
     })
     .then((authenticated) => {
@@ -37,6 +37,10 @@ const updateToken = (successCallback) =>
 
 const getUsername = () => _kc.tokenParsed?.preferred_username;
 
+const getFirstName = () => _kc.tokenParsed?.given_name;
+
+const getLastName = () => _kc.tokenParsed?.family_name;
+
 const hasRole = (roles) => roles.some((role) => _kc.hasRealmRole(role));
 
 const UserService = {
@@ -48,6 +52,8 @@ const UserService = {
   updateToken,
   getUsername,
   hasRole,
+  getFirstName,
+  getLastName,
 };
 
 export default UserService;
