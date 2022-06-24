@@ -5,7 +5,7 @@ import Grid from "@mui/material/Grid";
 import HttpService from "../services/HttpService";
 import TopAppBar from "./TopAppBar";
 
-class BookingsPlacehold extends React.Component{
+class BookingHistory extends React.Component{
   constructor(props) {
     super(props);
     this.state = {bookings: []};
@@ -36,4 +36,4 @@ class BookingsPlacehold extends React.Component{
   };
 };
 
-export default BookingsPlacehold;
+export default BookingHistory;
