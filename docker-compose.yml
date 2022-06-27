@@ -1,0 +1,53 @@
+version: "3.8"
+
+services:
+    nestjs:
+        container_name: nestjs
+        image: nestjs-api-dev:1.0.0
+        build:
+            context: .
+            target: development
+            dockerfile: ./nestjs-desk-planner/Dockerfile
+        command: npm run start:debug
+        ports:
+            - 3001:3001
+        links:
+            - mongo
+        volumes:
+            - .:/usr/src/app
+            - /usr/src/app/node_modules
+        restart: unless-stopped
+
+    mongo:
+        container_name: mongodb
+        image: mongo:latest
+        restart: unless-stopped
+        networks:
+            - app-network
+        environment:
+            - MONGO_INITDB_ROOT_USERNAME=nestjs
+            - MONGO_INITDB_ROOT_PASSWORD=nestjs
+            - MONGO_INITDB_DATABASE=desk_manager
+        ports:
+            - 27017:27017
+        volumes:
+            - ./mongo:/data/db
+
+    reactjs:
+        container_name: reactjs
+        build:
+            context: .
+            dockerfile: ./react-user-app/Dockerfile
+        volumes:
+            - ".:/app"
+            - "/app/node_modules"
+        ports:
+            - 3000:3000
+        networks:
+            - app-network
+        links:
+            - nestjs
+        environment:
+            - CHOKIDAR_USEPOLLING=true
+networks:
+    app-network:
