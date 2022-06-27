@@ -38,7 +38,6 @@ export class RoomController {
     @Post('/getRoomsByFloorId')
     @Unprotected()
     getFloorsByBuilding(@Body('roomIsOnFloor') roomIsOnFloor: number) {
-    console.log("getFloorsByBuilding Route");
     return this.roomService.getRoomByFloor(roomIsOnFloor);
   }
   @Post('/getRoom')
@@ -47,7 +46,6 @@ export class RoomController {
     @Body('roomId') roomId: number,
     @Body('roomIsOnFloor') roomIsOnFloor: number,
     @Body('roomIsInBuilding') roomIsInBuilding: number) {
-  console.log("getFloorsByBuilding Route");
   return this.roomService.getRoom(roomId, roomIsOnFloor, roomIsInBuilding);
   }
 

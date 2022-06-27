@@ -5,7 +5,7 @@ import Grid from "@mui/material/Grid";
 import HttpService from "../services/HttpService";
 import TopAppBar from "./TopAppBar";
 
-class BookingsPlacehold extends React.Component{
+class BookingHistory extends React.Component{
   constructor(props) {
     super(props);
     this.state = {bookings: []};
@@ -27,7 +27,7 @@ class BookingsPlacehold extends React.Component{
         >
           {this.state.bookings.map((bookings) => {
             // benötigte Parameter: Raum, Datum, IntervallStart und IntervallEnde
-            return <BookingCard bId={bookings.bookingId} room={bookings.bookingRoomId} table={bookings.bookingTableId} date={bookings.bookingStart} durationStart={bookings.bookingStart} durationEnd={bookings.bookingEnd}
+            return <BookingCard bId={bookings.bookingId} room={bookings.bookingRoomId} table={bookings.bookingTableId} date={bookings.bookingStart} durationStart={bookings.bookingStart} durationEnd={bookings.bookingEnd} weekly={bookings.bookingIsWeekly}
           />;
         })}
         </Grid>
@@ -36,4 +36,4 @@ class BookingsPlacehold extends React.Component{
   };
 };
 
-export default BookingsPlacehold;
+export default BookingHistory;

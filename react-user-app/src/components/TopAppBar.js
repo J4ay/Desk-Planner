@@ -6,7 +6,7 @@ import IconButton from "@mui/material/IconButton";
 import AppBar from "@mui/material/AppBar";
 import LaptopChromebookIcon from "@mui/icons-material/LaptopChromebook";
 import UserService from "../services/UserService";
-import LoginIcon from "@mui/icons-material/Login";
+import LogoutIcon from "@mui/icons-material/Logout";
 import Authenticated from "./Authenticated";
 import { Link } from "react-router-dom";
 
@@ -42,7 +42,7 @@ const TopAppBar = () => {
               sx={{ mr: 1 }}
               onClick={() => toggle()}
             >
-              <LoginIcon sx={{ fontSize: 32 }} />
+              <LogoutIcon sx={{ fontSize: 32 }} />
             </IconButton>
           </Authenticated>
         </Toolbar>

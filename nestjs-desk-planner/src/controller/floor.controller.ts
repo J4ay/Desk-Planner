@@ -35,7 +35,6 @@ export class FloorController {
   @Post('/getFloorsByBuilding')
   @Unprotected()
   getFloorsByBuilding(@Body('floorIsInBuilding') floorIsInBuilding: number) {
-    console.log("getFloorsByBuilding Route");
     return this.floorService.getFloorsByBuilding(floorIsInBuilding);
   }
 

@@ -35,8 +35,17 @@ function timeCreator(ptime) {
     return `${hours}:${minutes}`;
 }
 
+function weeklyFunction(boolean) {
+  if(boolean === true) {
+    return `Ja`;
+  } else {
+    return `Nein`;
+  }
+
+}
+
 const BookingCard = (props) => {
-  const {bId, room, table, date, durationStart, durationEnd} = props;
+  const {bId, room, table, date, durationStart, durationEnd, weekly} = props;
   return (
     <Card 
     sx={{ minWidth: "100%", bgcolor: "#ebebeb", border: "1px solid #e0e0e0", marginBottom: "12px" }}>
@@ -51,6 +60,9 @@ const BookingCard = (props) => {
         </Typography>
       </CardContent>
       <CardActions>
+        <Typography variant="h7" component="div">
+          Wöchentlich? {weeklyFunction(weekly)}
+        </Typography>
         <Button
           size="small"
           sx={{ marginLeft: "auto", marginRight: "0", zIndex: "1" }}

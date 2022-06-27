@@ -55,8 +55,8 @@ const TimePopUp = (props) => {
 
     const saveDates = () => {               //Aktionen nach dem Drücken von Buchen/Kontaktieren
       setEndDate(date); 
-      if(btnText=="Buchen"){compareDates();}
-      if(btnText==`${bookingContact} kontaktieren`){contact();}  
+      if(btnText==="Buchen"){compareDates();}
+      if(btnText===`${bookingContact} kontaktieren`){contact();}  
     }
     const contact = () =>{
       closing();
@@ -93,7 +93,7 @@ const TimePopUp = (props) => {
       } 
       */
       else{
-        if (radValue == "woche") {
+        if (radValue === "woche") {
           HttpService.postBooking(id, 1, 22, 2, startDate, date, true);
           setRadValue("einzel");
           closing();          
@@ -123,7 +123,7 @@ const TimePopUp = (props) => {
 
     const getMinutes = () =>{
       var minutes = date.getMinutes();
-      if (minutes == 0 ){
+      if (minutes === 0 ){
         return "00";
       }
       else{return minutes;}
@@ -132,7 +132,7 @@ const TimePopUp = (props) => {
   return (
     <div>
         <Dialog open={open} onClose={closing}>
-            <DialogTitle>Arbeitsplatz {id} Raum ..</DialogTitle>
+            <DialogTitle>Arbeitsplatz {id}</DialogTitle>
             <DialogContent>
         <Grid container>
         <Box sx={{ width: '100%' }}>

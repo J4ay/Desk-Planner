@@ -7,17 +7,13 @@ const Login = () => {
   return (
     <center>
       <div>
-        <p style={{ paddingTop: "20%" }} className="lead">
-          Please authenticate yourself!
-        </p>
+        <h2 style={{ paddingTop: "20%" }} className="lead">
+          Login
+        </h2>
         <p>
           <BottomNavigationAction
             label="Buchungen"
-            icon={
-              <LoginIcon
-                fontSize="large"
-              />
-            }
+            icon={<LoginIcon fontSize="large" />}
             onClick={() => UserService.doLogin()}
           />
         </p>
