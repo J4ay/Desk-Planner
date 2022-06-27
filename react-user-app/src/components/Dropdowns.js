@@ -44,6 +44,8 @@ const ITEM_HEIGHT = 48;
 
 
 const Dropdowns = (props) => {
+  const {room, floor, building, getLayout} = props;
+
   fillBuildings();
 
   //states for each dropdown
@@ -72,6 +74,7 @@ const Dropdowns = (props) => {
 
   //handles for closing the dropdown menus
   const handleClose = (event) => {
+    building(event.currentTarget.value);
     setSelectedBuilding(event.currentTarget.value);
     options_floors = [];    //reset the floor options
     options_rooms = [];     //reset the room options
@@ -79,15 +82,18 @@ const Dropdowns = (props) => {
     setAnchorEl(null);
   };
   const handleCloseFloor = (event) => {
+    floor(event.currentTarget.value);
     setSelectedFloor(event.currentTarget.value);
     options_rooms = [];   //reset the room options
     fillRooms({"floorId": event.currentTarget.value});
     setAnchorFloor(null);
   };
-  const handleCloseRoom = (event) => {
+  const handleCloseRoom = async (event) => {
+    room(event.currentTarget.value);
     setSelectedRoom(event.currentTarget.value);
     fillRooms({"roomId": event.currentTarget.value});
     setAnchorRoom(null);
+    getLayout(event.currentTarget.value);
   };
 
   return (
@@ -118,9 +124,9 @@ const Dropdowns = (props) => {
           },
         }}
       >
-        {options_buildings.map((option) => (
+        {options_buildings.map((option,i) => (
           <MenuItem
-            key={option.buildingId}
+            key={i}
             value={option.buildingId}
             selected={option.buildingName === "Pyxis"}
             onClick={handleClose}
@@ -156,9 +162,9 @@ const Dropdowns = (props) => {
           },
         }}
       >
-        {options_floors.map((option) => (
+        {options_floors.map((option,i) => (
           <MenuItem
-            key={option.floorId}
+            key={i}
             value={option.floorId}
             selected={option.floorName === "Pyxis"}
             onClick={handleCloseFloor}
@@ -194,9 +200,9 @@ const Dropdowns = (props) => {
           },
         }}
       >
-        {options_rooms.map((option) => (
+        {options_rooms.map((option,i) => (
           <MenuItem
-            key={option.roomId}
+            key={i}
             value={option.roomId}
             selected={option.roomName === "Pyxis"}
             onClick={handleCloseRoom}
