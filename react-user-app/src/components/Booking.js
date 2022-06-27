@@ -6,19 +6,30 @@ import HttpService from "../services/HttpService";
 import TimePopUp from "./TimePopUp";
 import { fabric } from "fabric";
 
-class Booking extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { room: [], dialogIsOpen: false, id: 0 };
-  }
 
-  componentDidMount() {
-    HttpService.getRoom(1, 2, 2).then((res) => {
-      this.setState({ room: res });
-    });
+async function getData(room, floor,building) {
+  if(room != null && floor != null && building != null) {
+  const data = await HttpService.getRoom(room,floor,building);
+  return data;}
+  else {
+    return null;
+  }
+}
+
+
+const Booking = () => {
+
+  const [dialogIsOpen, setDialogIsOpen] = React.useState(false);
+  const [id, setId] = React.useState(0);
+  var [__canvas, setCanvas] = React.useState(null);
+  var [room, setRoom] = React.useState(null);
+  var [floor, setFloor] = React.useState(null);
+  var [building, setBuilding] = React.useState(null);
+
+  React.useEffect( () => {
 
     // Initialize the canvas
-    var canvas = (this.__canvas = new fabric.Canvas("c", {
+    var canvas =  new fabric.Canvas("c", {
       selection: false,
       height: window.innerHeight,
       width: window.innerWidth,
@@ -27,11 +38,12 @@ class Booking extends React.Component {
       fireRightClick: true,
       stopContextMenu: true,
       interactive: false,
-    }));
+    });
+    setCanvas(canvas);
     fabric.Object.prototype.originX = fabric.Object.prototype.originY =
       "center";
     
-    let x = this.openDialog;
+    let x = openDialog;
     let panning;
     let prevX;
     let prevY;
@@ -69,24 +81,30 @@ class Booking extends React.Component {
     canvas.on("mouse:up", () => {
       panning = false;
     });
-  }
-  openDialog = (id) => {
-    this.setState({ dialogIsOpen: true });
-    this.setState({ id: id });
+  }, []);
+
+  
+  const openDialog = (id) => {
+    setDialogIsOpen(true);
+    setId(id);
   };
 
-  closeDialog = () => {
-    this.setState({ dialogIsOpen: false });
+  const closeDialog = () => {
+    setDialogIsOpen(false);
   };
 
-  getLayout = (room, can) => {
-    can.clear();
-    let coords = room.roomWallHandles;
+  const getLayout = async (room) => {
+    var roomVar = {};
+
+    roomVar = await getData(room, floor, building);
+
+    __canvas.clear();
+    let coords = roomVar.roomWallHandles;
 
     // Create lines from database
     let lines = [];
     for (let i = 0; i < 21; i++) {
-      lines[i] = this.makeLine([
+      lines[i] = makeLine([
         coords.x[i] * 0.5 - 50,
         coords.y[i] * 0.5,
         coords.x[i + 1] * 0.5 - 50,
@@ -94,7 +112,7 @@ class Booking extends React.Component {
       ]);
     }
     //Connect first and last point in array
-    lines[21] = this.makeLine([
+    lines[21] = makeLine([
       coords.x[0] * 0.5 - 50,
       coords.y[0] * 0.5,
       coords.x[19] * 0.5 - 50,
@@ -104,21 +122,21 @@ class Booking extends React.Component {
     let circs = [];
     //create circles at the end of lines
     for (let i = 0; i < 21; i++) {
-      circs[i] = this.makeCircle(coords.x[i], coords.y[i]);
+      circs[i] = makeCircle(coords.x[i], coords.y[i]);
     }
 
     for (let i = 0; i < lines.length; i++) {
-      can.add(lines[i]);
+      __canvas.add(lines[i]);
     }
     for (let i = 0; i < circs.length; i++) {
-      can.add(circs[i]);
+      __canvas.add(circs[i]);
     }
 
-    let desks = room.roomDeskHandles;
+    let desks = roomVar.roomDeskHandles;
     let rects = [];
 
     for (let i = 0; i < desks.x.length; i++) {
-      rects[i] = this.makeRect(
+      rects[i] = makeRect(
         desks.x[i] * 0.5 - 50,
         desks.y[i] * 0.5,
         i,
@@ -127,14 +145,14 @@ class Booking extends React.Component {
     }
 
     for (let i = 0; i < rects.length; i++) {
-      can.add(rects[i]);
+      __canvas.add(rects[i]);
     }
 
     if (document.getElementsByClassName("upper-canvas")[1])
       document.getElementsByClassName("upper-canvas")[1].remove();
   };
 
-  makeRect = (x, y, id, angle) => {
+  const makeRect = (x, y, id, angle) => {
     let rect = new fabric.Rect({
       width: 100 * 0.5,
       height: 60 * 0.5,
@@ -165,7 +183,7 @@ class Booking extends React.Component {
     return group;
   };
 
-  makeCircle = (x, y) => {
+  const makeCircle = (x, y) => {
     let c = new fabric.Circle({
       left: x * 0.5 - 50,
       top: y * 0.5,
@@ -180,7 +198,7 @@ class Booking extends React.Component {
     return c;
   };
 
-  makeLine = (coords) => {
+  const makeLine = (coords) => {
     return new fabric.Line(coords, {
       fill: "black",
       stroke: "black",
@@ -189,19 +207,10 @@ class Booking extends React.Component {
       evented: false,
     });
   };
-
-  render() {
     return (
       <Container sx={{ marginTop: "64px" }}>
         <Grid container>
-          <Dropdowns />
-          <button
-            onClick={() => {
-              this.getLayout(this.state.room, this.__canvas);
-            }}
-          >
-            Room 1
-          </button>
+          <Dropdowns room={setRoom} floor={setFloor} building={setBuilding} getLayout={getLayout}/>
         </Grid>
         <Container
           sx={{
@@ -216,13 +225,13 @@ class Booking extends React.Component {
           <canvas id="c" />
         </Container>
         <TimePopUp
-          open={this.state.dialogIsOpen}
-          onClose={this.closeDialog}
-          id={this.state.id}
+          open={dialogIsOpen}
+          onClose={closeDialog}
+          id={id}
         />
       </Container>
     );
-  }
+  
 }
 
 export default Booking;
