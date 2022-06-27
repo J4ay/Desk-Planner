@@ -8,7 +8,6 @@ import { fabric } from "fabric";
 
 
 async function getData(room, floor,building) {
-  console.log(room, floor, building);
   if(room != null && floor != null && building != null) {
   const data = await HttpService.getRoom(room,floor,building);
   return data;}
