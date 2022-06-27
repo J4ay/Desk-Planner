@@ -32,8 +32,6 @@ async function occupyTable(pId){
 
 async function getTableOccupation(pId){
   const response = await axios.post('http://localhost:3001/desk/occupied', { id: pId });
-  console.log("Id: " + pId);
-  console.dir(response.data);
   return response.data;
 }
 
@@ -54,7 +52,6 @@ async function getFloors(){
 
 async function getFloorsByBuilding(buildingId){
   const response = await axios.post('http://localhost:3001/floor/getFloorsByBuilding', { floorIsInBuilding: buildingId });
-  console.dir(response.data);
   return response.data;
 }
 
@@ -99,7 +96,6 @@ async function postBooking(pId, uID, bookingID , bookingRoomId, bookingStart, bo
 }
 
 async function deleteBooking(bookingID){
-  console.log("Booking ID in HTTP Service: " + bookingID);
   if(bookingID){
     const response = await axios.post('http://localhost:3001/booking/delete', { bookingId : bookingID });
     return response.data;
@@ -124,7 +120,6 @@ async function getMessagesBySenderAndReceiver(sender, receiver){
 
 
 async function deleteMessages(messageID){
-  console.log("Message ID in HTTP Service: " + messageID);
   if(messageID){
     const response = await axios.post('http://localhost:3001/message/delete', { messageId : messageID });
     return response.data;

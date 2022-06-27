@@ -68,14 +68,11 @@ const TimePopUp = (props) => {
       bookings = await HttpService.getBookingsByTableId(id);
     }
     catch(err){ bookings = [];} 
-      console.dir(bookings);
 
       var i = 0;
       var overlap = false;
       var bookedBy
       bookings.forEach(booking => {
-        console.log(new Date(bookings[i].bookingEnd));
-        console.log(startDate);
         if ((startDate < new Date(bookings[i].bookingEnd)) && (date > new Date(bookings[i].bookingStart))) {
           overlap = true;
           bookedBy = bookings[i].bookedByUser;
@@ -111,7 +108,6 @@ const TimePopUp = (props) => {
         setSelectText('Ausgewähltes Buchnungsende');
         setStartDate(date);
         setEndDate(date);
-        console.log(startDate);
       } 
       else{                       //Bisher nicht abrufbar, wäre abrufbar, wenn man den Starttermin nach dem Endtermin umändern könnte
         setDisable(true);
