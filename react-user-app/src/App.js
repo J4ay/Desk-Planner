@@ -9,6 +9,7 @@ import Authenticated from "./components/Authenticated";
 import Login from "./components/Login";
 import Messages from "./components/Messages";
 import Chats from "./components/Chats";
+import Chat_Hooks from "./components/Chat_Hooks";
 import LayoutDesigner from "./components/LayoutDesigner";
 import BookingHistory from "./components/BookingHistory";
 import { Routes, Route } from "react-router-dom";
@@ -32,7 +33,7 @@ function App() {
             <Route path="/" element={<Booking />} />
             <Route path="/messages" element={<Messages />} />
             <Route path="/bookings" element={<BookingHistory />} />
-            <Route path="/chat" element={<Chats />} />
+            <Route path="/chat/:otherPerson" element={<Chat_Hooks />} />
             <Route path="/layout" element={<LayoutDesigner />} />
           </Routes>
           <BottomNavBar />

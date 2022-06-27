@@ -2,10 +2,9 @@ import * as React from "react";
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import BottomNavBar from "./BottomNavBar";
-import Dropdowns from "./Dropdowns";
 import { fabric } from "fabric";
 import HttpService from "../services/HttpService";
-import { TextField } from "@mui/material";
+import { FormHelperText, TextField } from "@mui/material";
 
 var points_handler = {
   x: [],
@@ -47,7 +46,7 @@ function fillTableHandle(id, x, y) {
 class LayoutDesigner extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { buildingText: "", floorText: "" };
+    this.state = { buildingText: "", floorText: "", roomText: "", roomName: "" };
   }
 
   _handleBuildingFieldChange = (event) => {
@@ -56,6 +55,14 @@ class LayoutDesigner extends React.Component {
 
   _handleFloorFieldChange = (event) => {
     this.setState({ floorText: event.target.value });
+  };
+
+  _handleRoomFieldChange = (event) => {
+    this.setState({ roomText: event.target.value });
+  };
+
+  _handleRoomNameFieldChange = (event) => {
+    this.setState({ roomName: event.target.value });
   };
 
   componentDidMount() {
@@ -288,26 +295,7 @@ class LayoutDesigner extends React.Component {
       <Container
         sx={{ marginTop: "64px", marginBottom: "64px", padding: "12px" }}
       >
-        <Dropdowns />
         <div class="layoutButtonDiv">
-          <Button
-            variant="contained"
-            sx={{ border: "2px solid black" }}
-            onClick={() => {
-              addDesk(this.__canvas, 300, 300);
-            }}
-          >
-            Tisch
-          </Button>
-
-          <Button variant="contained" sx={{ border: "2px solid black" }}>
-            Wand
-          </Button>
-
-          <Button variant="contained" sx={{ border: "2px solid black" }}>
-            Tür
-          </Button>
-
           <TextField
             value={this.state.buildingText}
             onChange={this._handleBuildingFieldChange}
@@ -322,16 +310,30 @@ class LayoutDesigner extends React.Component {
             label="Floor ID"
             variant="outlined"
           ></TextField>
+          <TextField
+            value={this.state.roomText}
+            onChange={this._handleRoomFieldChange}
+            id="outlined-basic"
+            label="Room ID"
+            variant="outlined"
+          ></TextField>
+          <TextField
+            value={this.state.roomName}
+            onChange={this._handleRoomNameFieldChange}
+            id="outlined-basic"
+            label="Room Name"
+            variant="outlined"
+          ></TextField>
 
           <Button
             variant="contained"
             sx={{ border: "2px solid black", float: "right" }}
             onClick={() => {
               HttpService.postRoom(
-                1,
+                this.state.roomText,
                 this.state.floorText,
                 this.state.buildingText,
-                "Konferenz 1",
+                this.state.roomName,
                 10,
                 "",
                 points_handler,
@@ -342,6 +344,11 @@ class LayoutDesigner extends React.Component {
             Speichern
           </Button>
         </div>
+
+        <FormHelperText>
+          <h2> Tische: Doppelklick ➜ erstellen | Rechtsklick ➜ löschen  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Wände: An den Punkten verschieben</h2>
+        </FormHelperText>
+
 
         <canvas id="c" />
 
