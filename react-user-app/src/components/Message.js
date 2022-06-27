@@ -11,7 +11,7 @@ import Container from "@mui/material/Container";
 const Message = (props) => {
   const {messageId, room, sender, content} = props
   return (
-    <Link to= {`/chat/${sender}`}>
+    <Link to= {`/chat/${sender}`} style={{textDecoration: "none"}}>
 <Card>
   <Container
     sx={{ minWidth: "100%", bgcolor: "#ebebeb", border: "1px solid #e0e0e0", marginBottom: "12px" }}

@@ -1,14 +1,11 @@
 import React from "react";
 import { useState } from 'react'
-//import Dropdowns from "./Dropdowns";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
-//import TopAppBarMessages from "./TopAppBarMessages";
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import IconButton from "@mui/material/IconButton";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import { TextField } from "@mui/material";
 import HttpService from "../services/HttpService";
 import UserService from "../services/UserService";
@@ -21,13 +18,11 @@ var allChatsArray = [];
 const useForceUpdate = () => useState()[1];
 
 async function fillChatsOutgoingArray(otherPerson) {
-  //console.log("otherPerson: " + otherPerson);
   chatsOutgoingArray = await HttpService.getMessagesBySenderAndReceiver(UserService.getFirstName(), otherPerson);
   sortChats();
 }
 
 async function fillChatsIncomingArray(otherPerson) {
-  //console.log("otherPerson: " + otherPerson);
   chatsIncomingArray = await HttpService.getMessagesBySenderAndReceiver(otherPerson, UserService.getFirstName());
   sortChats();
 }
@@ -37,17 +32,15 @@ async function sortChats() {
   allChatsArray.sort(function (a, b) {
     return new Date(a.messageDate) - new Date(b.messageDate);
   });
-  //console.dir(allChatsArray);
   var helparray = [];
   helparray = allChatsArray;
   return helparray;
-  //console.dir(allChatsArray);
 }
+
+//TODO: Render chats without needing to press the refresh buttons
 
 const Chat = (props) => {
   const { otherPerson } = useParams();
-  const [chatsOutgoing, setChatsOutgoing] = React.useState([]);
-  const [chatsIncoming, setChatsIncoming] = React.useState([]);
   const [allChats, setAllChats] = React.useState([]);
   
   const forceUpdate = useForceUpdate();
@@ -55,9 +48,7 @@ const Chat = (props) => {
     async function fillOptions() {
     fillChatsOutgoingArray(otherPerson);
     fillChatsIncomingArray(otherPerson);
-    //allChatsArray = sortChats();
     setAllChats(allChatsArray);
-    //allChatsArray = sortChats(chatsOutgoingArray, chatsIncomingArray);
     }
     fillOptions();
   }, []);
@@ -69,9 +60,6 @@ const Chat = (props) => {
   const [messageValue, setMessageValue] = React.useState("");
 
   const handleSendButtonClick = async () => {
-    //console.log("messageId" + 1);
-    //console.log("messageSender" + UserService.getFirstName());
-    //console.log("messageReceiver" + otherPerson);
 
     setAllChats(allChatsArray);
 
