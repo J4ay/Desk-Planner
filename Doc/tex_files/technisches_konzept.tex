@@ -130,15 +130,32 @@ Das NestJS Backend sendet die Anfrage an die Mongoose Datenbank und liefert die 
 \section{Datenbanken}
 \begin{figure}[!h]
     \centering
-    \includegraphics[width=1\textwidth]{./images/EntityRelationshipModel.png}
-    \caption{Entity-Relationship-Modell}
+    \includegraphics[width=1\textwidth]{./images/EntityRelationshipModell.png}
+    \caption{Skizze-Entity-Relationship-Modell}
     \label{fig:EntityRelationshipModel}
 \end{figure}
-Der Mitarbeiter hat eine Rolle. 
-Unter Rollen versteht sich die Position im Betrieb, darunter zählt der Geschäftsleitung, der Administrator oder der Mitarbeiter.
-Die Personalnummer, der AnzeigeName und der LoginName sind zusätzliche Attribute.
-Das Attribut aktiveChats steht für die Mitarbeiterchats, aktivBuchungen symbolisiert die getätigten Buchungen.
-Die Buchungen haben als Attribut Datum, Startzeit und EndZeit.
-Der Arbeitsplatz hat die Attribute Buchungsstatus, Koordinaten, die Räumlichkeiten abbilden, Buchungseinschränkung. 
-Zudem gibt es Raum, Stockwerk und Gebäude, die den gebuchten Ort beschreiben. 
-Ein Mitarbeiter kann mehrere Arbeitsplätze zu verschiedenen Daten, an verschiedenen Örtlichkeiten gleichzeitig buchen. 
+Das Objekt Benutzer ist die Person die aktiv eine Buchung durchführen will. 
+Die Attribute sind VorName, Name und NachName, die Eigenschaften dieser sind selbsterklärend.
+Das Objekt Nachricht hat die folgenden Attribute, Platz, Empfänger, Id, Inhalt, Sender, Datum und Raum. 
+Wobei Platz für den Ort der gebucht werden soll, Empfänger für die Person die diese Nachricht erhalten soll, 
+Id die für die Nachrichtenidentifikation, der Inhalt für den Nachrichteninhalt, der Sender für den Verfasser der Nachricht, 
+das Datum für den Zeitpunkt an dem die Nachricht versendet worden ist, Der Raum für die entsprechende Räumlichkeit, 
+verwendet werden sollen.
+
+Das Objekt Gebäude hat die Attribute id, Stockwerk, Adresse und Name. Erstere sind selbsterklärend, 
+das Letzte beschreibt den internen Namen.\\\\
+Das Objekt Arbeitsplatz, hat die Attribute, Id, besetzt, ImGebäude, ImStockwerk und ImRaum. 
+Mit dem Attribut besetzt ist der Status des Arbeitsplatzes gemeint, ja nach Wert “true“ oder “false“ kann der Momentane Status abgefragt werden. 
+Die restlichen sind selbsterklärend.
+
+Das Objekt Buchung hat die Attribute hat die Attribute, Id, Benutzer, TischId, RaumId, StartZeit, EndZeit und wöchentlich. 
+Mit Benutzer ist die Person, die sich erfolgreich für diesen einen Arbeitsplatz angemeldet hat, gemeint. 
+Mit StartZeit und EndZeit wird der Zeitpunkt und die Dauer der Buchung vermerkt. 
+Das Attribut wöchentlich beschreibt, ob es sich hierbei um eine Dauerbuchung handelt. Die restlichen sind selbsterklärend.\\\\
+Das Objekt Raum hat die Attribute, imStockwerk, PlatzHandle, ErlaubeRollen, WandHandle, Platz, id, Name und imGebäude. 
+Mit dem Attribut PlatzHandle und WandHandle werden die interaktiv über das UI Setzbaren Parameter definiert. 
+ErlaubeRollen beschreibt welche Rollen in dem Raum erlaubt sind. Für Name siehe oben. Die restlichen sind selbsterklärend.\\
+
+Das Objekt Stockwerk hat die Attribute, imGebäude, Name, id, Räume. 
+Alle Attribute sind selbsterklärend oder können durch obige Beschreibungen erschlossen werden.
+
