@@ -8,8 +8,70 @@ In dieser Sektion werden das Installations- und Administrationshandbuch untertei
 
 \subsection{Installationshandbuch}
 
-% Installationstext
+In diesem Installationshandbuch werden die einzelnen Schritte aufgeführt, die zur Installation der Software benötigt werden.
 
+\begin{itemize}
+    \item   \textit{Docker Desktop} mit WSL Command Line installieren (siehe hierzu Docker Desktop Installationsanleitung)
+    \item   \textit{Node.js} installieren und das System neustarten
+    \item   Eingabe in eine Kommandozeile: \textit{docker pull mongo}
+    \item   In Docker Desktop nun das Image \textit{mongo} starten
+\end{itemize}
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{6_1_Docker_MongoImage.png}
+    \caption{Das Mongo Image highlighted in Docker Desktop}
+    \label{fig:DockerMongoImage}
+\end{figure}
+
+\begin{itemize}
+    \item   Bei der Konfiguration von Mongo in Docker Desktop muss unter dem Punkt \textit{Local Host} in \textit{Ports} folgendes eingegeben werden: \textit{27017}
+    \item   Anschließend auf \textit{Run} klicken 
+\end{itemize}
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{6_1_Docker_MongoKonfig.png}
+    \caption{So sollte die Konfiguration von Mongo aussehen nach dem letzten Schritt}
+    \label{fig:DockerMongoKonfig}
+\end{figure}
+
+\begin{itemize}
+    \item   Anschließend muss Keycloak gestartet werden, dazu muss in eine Kommandozeile folgendes eingegeben werden: \textit{docker run -p 8080:8080 -e KEYCLOAK\_ADMIN=admin -e KEYCLOAK\_ADMIN\_PASSWORD=admin quay.io/keycloak/keycloak:18.0.2 start-dev}
+    \item   Nun in Docker Desktop unter dem Punkt \textit{Containers} den \textit{Keycloak} Container (erkennbar am Port 8080) und den \textit{mongo} Container starten
+    \item   Im Browser kann dann die Route \textit{localhost:8080} aufgerufen werden und mit dem Nutzernamen \textit{admin} und Passwort \textit{admin} kann sich eingeloggt werden
+    \item   Aus dem GitHub Repository dann die Datei \textit{realm-export.json} herunterladen
+    \item   Unter \textit{Add Realm} eine Realm namens \textit{DeskPlanner} erstellen
+    \item   Auf der linken Seite unter \textit{Import} die zuvor heruntergeladene Datei \textit{realm-export.json} auswählen
+    \item   Unter \textit{existierenden Ressourcen Skip} auswählen und importieren 
+\end{itemize}
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{6_1_Keycloak_Import.png}
+    \caption{So sollte der Import aussehen}
+    \label{fig:KeycloakImport}
+\end{figure}
+
+\begin{itemize}
+    \item   Unter \textit{Users} einen neuen User anlegen mit \textit{Add User}
+    \item   Anschließend die persönlichen Daten der Nutzer (\textit{Usernamen, Vor- und Nachnamen}) eingeben und speichern
+    \item   Nun die User anklicken, dazu muss gegebenenfalls \textit{View all users} angeklickt werden
+    \item   Hier kann unter \textit{Credentials} ein Passwort hinzugefügt werden
+    \begin{description}
+    \item[Wichtig:] Das Passwort muss als \textit{nicht-temporär} gespeichert werden
+    \end{description}
+    \item   In \textit{Role Mappings} im Dropdown \textit{Client Roles} muss \textit{keycloak-reactjs-demo} ausgewählt werden
+    \item   Hier können die gewünschten Rollen \textit{(admin, mitarbeiter,...)} gewählt werden
+    \item   Anschließend muss in einem weiteren Konsolenfenster in den Ordner \textit{nestjs-desk-planner} mithilfe von \textit{cd} gewechselt werden
+    \item   Nun folgende Befehle eingeben und ausführen lassen: \textit{npm install}
+    \item   Nach einem erfolgreichen ersten Befehl den nächsten: \textit{npm run start}
+    \item   In der Umgebungsentwicklung in der Kommandozeile folgenden Befehl eingeben: \textit{cd ./react-user-app/}
+    \item   Nun folgende Befehle eingeben und ausführen lassen: \textit{npm install --force} und anschließend \textit{npm start}
+\end{itemize}
+
+Nach erfolreichem Durchführen der Installationsanleitung sollte der DeskPlanner erfolgreich eingerichtet sein und kann anschließend benutzt werden.
+Im Administrationshandbuch finden Sie weitere Informationen zur Konfiguration und zur Benutzung des RaumEditor für den Administrator.
 \subsection{Administrationshandbuch}
 
 \begin{figure}[!h]
